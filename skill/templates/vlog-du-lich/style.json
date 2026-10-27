@@ -1,0 +1,98 @@
+{
+  "name": "vlog-du-lich",
+  "kind": "video",
+  "title": "Vlog du lịch — Nhật ký đi",
+  "description": "Video dọc 9:16, 15–40 giây. Cắt nhanh theo nhịp, chữ in hoa vàng đậm, phụ đề nền đen từng dòng. Hợp vlog du lịch, đi chơi cuối tuần, recap chuyến đi.",
+  "size": [
+    1080,
+    1920
+  ],
+  "fps": 30,
+  "transition": {
+    "type": "cut"
+  },
+  "fade_out": 0.4,
+  "text_fade_in": 0,
+  "music_volume": 0.45,
+  "original_volume": 0,
+  "image_motion": "pan",
+  "grade": "eq=saturation=1.15:contrast=1.06",
+  "presets": {
+    "ngay": {
+      "font": "Baloo2",
+      "variation": "ExtraBold",
+      "size": 120,
+      "color": "#FFD23F",
+      "stroke": {
+        "width": 8,
+        "color": "#111111"
+      },
+      "uppercase": true,
+      "y": 0.14,
+      "rotate": -3
+    },
+    "dia-diem": {
+      "font": "Baloo2",
+      "variation": "ExtraBold",
+      "size": 168,
+      "color": "#FFFFFF",
+      "stroke": {
+        "width": 10,
+        "color": "#111111"
+      },
+      "uppercase": true,
+      "y": 0.45,
+      "max_width": 0.92,
+      "line_spacing": 0.95
+    },
+    "phu": {
+      "font": "BeVietnamPro-Bold",
+      "size": 46,
+      "color": "#111111",
+      "box": {
+        "color": "#FFD23F",
+        "radius": 14,
+        "pad": [
+          10,
+          24
+        ]
+      },
+      "y": 0.56,
+      "max_width": 0.84
+    },
+    "caption": {
+      "font": "BeVietnamPro-Bold",
+      "size": 56,
+      "color": "#FFFFFF",
+      "box": {
+        "color": "#111111D9",
+        "radius": 14,
+        "pad": [
+          8,
+          20
+        ]
+      },
+      "box_mode": "line",
+      "line_gap": 6,
+      "y": 0.78,
+      "max_width": 0.82,
+      "line_spacing": 1.0
+    },
+    "tag": {
+      "font": "BeVietnamPro-Bold",
+      "size": 36,
+      "color": "#111111",
+      "box": {
+        "color": "#FFD23F",
+        "radius": 30,
+        "pad": [
+          10,
+          24
+        ]
+      },
+      "x": 0.06,
+      "anchor_x": "left",
+      "y": 0.07
+    }
+  }
+}

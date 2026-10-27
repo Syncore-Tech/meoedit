@@ -1,0 +1,42 @@
+{
+  "name": "the-san-pham",
+  "kind": "image",
+  "title": "Thẻ sản phẩm — Cam ấm 4:5",
+  "description": "Ảnh 1080x1350 (4:5) cho Facebook, Instagram, Threads, Shopee. Ảnh sản phẩm bo góc, tên, mô tả ngắn, giá, nhãn nổi bật và dải tên shop.",
+  "size": [1080, 1350],
+  "background": "#FFF7EF",
+  "shapes": [
+    {"box": [0, 0.9, 1, 0.1], "color": "#E8572A"}
+  ],
+  "photo_slots": [
+    {"box": [0.06, 0.04, 0.88, 0.56], "radius": 40}
+  ],
+  "presets": {
+    "ten": {
+      "font": "BeVietnamPro-ExtraBold", "size": 62, "color": "#2B1B12",
+      "y": 0.665, "max_width": 0.86, "line_spacing": 1.08
+    },
+    "mo-ta": {
+      "font": "BeVietnamPro-Medium", "size": 34, "color": "#6B5B50",
+      "y": 0.745, "max_width": 0.84, "line_spacing": 1.25
+    },
+    "gia": {
+      "font": "BeVietnamPro-ExtraBold", "size": 58, "color": "#FFFFFF",
+      "box": {"color": "#E8572A", "radius": 40, "pad": [12, 40]},
+      "y": 0.832
+    },
+    "gia-cu": {
+      "font": "BeVietnamPro-Medium", "size": 32, "color": "#9A8B80",
+      "x": 0.94, "anchor_x": "right", "y": 0.832
+    },
+    "nhan": {
+      "font": "BeVietnamPro-Black", "size": 44, "color": "#FFFFFF",
+      "box": {"color": "#D7263D", "radius": 24, "pad": [12, 26]},
+      "x": 0.88, "anchor_x": "right", "y": 0.085, "rotate": 6, "uppercase": true
+    },
+    "shop": {
+      "font": "BeVietnamPro-Bold", "size": 36, "color": "#FFFFFF",
+      "y": 0.95, "max_width": 0.9
+    }
+  }
+}

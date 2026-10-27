@@ -1,0 +1,125 @@
+{
+  "name": "review-quan-cafe",
+  "kind": "video",
+  "title": "Review quán cà phê — Nâu kem chill",
+  "description": "Video dọc 9:16, 20–35 giây. Tông nâu kem ấm, chữ mềm, chuyển cảnh mờ dần. Hợp review quán cà phê, tiệm bánh, góc chill.",
+  "size": [
+    1080,
+    1920
+  ],
+  "fps": 30,
+  "transition": {
+    "type": "fade",
+    "duration": 0.35
+  },
+  "fade_out": 0.6,
+  "text_fade_in": 0.3,
+  "music_volume": 0.32,
+  "original_volume": 0,
+  "image_motion": "pan",
+  "grade": "colorbalance=rs=0.035:bs=-0.035:rm=0.02:bm=-0.02,eq=saturation=1.04:contrast=1.03",
+  "presets": {
+    "hook": {
+      "font": "BeVietnamPro-ExtraBold",
+      "size": 84,
+      "color": "#3B2A20",
+      "box": {
+        "color": "#F6EBDDEE",
+        "radius": 36,
+        "pad": [
+          26,
+          42
+        ]
+      },
+      "y": 0.17,
+      "max_width": 0.84,
+      "line_spacing": 1.1
+    },
+    "ten-quan": {
+      "font": "DancingScript",
+      "variation": "Bold",
+      "size": 132,
+      "color": "#FFF8EE",
+      "shadow": {
+        "offset": [
+          0,
+          6
+        ],
+        "blur": 16,
+        "color": "#000000AA"
+      },
+      "y": 0.44,
+      "max_width": 0.9,
+      "line_spacing": 1.0
+    },
+    "dia-diem": {
+      "font": "BeVietnamPro-SemiBold",
+      "size": 38,
+      "color": "#FFF8EE",
+      "box": {
+        "color": "#3B2A20D9",
+        "radius": 40,
+        "pad": [
+          14,
+          30
+        ]
+      },
+      "x": 0.06,
+      "anchor_x": "left",
+      "y": 0.075,
+      "align": "left",
+      "max_width": 0.8
+    },
+    "caption": {
+      "font": "BeVietnamPro-SemiBold",
+      "size": 58,
+      "color": "#FFFFFF",
+      "stroke": {
+        "width": 5,
+        "color": "#2A1D15"
+      },
+      "y": 0.79,
+      "max_width": 0.86,
+      "line_spacing": 1.15
+    },
+    "gia": {
+      "font": "BeVietnamPro-ExtraBold",
+      "size": 60,
+      "color": "#3B2A20",
+      "box": {
+        "color": "#F2C98A",
+        "radius": 22,
+        "pad": [
+          14,
+          32
+        ]
+      },
+      "x": 0.93,
+      "anchor_x": "right",
+      "y": 0.63,
+      "rotate": -4
+    },
+    "diem": {
+      "font": "BeVietnamPro-Black",
+      "size": 200,
+      "color": "#F6EBDD",
+      "shadow": {
+        "offset": [
+          0,
+          8
+        ],
+        "blur": 18,
+        "color": "#00000099"
+      },
+      "y": 0.4
+    },
+    "nho": {
+      "font": "BeVietnamPro-Medium",
+      "size": 48,
+      "color": "#F6EBDD",
+      "y": 0.53,
+      "max_width": 0.8,
+      "line_spacing": 1.25
+    }
+  }
+}
