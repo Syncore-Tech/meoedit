@@ -1,0 +1,112 @@
+{
+  "template": "vlog-du-lich",
+  "output": "out/vlog-mien-bac.mp4",
+  "music": "media/music-Life-of-Riley.mp3",
+  "scenes": [
+    {
+      "src": "media/vlog-32117880.mp4",
+      "start": 1,
+      "duration": 2.0,
+      "texts": [
+        {
+          "preset": "ngay",
+          "text": "5 ngày"
+        },
+        {
+          "preset": "dia-diem",
+          "text": "Miền Bắc"
+        },
+        {
+          "preset": "phu",
+          "text": "Hà Nội · Hạ Long · Ninh Bình"
+        }
+      ]
+    },
+    {
+      "src": "media/vlog-34081853.mp4",
+      "start": 2,
+      "duration": 1.7,
+      "texts": [
+        {
+          "preset": "tag",
+          "text": "Phố cổ Hà Nội"
+        },
+        {
+          "preset": "caption",
+          "text": "Phố treo cờ đỏ rực, đi bộ cả buổi không chán"
+        }
+      ]
+    },
+    {
+      "src": "media/vlog-33887925.mp4",
+      "start": 1,
+      "duration": 1.6,
+      "texts": [
+        {
+          "preset": "tag",
+          "text": "Hồ Gươm"
+        },
+        {
+          "preset": "caption",
+          "text": "Sáng sớm ra hồ, gió mát rượi"
+        }
+      ]
+    },
+    {
+      "src": "media/vlog-34081907.mp4",
+      "start": 2,
+      "duration": 1.6,
+      "texts": [
+        {
+          "preset": "tag",
+          "text": "07:30 sáng"
+        },
+        {
+          "preset": "caption",
+          "text": "Ghé sạp đầu ngõ mua chai nước"
+        }
+      ]
+    },
+    {
+      "src": "media/vlog-32117880.mp4",
+      "start": 8,
+      "duration": 1.7,
+      "texts": [
+        {
+          "preset": "tag",
+          "text": "Vịnh Hạ Long"
+        },
+        {
+          "preset": "caption",
+          "text": "Ngồi tàu ngắm đảo đá, đẹp hơn ảnh"
+        }
+      ]
+    },
+    {
+      "src": "media/vlog-29684375.mp4",
+      "start": 1,
+      "duration": 1.9,
+      "texts": [
+        {
+          "preset": "tag",
+          "text": "Tràng An, Ninh Bình"
+        },
+        {
+          "preset": "caption",
+          "text": "Đi thuyền qua núi đá vôi"
+        }
+      ]
+    },
+    {
+      "src": "media/vlog-35840531.mp4",
+      "start": 3,
+      "duration": 2.2,
+      "texts": [
+        {
+          "preset": "caption",
+          "text": "Hẹn gặp lại nha miền Bắc"
+        }
+      ]
+    }
+  ]
+}

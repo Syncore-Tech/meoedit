@@ -10,6 +10,19 @@ Quay bằng điện thoại, đưa thư mục cho agent (Claude Code, Codex, Cur
 - **Bạn duyệt trước.** Luôn có bản nháp + ảnh tổng quan từng cảnh trước khi xuất bản cuối.
 - **Không cần Remotion hay dịch vụ ngoài.** Chỉ cần ffmpeg và Python.
 
+## Demo
+
+| Review quán cà phê | Vlog du lịch | Thẻ sản phẩm |
+|---|---|---|
+| <img src="docs/demo-review-may-chieu.webp" width="260"> | <img src="docs/demo-vlog-mien-bac.webp" width="260"> | <img src="docs/demo-the-nen-thom.jpg" width="260"> |
+| 8 cảnh, 17.6s, nhạc nền | 7 cảnh, 12.7s, cắt nhanh | 1080x1350 |
+
+Trước khi xuất, agent gửi bạn ảnh tổng quan từng cảnh để duyệt:
+
+<img src="docs/demo-review-may-chieu-sheet.jpg" width="640">
+
+Quán, chuyến đi và shop trong demo là hư cấu; media lấy từ Pexels và nhạc của Kevin MacLeod (CC BY 4.0). Xem [examples/demo/CREDITS.md](examples/demo/CREDITS.md). Tự dựng lại: `examples/demo/fetch-media.sh` rồi chạy plan trong `examples/demo/`.
+
 ## Template có sẵn
 
 | Template | Loại | Dùng cho |
@@ -79,7 +92,7 @@ Sao chép một template có sẵn, đổi tên, sửa màu và chữ, chạy `t
 
 ## Giấy phép
 
-Mã nguồn: [MIT](LICENSE). Font tải từ Google Fonts theo giấy phép SIL Open Font License. meoedit không kèm nhạc; bạn tự chịu trách nhiệm bản quyền nhạc và media đưa vào.
+Mã nguồn: [MIT](LICENSE). Media demo: xem [CREDITS](examples/demo/CREDITS.md). Font tải từ Google Fonts theo giấy phép SIL Open Font License. meoedit không kèm nhạc; bạn tự chịu trách nhiệm bản quyền nhạc và media đưa vào.
 
 ---
 

@@ -1,0 +1,27 @@
+{
+  "template": "the-san-pham",
+  "output": "out/the-nen-thom.png",
+  "photo": "media/candle-6798396.jpg",
+  "texts": [
+    {
+      "preset": "nhan",
+      "text": "Mới"
+    },
+    {
+      "preset": "ten",
+      "text": "Nến thơm gừng ấm"
+    },
+    {
+      "preset": "mo-ta",
+      "text": "Sáp đậu nành, cháy 40 giờ, hương ấm dịu"
+    },
+    {
+      "preset": "gia",
+      "text": "159.000đ"
+    },
+    {
+      "preset": "shop",
+      "text": "Tiệm Nhà Mèo · Giao toàn quốc"
+    }
+  ]
+}

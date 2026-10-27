@@ -20,6 +20,22 @@ def place(base, layer, x, y):
 
 
 def wrap(text, font, max_w, stroke=0):
+    """Greedy wrap, then narrow the width as far as the line count allows so lines come out even
+    (no one-word orphan on the last line)."""
+    lines = _greedy(text, font, max_w, stroke)
+    if len(lines) < 2:
+        return lines
+    lo, hi = max_w / len(lines), max_w
+    while hi - lo > 4:
+        mid = (lo + hi) / 2
+        if len(_greedy(text, font, mid, stroke)) == len(lines):
+            hi = mid
+        else:
+            lo = mid
+    return _greedy(text, font, hi, stroke)
+
+
+def _greedy(text, font, max_w, stroke):
     lines = []
     for para in text.split("\n"):
         words = para.split()
