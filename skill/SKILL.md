@@ -84,6 +84,18 @@ Trường của một cảnh:
 
 Cấp plan: `music` (file nhạc, tự lặp và mờ dần cuối, tự nhỏ lại khi có tiếng gốc), `music_volume`, `original_volume`, `transition` (`{"type": "fade", "duration": 0.3}`).
 
+Chữ cố định suốt video (logo, nút liên hệ, nhãn trước/sau): đặt `texts` ở cấp plan thay vì lặp lại ở từng cảnh. Lớp này nằm trên cả chuyển cảnh.
+
+Template chia khung (ví dụ `truoc-sau-video`) dùng `srcs` thay cho `src`: mỗi phần tử là một khung, theo thứ tự khung của template, chạy cùng lúc.
+
+| Trường | Ý nghĩa |
+|---|---|
+| `srcs` | danh sách clip/ảnh, một cho mỗi khung (khung 1 là bản gốc) |
+| `starts` | giây bắt đầu cắt cho từng clip trong `srcs` (thiếu thì lấy `start`) |
+| `audio_panel` | lấy tiếng gốc từ khung nào (số thứ tự từ 0, mặc định khung cuối), dùng cùng `volume` |
+
+Kiểu chữ có `typewriter` trong template (ví dụ `hau-truong`) tự gõ từng ký tự. Muốn chậm hơn hay nhanh hơn, ghi đè trên chữ: `"typewriter": 12` (ký tự mỗi giây), hoặc `"typewriter": 0` để hiện ngay. Câu gõ cần thời gian: cảnh nên dài hơn số ký tự chia tốc độ, cộng một giây để người xem đọc.
+
 Ảnh:
 
 ```json

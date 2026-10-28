@@ -1,0 +1,63 @@
+{
+  "template": "hau-truong",
+  "output": "out/hau-truong-may-studio.mp4",
+  "music": "media/music-Life-of-Riley.mp3",
+  "scenes": [
+    {
+      "src": "media/bds-7817246.mp4",
+      "start": 2,
+      "duration": 4.0,
+      "texts": [
+        {
+          "preset": "gio",
+          "text": "08:00"
+        },
+        {
+          "preset": "tieu-de",
+          "text": "Một ngày đi làm của sale nhà phố"
+        }
+      ]
+    },
+    {
+      "src": "media/bds-8293132.mp4",
+      "start": 1,
+      "duration": 3.4,
+      "texts": [
+        {
+          "preset": "gio",
+          "text": "10:15"
+        },
+        {
+          "preset": "caption",
+          "text": "Cắm biển, chụp lại gửi khách xem trước"
+        }
+      ]
+    },
+    {
+      "src": "media/bds-7646600.mp4",
+      "start": 1,
+      "duration": 3.4,
+      "texts": [
+        {
+          "preset": "gio",
+          "text": "14:00"
+        },
+        {
+          "preset": "caption",
+          "text": "Khách hỏi ba lần mới chốt căn góc"
+        }
+      ]
+    },
+    {
+      "src": "media/bds-40398038.mp4",
+      "start": 2,
+      "duration": 3.0,
+      "texts": [
+        {
+          "preset": "ket",
+          "text": "Hẹn bạn ở căn tiếp theo"
+        }
+      ]
+    }
+  ]
+}

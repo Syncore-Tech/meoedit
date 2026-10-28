@@ -1,0 +1,106 @@
+{
+  "name": "hau-truong",
+  "kind": "video",
+  "title": "Hậu trường — Chữ gõ từng ký tự",
+  "description": "Video dọc 9:16, 10–30 giây. Tiêu đề gõ từng chữ như đang nhắn tin, cảnh quay tay tự nhiên, câu kết viết tay. Hợp vlog đi làm, hậu trường buổi quay, một ngày của team.",
+  "size": [
+    1080,
+    1920
+  ],
+  "fps": 30,
+  "transition": {
+    "type": "fade",
+    "duration": 0.3
+  },
+  "fade_out": 0.5,
+  "text_fade_in": 0,
+  "music_volume": 0.4,
+  "original_volume": 0,
+  "image_motion": "pan",
+  "grade": "eq=saturation=0.95:contrast=1.03:brightness=0.01",
+  "shapes": [
+    {
+      "type": "gradient",
+      "box": [
+        0,
+        0,
+        1,
+        0.32
+      ],
+      "from": "#0000008C",
+      "to": "#00000000"
+    }
+  ],
+  "presets": {
+    "tieu-de": {
+      "font": "BeVietnamPro-ExtraBold",
+      "size": 66,
+      "color": "#FFFFFF",
+      "uppercase": true,
+      "typewriter": 16,
+      "x": 0.07,
+      "anchor_x": "left",
+      "align": "left",
+      "y": 0.1,
+      "anchor": "top",
+      "max_width": 0.86,
+      "line_spacing": 1.12,
+      "shadow": {
+        "offset": [
+          0,
+          3
+        ],
+        "blur": 8,
+        "color": "#000000A0"
+      }
+    },
+    "gio": {
+      "font": "BeVietnamPro-SemiBold",
+      "size": 38,
+      "color": "#FFFFFF",
+      "box": {
+        "color": "#00000099",
+        "radius": 24,
+        "pad": [
+          10,
+          22
+        ]
+      },
+      "x": 0.07,
+      "anchor_x": "left",
+      "y": 0.07
+    },
+    "caption": {
+      "font": "BeVietnamPro-SemiBold",
+      "size": 46,
+      "color": "#FFFFFF",
+      "typewriter": 22,
+      "y": 0.8,
+      "max_width": 0.86,
+      "shadow": {
+        "offset": [
+          0,
+          3
+        ],
+        "blur": 8,
+        "color": "#000000B0"
+      }
+    },
+    "ket": {
+      "font": "DancingScript",
+      "variation": "Bold",
+      "size": 92,
+      "color": "#FFFFFF",
+      "y": 0.72,
+      "max_width": 0.8,
+      "shadow": {
+        "offset": [
+          0,
+          4
+        ],
+        "blur": 10,
+        "color": "#000000B0"
+      }
+    }
+  }
+}

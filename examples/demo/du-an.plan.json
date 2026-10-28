@@ -1,0 +1,94 @@
+{
+  "template": "gioi-thieu-du-an",
+  "output": "out/vuon-may-residence.mp4",
+  "music": "media/music-Local-Forecast---Elevator.mp3",
+  "texts": [
+    {
+      "preset": "cta",
+      "text": "Nhắn tin để nhận bảng giá"
+    }
+  ],
+  "scenes": [
+    {
+      "src": "media/bds-36796001.mp4",
+      "start": 1,
+      "duration": 3.0,
+      "texts": [
+        {
+          "preset": "nhan",
+          "text": "Căn hộ Thủ Đức"
+        },
+        {
+          "preset": "ten-du-an",
+          "text": "Vườn Mây Residence"
+        }
+      ]
+    },
+    {
+      "src": "media/bds-39204540.mp4",
+      "start": 4,
+      "duration": 2.6,
+      "texts": [
+        {
+          "preset": "vi-tri",
+          "text": "Cách trung tâm 11 km"
+        },
+        {
+          "preset": "caption",
+          "text": "Ngay trục metro, 15 phút vào quận 1"
+        }
+      ]
+    },
+    {
+      "src": "media/bds-36371120.mp4",
+      "start": 2,
+      "duration": 2.4,
+      "texts": [
+        {
+          "preset": "diem",
+          "text": "Hồ bơi tràn trên mái",
+          "y": 0.7
+        }
+      ]
+    },
+    {
+      "src": "media/bds-40398038.mp4",
+      "start": 1,
+      "duration": 2.4,
+      "texts": [
+        {
+          "preset": "diem",
+          "text": "Bàn giao nội thất cao cấp",
+          "y": 0.7
+        }
+      ]
+    },
+    {
+      "src": "media/bds-40397792.mp4",
+      "start": 1,
+      "duration": 2.4,
+      "texts": [
+        {
+          "preset": "diem",
+          "text": "Sổ hồng riêng từng căn",
+          "y": 0.7
+        }
+      ]
+    },
+    {
+      "src": "media/bds-7646763.mp4",
+      "start": 2,
+      "duration": 3.2,
+      "texts": [
+        {
+          "preset": "gia-nho",
+          "text": "Sở hữu ngay chỉ từ"
+        },
+        {
+          "preset": "gia",
+          "text": "1,5 tỷ"
+        }
+      ]
+    }
+  ]
+}
