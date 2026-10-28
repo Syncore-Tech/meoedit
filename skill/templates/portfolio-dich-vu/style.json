@@ -1,0 +1,93 @@
+{
+  "name": "portfolio-dich-vu",
+  "kind": "video",
+  "title": "Portfolio dịch vụ — Cắt nhanh nhãn trắng",
+  "description": "Video dọc 9:16, 10–20 giây. Cắt nhanh 1 giây mỗi cảnh, nhãn loại việc ở góc, câu khách hỏi ở đầu, dải liên hệ cố định ở đáy. Hợp studio, thợ chụp ảnh, team quay dựng, agency khoe sản phẩm.",
+  "size": [
+    1080,
+    1920
+  ],
+  "fps": 30,
+  "transition": {
+    "type": "cut"
+  },
+  "fade_out": 0.3,
+  "text_fade_in": 0,
+  "music_volume": 0.5,
+  "original_volume": 0,
+  "image_motion": "pan",
+  "grade": "eq=saturation=1.1:contrast=1.07",
+  "shapes": [
+    {
+      "type": "gradient",
+      "box": [
+        0,
+        0.8,
+        1,
+        0.2
+      ],
+      "from": "#00000000",
+      "to": "#000000C0"
+    }
+  ],
+  "presets": {
+    "hook": {
+      "font": "BeVietnamPro-ExtraBold",
+      "size": 58,
+      "color": "#111111",
+      "box": {
+        "color": "#FFFFFF",
+        "radius": 14,
+        "pad": [
+          16,
+          28
+        ]
+      },
+      "y": 0.2,
+      "max_width": 0.86,
+      "line_spacing": 1.1
+    },
+    "nhan": {
+      "font": "BeVietnamPro-ExtraBold",
+      "size": 38,
+      "color": "#111111",
+      "uppercase": true,
+      "box": {
+        "color": "#FF6B2C",
+        "radius": 10,
+        "pad": [
+          10,
+          22
+        ]
+      },
+      "y": 0.74
+    },
+    "tieu-de": {
+      "font": "BeVietnamPro-Black",
+      "size": 96,
+      "color": "#FFFFFF",
+      "uppercase": true,
+      "y": 0.45,
+      "max_width": 0.86,
+      "line_spacing": 1.02,
+      "stroke": {
+        "width": 3,
+        "color": "#00000099"
+      }
+    },
+    "cta": {
+      "font": "BeVietnamPro-ExtraBold",
+      "size": 40,
+      "color": "#FFFFFF",
+      "box": {
+        "color": "#FF6B2C",
+        "radius": 40,
+        "pad": [
+          16,
+          36
+        ]
+      },
+      "y": 0.895
+    }
+  }
+}

@@ -88,9 +88,11 @@ cli = sys.argv[1]
 for t in json.loads(subprocess.check_output([sys.executable, cli, "templates"])):
     texts = [{"preset": p, "text": "Chữ mẫu " + p} for p in t["text_styles"]]
     if t["kind"] == "video":
+        # Split-screen templates take one source per panel ("srcs"), the rest a single "src".
+        one = lambda f: {"srcs": [f] * t["panels"]} if t["panels"] else {"src": f}
         plan = {"template": t["name"], "output": f"all-{t['name']}.mp4", "scenes": [
-            {"src": "doc.mp4", "duration": 1.2, "texts": texts},
-            {"src": "anh.jpg", "duration": 1.0, "texts": texts[:1]}]}
+            {**one("doc.mp4"), "duration": 1.2, "texts": texts},
+            {**one("anh.jpg"), "duration": 1.0, "texts": texts[:1]}]}
         cmd = "video"
     else:
         plan = {"template": t["name"], "output": f"all-{t['name']}.png", "photos": ["anh.jpg", "anh.jpg"], "texts": texts}

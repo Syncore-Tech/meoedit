@@ -130,6 +130,24 @@
   .tpls.img .tpl figure { align-self: end; }
   .tpls.img .tpl .name { justify-self: start; }
   .tpl-sec .group { margin-top: 64px; color: #fff; font-size: 1.25rem; }
+  .tpls.img.five { grid-template-columns: repeat(5, 1fr); gap: 0 22px; }
+  .video-sec { padding: 0 0 120px; }
+  .video-sec .sub { max-width: 40em; margin: 16px 0 0; color: var(--ink-soft); }
+  .video-sec .tut { display: block; width: 100%; margin-top: 36px; aspect-ratio: 16 / 9; border-radius: 22px; border: 4px solid var(--ink); background: var(--yellow); }
+  .tpl .frame.w { aspect-ratio: 16 / 9; }
+  .tpls.wide { grid-template-columns: repeat(2, 1fr); }
+  .partner-sec { padding: 110px 0; background: #0B0E17; color: #E9E7F5; }
+  .partner-sec .lay { display: grid; grid-template-columns: 1fr 1.25fr; gap: 56px; align-items: center; }
+  .partner-sec h2 { color: #FFE600; font-size: clamp(2.2rem, 4.5vw, 3.4rem); }
+  .partner-sec p { max-width: 34em; margin: 20px 0 0; }
+  .partner-sec a { color: #FFE600; }
+  .partner-sec .credit { font-size: .9rem; color: #A9A6C4; }
+  .partner-sec .vids { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .partner-sec figure { margin: 0; }
+  .partner-sec .frame { border-radius: 24px; overflow: hidden; border: 3px solid #FFE600; aspect-ratio: 9 / 16; background: #000; box-shadow: 0 0 28px #FFE60055; }
+  .partner-sec .frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .partner-sec figcaption { margin-top: 10px; font-size: .95rem; }
+  .partner-sec figcaption code { color: #FFE600; font-family: var(--mono); font-size: .85rem; }
   .tpl-sec .group + .tpls { margin-top: 24px; }
 
   /* ---------- why ---------- */
@@ -178,6 +196,12 @@
     .chat-intro { position: static; }
     .tpls, .tpls.img { grid-template-columns: repeat(2, 1fr); gap: 24px 16px; }
     .tpls:not(.img) .tpl:nth-child(3n+2) { margin-top: 0; }
+    .tpls.img.five { grid-template-columns: repeat(2, 1fr); gap: 24px 16px; }
+    .tpls.wide { grid-template-columns: 1fr; }
+    .video-sec { padding-bottom: 72px; }
+    .video-sec .tut { border-radius: 14px; border-width: 3px; }
+    .partner-sec { padding: 72px 0; }
+    .partner-sec .lay { grid-template-columns: 1fr; gap: 36px; }
     .tpl .frame { border-radius: 18px; }
     .tpl p { font-size: .92rem; }
     .why { grid-template-columns: 1fr; }
@@ -214,6 +238,7 @@
           <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
           Xem trên GitHub
         </a>
+        <a class="btn btn-line" href="#huong-dan">Xem video 69 giây</a>
         <a class="btn btn-line" href="#cai-dat">Cài trong 2 phút</a>
       </div>
     </div>
@@ -243,9 +268,20 @@
   </div>
 </section>
 
+<section class="video-sec" id="huong-dan">
+  <div class="wrap">
+    <h2>Xem một lần dùng thật</h2>
+    <p class="sub">Cài plugin, gõ một câu, duyệt bản nháp, nhận video. Quay thẳng từ Claude Code, đoạn agent làm việc được tua nhanh.</p>
+    <video class="tut" controls preload="metadata" playsinline poster="docs/meoedit-huong-dan-poster.jpg">
+      <source src="docs/meoedit-huong-dan.mp4" type="video/mp4">
+      <a href="docs/meoedit-huong-dan.mp4">Tải video hướng dẫn (MP4, 7 MB)</a>
+    </video>
+  </div>
+</section>
+
 <section class="tpl-sec" id="template">
   <div class="wrap">
-    <h2>Mười template có sẵn</h2>
+    <h2>Mười sáu template có sẵn</h2>
     <p class="sub">Mỗi template là một phong cách trọn gói: bố cục, font, màu, nhịp cắt và cách viết chữ. Agent làm theo đúng phong cách đó với clip và ảnh của bạn.</p>
     <h3 class="group">Video dọc 9:16</h3>
     <div class="tpls">
@@ -286,6 +322,48 @@
         <span class="name">cong-thuc-nau-an</span>
       </article>
     </div>
+    <h3 class="group">Bất động sản, video 9:16</h3>
+    <div class="tpls img five">
+      <article class="tpl">
+        <figure class="frame v"><img src="docs/demo-du-an-vuon-may.webp" alt="Demo giới thiệu dự án căn hộ: flycam, nhãn vị trí, giá chỉ từ 1,5 tỷ" loading="lazy"></figure>
+        <h3>Giới thiệu dự án</h3>
+        <p>Tên dự án in hoa, nhãn vị trí, điểm nổi bật có dấu tick, màn giá "chỉ từ" chữ vàng, nút liên hệ cố định.</p>
+        <span class="name">gioi-thieu-du-an</span>
+      </article>
+      <article class="tpl">
+        <figure class="frame v"><img src="docs/demo-truoc-sau-video.webp" alt="Demo trước và sau: clip gốc và video đã dựng chạy cạnh nhau trong hai khung" loading="lazy"></figure>
+        <h3>Trước và sau video</h3>
+        <p>Bản gốc và bản đã làm chạy cùng lúc trong hai khung, khung kết quả viền sáng, nền lưới tối.</p>
+        <span class="name">truoc-sau-video</span>
+      </article>
+      <article class="tpl">
+        <figure class="frame v"><img src="docs/demo-truoc-sau-neon.webp" alt="Demo trước và sau khung vàng neon: khung gốc nhỏ bên trái, khung kết quả lớn bên phải" loading="lazy"></figure>
+        <h3>Trước và sau neon</h3>
+        <p>Khung gốc nhỏ, khung kết quả lớn viền vàng neon, dải ưu đãi vàng chữ đen ở đáy.</p>
+        <span class="name">truoc-sau-neon</span>
+      </article>
+      <article class="tpl">
+        <figure class="frame v"><img src="docs/demo-portfolio-may-studio.webp" alt="Demo portfolio studio quay phim: cắt nhanh, nhãn Flycam, Nhà mẫu, Người dẫn" loading="lazy"></figure>
+        <h3>Portfolio dịch vụ</h3>
+        <p>Mở bằng câu khách hỏi, cắt một giây mỗi cảnh, nhãn cam ghi loại việc, dải liên hệ ở đáy.</p>
+        <span class="name">portfolio-dich-vu</span>
+      </article>
+      <article class="tpl">
+        <figure class="frame v"><img src="docs/demo-hau-truong.webp" alt="Demo hậu trường một ngày đi làm của sale nhà phố, chữ gõ từng ký tự" loading="lazy"></figure>
+        <h3>Hậu trường</h3>
+        <p>Giờ trong ngày ở góc, tiêu đề và caption gõ từng chữ, câu kết viết tay.</p>
+        <span class="name">hau-truong</span>
+      </article>
+    </div>
+    <h3 class="group">Hướng dẫn, video ngang 16:9</h3>
+    <div class="tpls wide">
+      <article class="tpl">
+        <figure class="frame w"><img src="docs/demo-huong-dan.webp" alt="Demo template hướng dẫn: màn hình Claude Code trong khung bo góc, nhãn Bước 4, 5, 6" loading="lazy"></figure>
+        <h3>Hướng dẫn quay màn hình</h3>
+        <p>Màn hình quay trong khung bo góc trên nền vàng, nhãn Bước 1, 2, 3, đoạn chờ tua nhanh. Video hướng dẫn phía trên dựng bằng template này.</p>
+        <span class="name">huong-dan</span>
+      </article>
+    </div>
     <h3 class="group">Ảnh</h3>
     <div class="tpls img">
       <article class="tpl">
@@ -312,6 +390,27 @@
         <p>Ảnh vuông, nền ảnh phủ tối, câu nói chữ nghiêng, dấu ngoặc vàng.</p>
         <span class="name">anh-trich-dan</span>
       </article>
+    </div>
+  </div>
+</section>
+
+<section class="partner-sec" id="doi-tac">
+  <div class="wrap lay">
+    <div>
+      <h2>9100 media dùng thử meoedit</h2>
+      <p>9100 media là team hậu kỳ video bất động sản: flycam, chữ 3D, bản đồ dự án. Hai video bên cạnh do meoedit dựng từ footage của họ. Template <code>truoc-sau-neon</code> làm theo đúng kiểu trước và sau quen thuộc của 9100.</p>
+      <p><a href="https://www.facebook.com/people/9100media/61585710323395/" rel="noopener">Xem trang 9100 media trên Facebook</a></p>
+      <p class="credit">Footage © 9100 media. Nhạc "Local Forecast - Elevator" và "Life of Riley" của Kevin MacLeod, CC BY 4.0.</p>
+    </div>
+    <div class="vids">
+      <figure>
+        <div class="frame"><img src="partner/9100-truoc-sau.webp" alt="Video trước và sau của 9100 media: flycam gốc bên trái, bản đã edit có chữ 3D và khoanh vùng dự án bên phải" loading="lazy"></div>
+        <figcaption>Trước và sau, <code>truoc-sau-neon</code></figcaption>
+      </figure>
+      <figure>
+        <div class="frame"><img src="partner/9100-hau-truong.webp" alt="Video hậu trường một buổi bay flycam của team 9100 media" loading="lazy"></div>
+        <figcaption>Hậu trường, <code>hau-truong</code></figcaption>
+      </figure>
     </div>
   </div>
 </section>

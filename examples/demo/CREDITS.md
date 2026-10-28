@@ -1,6 +1,6 @@
 # Nguồn media của bản demo
 
-Quán "Mây Chiều", quán phở, chuyến đi, "Kem Mây", "Tiệm Nhà Mèo" và các mức giá là hư cấu, chỉ để minh hoạ. Media không nằm trong repo; `fetch-media.sh` tải về từ nguồn gốc.
+Quán "Mây Chiều", quán phở, dự án "Vườn Mây Residence", "Mây Studio", chuyến đi, "Kem Mây", "Tiệm Nhà Mèo" và các mức giá là hư cấu, chỉ để minh hoạ. Media không nằm trong repo; `fetch-media.sh` tải về từ nguồn gốc.
 
 **Video và ảnh:** [Pexels](https://www.pexels.com/license/), dùng miễn phí, được chỉnh sửa. Cảm ơn các tác giả:
 
@@ -45,8 +45,22 @@ Quán "Mây Chiều", quán phở, chuyến đi, "Kem Mây", "Tiệm Nhà Mèo" 
 | photo-32116008 | https://www.pexels.com/photo/32116008/ |
 | photo-8534373 | https://www.pexels.com/photo/8534373/ |
 | photo-40529241 | https://www.pexels.com/photo/40529241/ |
+| bds-32953540 | https://www.pexels.com/video/32953540/ |
+| bds-36371120 | https://www.pexels.com/video/36371120/ |
+| bds-36796001 | https://www.pexels.com/video/36796001/ |
+| bds-37674124 | https://www.pexels.com/video/37674124/ |
+| bds-38410480 | https://www.pexels.com/video/38410480/ |
+| bds-39204540 | https://www.pexels.com/video/39204540/ |
+| bds-40187590 | https://www.pexels.com/video/40187590/ |
+| bds-40397792 | https://www.pexels.com/video/40397792/ |
+| bds-40398038 | https://www.pexels.com/video/40398038/ |
+| bds-7646600 | https://www.pexels.com/video/7646600/ |
+| bds-7646763 | https://www.pexels.com/video/7646763/ |
+| bds-7817246 | https://www.pexels.com/video/7817246/ |
+| bds-8293132 | https://www.pexels.com/video/8293132/ |
 
 **Nhạc:** Kevin MacLeod ([incompetech.com](https://incompetech.com)), giấy phép [Creative Commons: By Attribution 4.0](http://creativecommons.org/licenses/by/4.0/):
 - "Lobby Time" (video review quán cà phê, video mở hộp)
-- "Life of Riley" (video vlog du lịch, video outfit)
-- "Happy Alley" (video review quán ăn, video công thức nấu ăn)
+- "Life of Riley" (video vlog du lịch, video outfit, video hậu trường)
+- "Happy Alley" (video review quán ăn, video công thức nấu ăn, video portfolio)
+- "Local Forecast - Elevator" (video giới thiệu dự án, video trước và sau)

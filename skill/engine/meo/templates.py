@@ -22,5 +22,6 @@ def all_templates():
             "description": s.get("description", ""),
             "guide": str(p.parent / "TEMPLATE.md"),
             "text_styles": sorted(s["presets"]),
+            "panels": len(s.get("panels", [])),
         })
     return out

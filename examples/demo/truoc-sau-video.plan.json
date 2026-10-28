@@ -1,0 +1,80 @@
+{
+  "template": "truoc-sau-video",
+  "output": "out/truoc-sau-du-an.mp4",
+  "music": "media/music-Local-Forecast---Elevator.mp3",
+  "texts": [
+    {
+      "preset": "logo",
+      "text": "meoedit"
+    },
+    {
+      "preset": "tieu-de",
+      "text": "Clip gốc thành video bán hàng"
+    },
+    {
+      "preset": "nhan-truoc",
+      "text": "Gốc"
+    },
+    {
+      "preset": "nhan-sau",
+      "text": "Đã dựng"
+    },
+    {
+      "preset": "cta",
+      "text": "Miễn phí, chạy ngay trên máy bạn"
+    }
+  ],
+  "scenes": [
+    {
+      "srcs": [
+        "media/bds-36796001.mp4",
+        "out/vuon-may-residence.mp4"
+      ],
+      "starts": [
+        0.7,
+        0
+      ],
+      "duration": 3.0,
+      "texts": [
+        {
+          "preset": "caption",
+          "text": "Thêm tên dự án và nhãn khu vực"
+        }
+      ]
+    },
+    {
+      "srcs": [
+        "media/bds-36371120.mp4",
+        "out/vuon-may-residence.mp4"
+      ],
+      "starts": [
+        1.6,
+        5.3
+      ],
+      "duration": 2.6,
+      "texts": [
+        {
+          "preset": "caption",
+          "text": "Điểm nổi bật hiện từng ý"
+        }
+      ]
+    },
+    {
+      "srcs": [
+        "media/bds-7646763.mp4",
+        "out/vuon-may-residence.mp4"
+      ],
+      "starts": [
+        1.6,
+        11.2
+      ],
+      "duration": 3.2,
+      "texts": [
+        {
+          "preset": "caption",
+          "text": "Màn giá chốt cuối video"
+        }
+      ]
+    }
+  ]
+}

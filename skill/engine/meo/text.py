@@ -54,8 +54,9 @@ def _greedy(text, font, max_w, stroke):
     return lines
 
 
-def _block(preset, text, W):
-    """Draw one text block on its own tight RGBA tile."""
+def _block(preset, text, W, reveal=None):
+    """Draw one text block on its own tight RGBA tile. reveal = how many characters to show (typewriter);
+    the layout is that of the full text so lines do not move while typing."""
     size = preset.get("size", 64)
     font = fonts.load(preset.get("font", "BeVietnamPro-Bold"), size, preset.get("variation"))
     if preset.get("uppercase"):
@@ -97,9 +98,14 @@ def _block(preset, text, W):
     text_layer = Image.new("RGBA", (tw, th), (0, 0, 0, 0))
     td = ImageDraw.Draw(text_layer)
     y = margin + pad_y
+    left = len(text) if reveal is None else int(reveal)
     for line, w in zip(lines, widths):
         x = line_x(w)
-        if line_mode and line:
+        line, left = line[:max(left, 0)], left - len(line) - 1
+        if not line:
+            y += lh + gap
+            continue
+        if line_mode:
             d.rounded_rectangle([x - pad_x, y - pad_y, x + w + pad_x, y + ascent + descent + 2 * sw + pad_y],
                                 radius=box.get("radius", 16), fill=rgba(box["color"]))
         td.text((x + sw, y + sw), line, font=font, fill=rgba(preset.get("color", "#FFFFFF")),
@@ -123,8 +129,11 @@ def _block(preset, text, W):
 
 
 def render_shapes(shapes, W, H):
-    """Shapes from a template: {"box": [x, y, w, h] as fractions, "color": "#RRGGBBAA", "radius": px}
-    or {"type": "gradient", "box": [...], "from": "#00000000", "to": "#000000CC"} (top to bottom)."""
+    """Shapes from a template, box = [x, y, w, h] as fractions:
+    {"box", "color", "radius"}: filled rectangle
+    {"type": "gradient", "box", "from", "to"}: top-to-bottom gradient
+    {"type": "frame", "box", "color", "width", "radius", "glow": blur px}: outline, optionally glowing
+    {"type": "grid", "box", "color", "step": px, "width": px}: grid lines"""
     canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     for s in shapes:
         x, y, w, h = s["box"]
@@ -138,6 +147,25 @@ def render_shapes(shapes, W, H):
                 t = i / max(n - 1, 1)
                 band.putpixel((0, i), tuple(int(c0[k] + (c1[k] - c0[k]) * t) for k in range(4)))
             layer.paste(band.resize((x1 - x0, n)), (x0, y0))
+        elif s.get("type") == "frame":
+            lw = int(s.get("width", 6))
+            box = [x0, y0, x1 - 1, y1 - 1]
+            if s.get("glow"):
+                g = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+                ImageDraw.Draw(g).rounded_rectangle(box, radius=s.get("radius", 0), outline=rgba(s["color"]),
+                                                    width=lw * 3)
+                g = g.filter(ImageFilter.GaussianBlur(s["glow"]))
+                layer = Image.alpha_composite(layer, g)
+                layer = Image.alpha_composite(layer, g)
+            ImageDraw.Draw(layer).rounded_rectangle(box, radius=s.get("radius", 0), outline=rgba(s["color"]),
+                                                    width=lw)
+        elif s.get("type") == "grid":
+            d = ImageDraw.Draw(layer)
+            step, lw, c = int(s.get("step", 60)), int(s.get("width", 1)), rgba(s["color"])
+            for gx in range(x0, x1, step):
+                d.line([(gx, y0), (gx, y1)], fill=c, width=lw)
+            for gy in range(y0, y1, step):
+                d.line([(x0, gy), (x1, gy)], fill=c, width=lw)
         else:
             ImageDraw.Draw(layer).rounded_rectangle([x0, y0, x1 - 1, y1 - 1], radius=s.get("radius", 0),
                                                     fill=rgba(s["color"]))
@@ -145,8 +173,9 @@ def render_shapes(shapes, W, H):
     return canvas
 
 
-def render_layers(presets, texts, W, H):
-    """texts: [{"preset": name, "text": "...", ...overrides}] -> RGBA canvas W x H."""
+def render_layers(presets, texts, W, H, t_now=None):
+    """texts: [{"preset": name, "text": "...", ...overrides}] -> RGBA canvas W x H.
+    t_now = seconds into the scene; texts with "typewriter": chars per second show only what is typed by then."""
     canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     for t in texts:
         if not t.get("text"):
@@ -154,7 +183,10 @@ def render_layers(presets, texts, W, H):
         if t.get("preset") not in presets:
             raise ValueError(f"Template không có kiểu chữ '{t.get('preset')}'. Có: {', '.join(presets)}")
         preset = {**presets[t["preset"]], **{k: v for k, v in t.items() if k not in ("preset", "text")}}
-        tile, margin = _block(preset, t["text"], W)
+        reveal = None
+        if preset.get("typewriter") and t_now is not None:
+            reveal = max(t_now - float(preset.get("typewriter_delay", 0)), 0) * float(preset["typewriter"])
+        tile, margin = _block(preset, t["text"], W, reveal)
         tw, th = tile.size
         cx, cy = preset.get("x", 0.5) * W, preset.get("y", 0.5) * H
         ax = preset.get("anchor_x", "center")

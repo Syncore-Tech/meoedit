@@ -42,9 +42,14 @@ def probe(path):
             info.update(type="image", width=im.width, height=im.height)
         return info
     data = json.loads(run(["ffprobe", "-v", "error", "-show_streams", "-show_format", "-of", "json", str(path)]))
-    v = next((s for s in data["streams"] if s["codec_type"] == "video"), None)
+    # Cover art inside an mp3/m4a shows up as a one-frame "video" stream; it is not footage.
+    v = next((s for s in data["streams"] if s["codec_type"] == "video"
+              and not s.get("disposition", {}).get("attached_pic")), None)
     if not v:
-        info["error"] = "Không có hình ảnh video"
+        if any(s["codec_type"] == "audio" for s in data["streams"]):
+            info.update(type="audio", duration=round(float(data["format"].get("duration", 0)), 2))
+        else:
+            info["error"] = "Không có hình ảnh hay âm thanh"
         return info
     w, h = int(v["width"]), int(v["height"])
     rot = 0
@@ -114,6 +119,8 @@ def thumbs(files, out, per_video=4, tile_w=270, tile_h=480):
             info = probe(f)
             if info.get("error"):
                 tiles.append((None, f"#{i} {info['name']}: {info['error']}"))
+                continue
+            if info["type"] == "audio":
                 continue
             if info["type"] == "image":
                 with Image.open(f) as im:

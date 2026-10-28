@@ -12,6 +12,12 @@ Quay bằng điện thoại, đưa thư mục cho agent (Claude Code, Codex, Cur
 - **Bạn duyệt trước.** Luôn có bản nháp + ảnh tổng quan từng cảnh trước khi xuất bản cuối.
 - **Không cần Remotion hay dịch vụ ngoài.** Chỉ cần ffmpeg và Python.
 
+## Xem hướng dẫn (69 giây)
+
+[![Video hướng dẫn: cài meoedit, gõ một câu, duyệt bản nháp, nhận video](docs/meoedit-huong-dan-cover.jpg)](docs/meoedit-huong-dan.mp4)
+
+Cài plugin, gõ một câu tiếng Việt, duyệt bản nháp, nhận video 1080x1920. Quay thẳng từ Claude Code. Video này cũng dựng bằng meoedit (template `huong-dan`).
+
 ## Demo
 
 | Review quán cà phê | Vlog du lịch | Thẻ sản phẩm |
@@ -26,6 +32,10 @@ Quay bằng điện thoại, đưa thư mục cho agent (Claude Code, Codex, Cur
 | Story khuyến mãi | Trước và sau | Ảnh trích dẫn |
 |---|---|---|
 | <img src="docs/demo-story-flash-sale.jpg" width="200"> | <img src="docs/demo-truoc-sau.jpg" width="260"> | <img src="docs/demo-trich-dan.jpg" width="260"> |
+
+| Giới thiệu dự án BĐS | Trước và sau video | Trước và sau neon | Portfolio dịch vụ | Hậu trường |
+|---|---|---|---|---|
+| <img src="docs/demo-du-an-vuon-may.webp" width="150"> | <img src="docs/demo-truoc-sau-video.webp" width="150"> | <img src="docs/demo-truoc-sau-neon.webp" width="150"> | <img src="docs/demo-portfolio-may-studio.webp" width="150"> | <img src="docs/demo-hau-truong.webp" width="150"> |
 
 Trước khi xuất, agent gửi bạn ảnh tổng quan từng cảnh để duyệt:
 
@@ -43,6 +53,12 @@ Quán, chuyến đi, shop, sản phẩm và giá trong demo là hư cấu; media
 | `outfit-ootd` | Video 9:16 | OOTD, phối đồ, shop thời trang. Chữ nghiêng kiểu tạp chí, nhãn từng món |
 | `mo-hop-san-pham` | Video 9:16 | Mở hộp, giới thiệu mỹ phẩm, đồ handmade. Hồng phấn, màn giá và nút đặt hàng |
 | `cong-thuc-nau-an` | Video 9:16 | Công thức, mẹo bếp. Màn nguyên liệu, nhãn Bước 1, 2, 3 |
+| `gioi-thieu-du-an` | Video 9:16 | Sale bất động sản: tên dự án, vị trí, điểm nổi bật, giá "chỉ từ", nút liên hệ cố định |
+| `truoc-sau-video` | Video 9:16 | Hai video chạy cạnh nhau trong khung sáng: bản gốc và bản đã làm. Khoe kết quả edit, sửa nhà |
+| `truoc-sau-neon` | Video 9:16 | Trước và sau kiểu team edit BĐS: khung gốc nhỏ, khung kết quả lớn viền vàng neon, dải ưu đãi vàng |
+| `portfolio-dich-vu` | Video 9:16 | Studio, team quay dựng khoe sản phẩm. Câu khách hỏi, cắt 1 giây, nhãn loại việc |
+| `hau-truong` | Video 9:16 | Hậu trường, một ngày đi làm. Giờ trong ngày, chữ gõ từng ký tự |
+| `huong-dan` | Video 16:9 | Hướng dẫn phần mềm, quay màn hình: khung bo góc trên nền vàng, nhãn Bước 1, 2, 3 |
 | `the-san-pham` | Ảnh 4:5 | Ảnh bán hàng Facebook, Instagram, Threads, Shopee |
 | `story-khuyen-mai` | Ảnh 9:16 | Story flash sale: phần trăm giảm, giá mới, giá cũ, thời hạn |
 | `truoc-sau` | Ảnh 4:5 | So sánh trước và sau: dọn nhà, làm tóc, chăm da, sửa chữa |
@@ -118,17 +134,18 @@ python3 skill/engine/cli.py image card.json
 
 Một template là một thư mục trong `skill/templates/`:
 
-- `style.json`: khung hình, màu chỉnh video (`grade`, bộ lọc ffmpeg), chuyển cảnh, và các kiểu chữ (`presets`: font, cỡ, màu, viền, hộp nền, vị trí, độ nghiêng).
+- `style.json`: khung hình, màu chỉnh video (`grade`, bộ lọc ffmpeg), chuyển cảnh, và các kiểu chữ (`presets`: font, cỡ, màu, viền, hộp nền, vị trí, độ nghiêng), gõ từng ký tự với `typewriter`), lớp nền `shapes` (dải màu, gradient, khung `frame` có phát sáng, lưới `grid`; `"back": true` để nằm dưới video), và `panels` để chia màn hình thành nhiều khung video.
 - `TEMPLATE.md`: câu hỏi cho người dùng, cấu trúc cảnh, độ dài chữ. Agent đọc file này.
 
-Sao chép một template có sẵn, đổi tên, sửa màu và chữ, chạy `tests/smoke.sh`. PR template mới rất được hoan nghênh: bất động sản, gym, tin tức, thực đơn quán...
+Sao chép một template có sẵn, đổi tên, sửa màu và chữ, chạy `tests/smoke.sh`. PR template mới rất được hoan nghênh: gym, tin tức, thực đơn quán...
 
 ## Lộ trình
 
 - [ ] Giọng đọc AI tiếng Việt chạy trên máy (tuỳ chọn)
 - [ ] Phụ đề tự động từ lời nói (Whisper chạy trên máy)
 - [x] Thêm template: review quán ăn, outfit, mở hộp, nấu ăn, ảnh vuông 1:1, ảnh story 9:16
-- [ ] Thêm template: bất động sản, gym, thực đơn quán
+- [x] Thêm template bất động sản: giới thiệu dự án, trước và sau video, portfolio, hậu trường
+- [ ] Thêm template: gym, thực đơn quán
 - [ ] Cắt theo nhịp nhạc tự động
 
 ## Giấy phép

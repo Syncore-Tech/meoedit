@@ -1,0 +1,177 @@
+{
+  "name": "gioi-thieu-du-an",
+  "kind": "video",
+  "title": "Giới thiệu dự án BĐS — Xanh rêu ánh vàng",
+  "description": "Video dọc 9:16, 15–30 giây cho sale bất động sản. Tên dự án in hoa, nhãn vị trí, các điểm nổi bật dạng tick, màn giá \"chỉ từ\" chữ vàng to, nút liên hệ cố định. Hợp flycam, nhà mẫu, căn hộ, đất nền.",
+  "size": [
+    1080,
+    1920
+  ],
+  "fps": 30,
+  "transition": {
+    "type": "fade",
+    "duration": 0.3
+  },
+  "fade_out": 0.5,
+  "text_fade_in": 0.25,
+  "music_volume": 0.4,
+  "original_volume": 0,
+  "image_motion": "pan",
+  "grade": "eq=saturation=1.08:contrast=1.06,colorbalance=rs=-0.01:gs=0.01:bs=0.02",
+  "shapes": [
+    {
+      "type": "gradient",
+      "box": [
+        0,
+        0,
+        1,
+        0.3
+      ],
+      "from": "#06261DCC",
+      "to": "#06261D00"
+    },
+    {
+      "type": "gradient",
+      "box": [
+        0,
+        0.5,
+        1,
+        0.5
+      ],
+      "from": "#06261D00",
+      "to": "#06261DE6"
+    }
+  ],
+  "presets": {
+    "nhan": {
+      "font": "BeVietnamPro-Bold",
+      "size": 34,
+      "color": "#0B3D2E",
+      "uppercase": true,
+      "box": {
+        "color": "#E8C468",
+        "radius": 10,
+        "pad": [
+          10,
+          22
+        ]
+      },
+      "x": 0.07,
+      "anchor_x": "left",
+      "y": 0.075
+    },
+    "ten-du-an": {
+      "font": "BeVietnamPro-Black",
+      "size": 92,
+      "color": "#FFFFFF",
+      "uppercase": true,
+      "shadow": {
+        "offset": [
+          0,
+          4
+        ],
+        "blur": 10,
+        "color": "#000000B3"
+      },
+      "x": 0.07,
+      "anchor_x": "left",
+      "align": "left",
+      "y": 0.12,
+      "anchor": "top",
+      "max_width": 0.86,
+      "line_spacing": 1.05
+    },
+    "vi-tri": {
+      "font": "BeVietnamPro-SemiBold",
+      "size": 40,
+      "color": "#FFFFFF",
+      "box": {
+        "color": "#00000080",
+        "radius": 40,
+        "pad": [
+          14,
+          28
+        ]
+      },
+      "x": 0.07,
+      "anchor_x": "left",
+      "y": 0.62
+    },
+    "diem": {
+      "font": "BeVietnamPro-Bold",
+      "size": 46,
+      "color": "#FFFFFF",
+      "box": {
+        "color": "#0B3D2ED9",
+        "radius": 14,
+        "pad": [
+          16,
+          26
+        ]
+      },
+      "x": 0.07,
+      "anchor_x": "left",
+      "align": "left",
+      "y": 0.66,
+      "max_width": 0.86
+    },
+    "gia-nho": {
+      "font": "BeVietnamPro-SemiBold",
+      "size": 46,
+      "color": "#FFFFFF",
+      "shadow": {
+        "offset": [
+          0,
+          4
+        ],
+        "blur": 10,
+        "color": "#000000B3"
+      },
+      "y": 0.6
+    },
+    "gia": {
+      "font": "Oswald",
+      "variation": "Bold",
+      "size": 220,
+      "color": "#E8C468",
+      "shadow": {
+        "offset": [
+          0,
+          4
+        ],
+        "blur": 10,
+        "color": "#000000B3"
+      },
+      "y": 0.7
+    },
+    "caption": {
+      "font": "BeVietnamPro-Bold",
+      "size": 50,
+      "color": "#FFFFFF",
+      "shadow": {
+        "offset": [
+          0,
+          4
+        ],
+        "blur": 10,
+        "color": "#000000B3"
+      },
+      "y": 0.78,
+      "max_width": 0.86
+    },
+    "cta": {
+      "font": "BeVietnamPro-Bold",
+      "size": 40,
+      "color": "#0B3D2E",
+      "box": {
+        "color": "#E8C468",
+        "radius": 44,
+        "pad": [
+          18,
+          40
+        ]
+      },
+      "y": 0.905
+    }
+  }
+}

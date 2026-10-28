@@ -5,7 +5,7 @@ import shutil
 import tempfile
 from pathlib import Path
 
-from PIL import Image
+from PIL import Image, ImageDraw
 
 from . import media, templates, text
 
@@ -24,64 +24,135 @@ def _resolve(base, src):
     return p
 
 
-def _segment(i, sc, style, plan, W, H, OW, OH, fps, enc, work, base):
-    dur = float(sc["duration"])
-    src = _resolve(base, sc["src"])
+def _source(k, src, sc, style, w, h, dur, fps, start=0.0):
+    """ffmpeg inputs + filter chain that turn one source into a w x h clip of dur seconds, as stream [s{k}].
+    Returns (inputs, chain, has_audio)."""
     speed = float(sc.get("speed", 1))
-    grade = sc.get("grade", style.get("grade"))
-
-    overlay = text.render_shapes(sc.get("shapes", style.get("shapes", [])), W, H)
-    overlay = Image.alpha_composite(overlay, text.render_layers(style["presets"], sc.get("texts", []), W, H))
-    if (OW, OH) != (W, H):
-        overlay = overlay.resize((OW, OH), Image.LANCZOS)
-    ov_png = work / f"ov{i:02d}.png"
-    overlay.save(ov_png)
-
-    has_audio = False
     if isinstance(src, str):
         color = src.split(":", 1)[1]
-        inputs = ["-f", "lavfi", "-t", f"{dur}", "-i", f"color=c={color}:s={OW}x{OH}:r={fps}"]
-        vchain = "[0:v]setsar=1"
-    elif media.is_image(src):
+        return (["-f", "lavfi", "-t", f"{dur}", "-i", f"color=c={color}:s={w}x{h}:r={fps}"],
+                f"[{k}:v]setsar=1,fps={fps}[s{k}]", False)
+    if media.is_image(src):
         inputs = ["-loop", "1", "-framerate", str(fps), "-t", f"{dur}", "-i", str(src)]
-        zw, zh = _even(OW * 1.12), _even(OH * 1.12)
+        zw, zh = _even(w * 1.12), _even(h * 1.12)
         motion = sc.get("motion", style.get("image_motion", "pan"))
         if motion == "none":
-            vchain = f"[0:v]scale={OW}:{OH}:force_original_aspect_ratio=increase,crop={OW}:{OH},setsar=1"
+            chain = f"[{k}:v]scale={w}:{h}:force_original_aspect_ratio=increase,crop={w}:{h},setsar=1"
         else:
             direction = "(iw-{w})*min(t/{d},1)" if motion == "pan" else "(iw-{w})*(1-min(t/{d},1))"
-            x = direction.format(w=OW, d=dur)
-            vchain = (f"[0:v]scale={zw}:{zh}:force_original_aspect_ratio=increase,crop={zw}:{zh},"
-                      f"crop={OW}:{OH}:x='{x}':y='(ih-{OH})/2',setsar=1")
+            x = direction.format(w=w, d=dur)
+            chain = (f"[{k}:v]scale={zw}:{zh}:force_original_aspect_ratio=increase,crop={zw}:{zh},"
+                     f"crop={w}:{h}:x='{x}':y='(ih-{h})/2',setsar=1")
+        return inputs, chain + f",fps={fps}[s{k}]", False
+    info = media.probe(src)
+    inputs = ["-ss", f"{start}", "-t", f"{dur * speed}", "-i", str(src)]
+    chain = f"[{k}:v]scale={w}:{h}:force_original_aspect_ratio=increase,crop={w}:{h},setsar=1"
+    if speed != 1:
+        chain += f",setpts=PTS/{speed}"
+    chain += f",fps={fps},tpad=stop_mode=clone:stop_duration={dur}[s{k}]"
+    return inputs, chain, bool(info.get("has_audio")) and speed == 1
+
+
+def _overlay_input(sc, style, W, H, OW, OH, dur, fps, work, i, shapes):
+    """The scene's shapes + texts as an ffmpeg input: one looped PNG, or a PNG per typing step."""
+    texts = sc.get("texts", [])
+    presets = style["presets"]
+    shape_layer = text.render_shapes(shapes, W, H)
+
+    def frame(t_now=None):
+        im = Image.alpha_composite(shape_layer, text.render_layers(presets, texts, W, H, t_now))
+        return im.resize((OW, OH), Image.LANCZOS) if (OW, OH) != (W, H) else im
+
+    typing = [t for t in texts if {**presets.get(t.get("preset"), {}), **t}.get("typewriter")]
+    if not typing:
+        png = work / f"ov{i:02d}.png"
+        frame().save(png)
+        return ["-loop", "1", "-framerate", str(fps), "-t", f"{dur}", "-i", str(png)]
+    # One frame every 1/12 s while typing; the last frame holds until the scene ends.
+    step = 1 / 12
+    lines, n, t_now = [], 0, 0.0
+    while t_now < dur:
+        png = work / f"ov{i:02d}_{n:03d}.png"
+        frame(t_now).save(png)
+        lines += [f"file '{png}'", f"duration {min(step, dur - t_now):.4f}"]
+        n, t_now = n + 1, t_now + step
+    lines.append(f"file '{png}'")
+    lst = work / f"ov{i:02d}.txt"
+    lst.write_text("\n".join(lines) + "\n")
+    return ["-f", "concat", "-safe", "0", "-i", str(lst)]
+
+
+def _segment(i, sc, style, plan, W, H, OW, OH, fps, enc, work, base):
+    dur = float(sc["duration"])
+    grade = sc.get("grade", style.get("grade"))
+    shapes = sc.get("shapes", style.get("shapes", []))
+    front = [s for s in shapes if not s.get("back")]
+    inputs, parts, audio = [], [], []
+
+    srcs = sc.get("srcs")
+    if srcs:
+        # Split scene: background (template colour + "back" shapes), then each source in its panel.
+        panels = style.get("panels") or []
+        if len(srcs) > len(panels):
+            raise ValueError(f"Template '{plan['template']}' có {len(panels)} khung, cảnh {i + 1} có {len(srcs)} nguồn.")
+        bg = Image.new("RGBA", (W, H), text.rgba(style.get("background", "#000000")))
+        bg = Image.alpha_composite(bg, text.render_shapes([s for s in shapes if s.get("back")], W, H))
+        bg_png = work / f"bg{i:02d}.png"
+        bg.convert("RGB").resize((OW, OH), Image.LANCZOS).save(bg_png)
+        inputs += ["-loop", "1", "-framerate", str(fps), "-t", f"{dur}", "-i", str(bg_png)]
+        parts.append(f"[0:v]setsar=1,fps={fps}[b0]")
+        starts = list(sc.get("starts", []))
+        starts += [sc.get("start", 0)] * (len(srcs) - len(starts))
+        k = 1
+        for j, (src, panel) in enumerate(zip(srcs, panels)):
+            px, py, pw, ph = panel["box"]
+            x, y, w, h = int(px * OW), int(py * OH), _even(pw * OW), _even(ph * OH)
+            ins, chain, has_a = _source(k, _resolve(base, src), sc, style, w, h, dur, fps, float(starts[j]))
+            inputs += ins
+            parts.append(chain)
+            mask = Image.new("L", (w, h), 0)
+            r = int(panel.get("radius", 0) * OW / W)
+            ImageDraw.Draw(mask).rounded_rectangle([0, 0, w - 1, h - 1], radius=r, fill=255)
+            m_png = work / f"mask{i:02d}_{j}.png"
+            mask.save(m_png)
+            inputs += ["-loop", "1", "-framerate", str(fps), "-t", f"{dur}", "-i", str(m_png)]
+            parts.append(f"[{k + 1}:v]format=gray[m{k}];[s{k}]format=rgba[c{k}];[c{k}][m{k}]alphamerge[p{k}]")
+            parts.append(f"[b{j}][p{k}]overlay={x}:{y}:shortest=1[b{j + 1}]")
+            if has_a:
+                audio.append((k, j))
+            k += 2
+        last = f"[b{len(srcs)}]"
+        # Sound comes from one panel only: "audio_panel" (default the last one, the edited result).
+        pick = int(sc.get("audio_panel", len(srcs) - 1))
+        audio = [a for a, j in audio if j == pick]
     else:
-        info = media.probe(src)
-        start = float(sc.get("start", 0))
-        inputs = ["-ss", f"{start}", "-t", f"{dur * speed}", "-i", str(src)]
-        vchain = f"[0:v]scale={OW}:{OH}:force_original_aspect_ratio=increase,crop={OW}:{OH},setsar=1"
-        if speed != 1:
-            vchain += f",setpts=PTS/{speed}"
-        has_audio = info.get("has_audio") and speed == 1
+        ins, chain, has_a = _source(0, _resolve(base, sc["src"]), sc, style, OW, OH, dur, fps,
+                                    float(sc.get("start", 0)))
+        inputs += ins
+        parts.append(chain.replace("[s0]", "[b0]"))
+        last, k = "[b0]", 1
+        audio = [0] if has_a else []
 
-    vchain += f",fps={fps},tpad=stop_mode=clone:stop_duration={dur}"
-    if grade:
-        vchain += f",{grade}"
-    vchain += "[base]"
+    base_chain = f"{last}tpad=stop_mode=clone:stop_duration={dur}" + (f",{grade}" if grade else "") + "[base]"
+    parts.append(base_chain)
 
-    inputs += ["-loop", "1", "-framerate", str(fps), "-t", f"{dur}", "-i", str(ov_png)]
+    ov = k
+    inputs += _overlay_input(sc, style, W, H, OW, OH, dur, fps, work, i, front)
     fade_in = float(style.get("text_fade_in", 0.25))
-    ochain = f"[1:v]format=rgba,fade=t=in:st=0.08:d={fade_in}:alpha=1[ov]" if fade_in else "[1:v]format=rgba[ov]"
+    parts.append(f"[{ov}:v]format=rgba,fps={fps},fade=t=in:st=0.08:d={fade_in}:alpha=1[ov]" if fade_in
+                 else f"[{ov}:v]format=rgba,fps={fps}[ov]")
+    parts.append("[base][ov]overlay=0:0:shortest=1,format=yuv420p[v]")
 
     vol = float(sc.get("volume", plan.get("original_volume", style.get("original_volume", 0))))
-    if has_audio and vol > 0:
-        achain = (f"[0:a]aresample=48000,aformat=channel_layouts=stereo,volume={vol},"
-                  f"afade=t=in:d=0.05,apad,atrim=0:{dur},afade=t=out:st={max(dur - 0.08, 0)}:d=0.08[a]")
+    if audio and vol > 0:
+        parts.append(f"[{audio[0]}:a]aresample=48000,aformat=channel_layouts=stereo,volume={vol},"
+                     f"afade=t=in:d=0.05,apad,atrim=0:{dur},afade=t=out:st={max(dur - 0.08, 0)}:d=0.08[a]")
     else:
         inputs += ["-f", "lavfi", "-t", f"{dur}", "-i", "anullsrc=r=48000:cl=stereo"]
-        achain = "[2:a]anull[a]"
+        parts.append(f"[{ov + 1}:a]anull[a]")
 
-    fc = ";".join([vchain, ochain, "[base][ov]overlay=0:0:shortest=1,format=yuv420p[v]", achain])
     out = work / f"seg{i:02d}.mp4"
-    media.run(["ffmpeg", "-y", "-v", "error", *inputs, "-filter_complex", fc, "-map", "[v]", "-map", "[a]",
+    media.run(["ffmpeg", "-y", "-v", "error", *inputs, "-filter_complex", ";".join(parts), "-map", "[v]", "-map", "[a]",
                "-t", f"{dur}", "-r", str(fps), *enc, "-c:a", "aac", "-b:a", "160k", str(out)])
     return out, dur
 
@@ -137,8 +208,21 @@ def render(plan_path, preview=False, keep_work=False):
                 label = "[vx]" if k == n - 1 else f"[x{k}]"
                 parts.append(f"{prev}[{k}:v]xfade=transition={kind}:duration={t:.3f}:offset={starts[k]:.3f}{label}")
                 prev = label
+        extra = n  # next free input index
+        if plan.get("texts"):
+            # Plan-level texts (call to action, logo line) stay on screen for the whole video, over every cut.
+            g = text.render_layers(style["presets"], plan["texts"], W, H)
+            g = g.resize((OW, OH), Image.LANCZOS) if (OW, OH) != (W, H) else g
+            g_png = work / "global.png"
+            g.save(g_png)
+            inputs += ["-loop", "1", "-framerate", str(fps), "-t", f"{total:.3f}", "-i", str(g_png)]
+            parts.append(f"[vx][{extra}:v]overlay=0:0:shortest=1[vg]")
+            extra += 1
+            vlast = "[vg]"
+        else:
+            vlast = "[vx]"
         fo = float(style.get("fade_out", 0))
-        parts.append(f"[vx]fade=t=out:st={max(total - fo, 0):.3f}:d={fo}[vout]" if fo else "[vx]null[vout]")
+        parts.append(f"{vlast}fade=t=out:st={max(total - fo, 0):.3f}:d={fo}[vout]" if fo else f"{vlast}null[vout]")
 
         for i in range(n):
             ms = int(round(starts[i] * 1000))
@@ -151,7 +235,7 @@ def render(plan_path, preview=False, keep_work=False):
                          for s in scenes)
         if music:
             mpath = _resolve(base, music)
-            mi = n
+            mi = extra
             inputs += ["-stream_loop", "-1", "-i", str(mpath)]
             mv = float(plan.get("music_volume", style.get("music_volume", 0.3)))
             parts.append(f"[{mi}:a]aresample=48000,aformat=channel_layouts=stereo,atrim=0:{total:.3f},"
@@ -187,7 +271,11 @@ def render(plan_path, preview=False, keep_work=False):
                 media.frame_at(out, tmid, jpg)
                 with Image.open(jpg) as im:
                     tiles.append((im.copy(), f"Cảnh {i + 1} @{tmid:.1f}s"))
-            media.grid(tiles, min(n, 5), 270, 480, sheet, title=f"{plan['template']} · {total:.1f}s · bản nháp")
+            # Tiles keep the template's shape: 270 wide for vertical/square, 480 wide for landscape.
+            tw = 480 if W > H else 270
+            th = round(tw * H / W)
+            media.grid(tiles, min(n, 3 if W > H else 5), tw, th, sheet,
+                       title=f"{plan['template']} · {total:.1f}s · bản nháp")
             result["sheet"] = str(sheet)
         return result
     finally:
