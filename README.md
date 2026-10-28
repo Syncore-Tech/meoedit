@@ -53,17 +53,40 @@ Quán, chuyến đi, shop, sản phẩm và giá trong demo là hư cấu; media
 Cần: Python 3.9+, [ffmpeg](https://ffmpeg.org/download.html), Pillow.
 
 ```bash
-# macOS
+# macOS (Ubuntu: sudo apt install ffmpeg, Windows: winget install ffmpeg)
 brew install ffmpeg
 python3 -m pip install --user pillow
+```
 
+### Claude Code (khuyên dùng)
+
+Trong Claude Code, gõ:
+
+```
+/plugin install meoedit --marketplace Syncore-Tech/meoedit
+```
+
+Hoặc chạy trong terminal: `claude plugin install meoedit --marketplace Syncore-Tech/meoedit`.
+
+Claude Code bản cũ hơn 2.1.275 thì cài hai bước:
+
+```
+/plugin marketplace add Syncore-Tech/meoedit
+/plugin install meoedit@meoedit
+```
+
+Cập nhật bản mới: `/plugin marketplace update meoedit`. Gỡ: `/plugin uninstall meoedit@meoedit`.
+
+### Codex, Cursor, Gemini CLI và agent khác
+
+```bash
 git clone https://github.com/Syncore-Tech/meoedit.git
 cd meoedit
 ./install.sh
 python3 skill/engine/cli.py doctor
 ```
 
-`install.sh` cài skill vào `~/.claude/skills/meoedit` (Claude Code) và `~/.codex/skills/meoedit` (Codex) nếu có. Với Cursor, Gemini CLI hay agent khác: mở thư mục repo và bảo agent *"đọc skill/SKILL.md rồi làm theo"*.
+`install.sh` chép skill vào `~/.claude/skills/meoedit` và `~/.codex/skills/meoedit` nếu có. Với Cursor, Gemini CLI hay agent khác: mở thư mục repo và bảo agent *"đọc skill/SKILL.md rồi làm theo"*.
 
 ## Dùng thế nào
 
