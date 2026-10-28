@@ -1,0 +1,9 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  // Landing page: static files only, built by copying site/ (symlinks resolved) into _site/.
+  "name": "meoedit",
+  "compatibility_date": "2026-10-28",
+  "assets": {
+    "directory": "./_site"
+  }
+}
