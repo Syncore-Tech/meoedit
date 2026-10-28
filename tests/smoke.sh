@@ -115,6 +115,18 @@ for t in json.loads(subprocess.check_output([sys.executable, cli, "templates"]))
         out = json.loads(subprocess.check_output([sys.executable, cli, "capcut", path, "--drafts", "drafts"]))
         draft = json.load(open(out["folder"] + "/draft_info.json"))
         assert draft["tracks"] and draft["duration"] > 0, t["name"]
+        mats = draft["materials"]
+        refs = {r for tr in draft["tracks"] for s in tr["segments"] for r in s["extra_material_refs"]}
+        if t["name"] == "truoc-sau-neon":
+            # Fade between the two scenes, rounded corners on both panels of each scene.
+            assert len(mats["transitions"]) == 1 and mats["transitions"][0]["id"] in refs, "neon: chuyển cảnh"
+            assert len(mats["masks"]) == 4 and all(m["id"] in refs for m in mats["masks"]), "neon: góc bo"
+            assert all(m["config"]["roundCorner"] > 0 for m in mats["masks"]), "neon: góc bo = 0"
+            # Same length as the MP4: 1.2 + 1.0 minus one 0.25 s overlap.
+            assert draft["duration"] == 1_950_000, draft["duration"]
+        if t["name"] == "hau-truong":
+            names = [a["name"] for m in mats["material_animations"] for a in m["animations"]]
+            assert "打字机" in names, "hau-truong: chữ gõ"
     print("ok", t["name"])
 PY
 
