@@ -1,0 +1,115 @@
+{
+  "template": "review-quan-cafe",
+  "output": "out/review-may-chieu.mp4",
+  "music": "media/music-Lobby-Time.mp3",
+  "scenes": [
+    {
+      "src": "media/cafe-8426100.mp4",
+      "start": 26,
+      "duration": 2.8,
+      "texts": [
+        {
+          "preset": "dia-diem",
+          "text": "Quận 3, Sài Gòn"
+        },
+        {
+          "preset": "hook",
+          "text": "Góc cà phê đáng ngồi cả buổi chiều"
+        }
+      ]
+    },
+    {
+      "src": "media/cafe-30846352.mp4",
+      "start": 2,
+      "duration": 2.6,
+      "texts": [
+        {
+          "preset": "ten-quan",
+          "text": "Mây Chiều",
+          "y": 0.27
+        },
+        {
+          "preset": "caption",
+          "text": "Bàn cạnh cửa sổ, nhìn phố chậm lại"
+        }
+      ]
+    },
+    {
+      "src": "media/cafe-13737099.mp4",
+      "start": 3,
+      "duration": 2.2,
+      "texts": [
+        {
+          "preset": "caption",
+          "text": "Quầy bar sáng, kệ ly gốm xinh xắn"
+        }
+      ]
+    },
+    {
+      "src": "media/cafe-13736673.mp4",
+      "start": 3,
+      "duration": 2.2,
+      "texts": [
+        {
+          "preset": "caption",
+          "text": "Hạt rang tại quán, xay mới từng ly"
+        }
+      ]
+    },
+    {
+      "src": "media/cafe-34164108.mp4",
+      "start": 1,
+      "duration": 2.2,
+      "texts": [
+        {
+          "preset": "caption",
+          "text": "Pha chế ngay trước mặt mình"
+        }
+      ]
+    },
+    {
+      "src": "media/cafe-40047468.mp4",
+      "start": 2,
+      "duration": 2.6,
+      "texts": [
+        {
+          "preset": "gia",
+          "text": "45k"
+        },
+        {
+          "preset": "caption",
+          "text": "Cold brew đá, đậm mà không đắng"
+        }
+      ]
+    },
+    {
+      "src": "media/cafe-13736675.mp4",
+      "start": 7.4,
+      "duration": 2.4,
+      "texts": [
+        {
+          "preset": "gia",
+          "text": "55k"
+        },
+        {
+          "preset": "caption",
+          "text": "Latte nóng, bọt mịn, vẽ đẹp"
+        }
+      ]
+    },
+    {
+      "src": "color:#3B2A20",
+      "duration": 3,
+      "texts": [
+        {
+          "preset": "diem",
+          "text": "8.5"
+        },
+        {
+          "preset": "nho",
+          "text": "Hợp ngồi làm việc hoặc hẹn bạn cả buổi chiều."
+        }
+      ]
+    }
+  ]
+}
