@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>meoedit · Quay xong rồi, để agent dựng</title>
+<meta name="description" content="Bộ template mã nguồn mở biến Claude Code, Codex, Cursor, Gemini CLI thành editor dựng video dọc và thiết kế ảnh. Tiếng Việt đủ dấu, miễn phí, chạy trên máy bạn.">
+<meta property="og:title" content="meoedit · Quay xong rồi, để agent dựng">
+<meta property="og:description" content="Đưa thư mục clip, agent chọn cảnh, viết chữ tiếng Việt, cho bạn duyệt bản nháp rồi xuất video 1080x1920. Miễn phí, MIT.">
+<meta property="og:image" content="https://meoedit.gaupoit.workers.dev/og.jpg">
+<meta property="og:url" content="https://meoedit.gaupoit.workers.dev/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐱</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --yellow: #FFD23F;
+    --ink: #1E1B4B;
+    --ink-soft: #4A4775;
+    --tomato: #E8572A;
+    --paper: #FFFFFF;
+    --bubble: #DCEBFF;
+    --line: #E6E4F0;
+    --display: "Baloo 2", system-ui, sans-serif;
+    --body: "Be Vietnam Pro", system-ui, sans-serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    --wrap: 1120px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font: 400 1.0625rem/1.65 var(--body);
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--tomato); outline-offset: 3px; border-radius: 6px; }
+  .wrap { width: min(var(--wrap), 100% - 32px); margin-inline: auto; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 800; line-height: 1; margin: 0; letter-spacing: -0.01em; }
+  h2 { font-size: clamp(2.25rem, 5vw, 3.5rem); }
+  h3 { font-size: 1.6rem; }
+  p { margin: 0; }
+
+  /* ---------- top bar ---------- */
+  .bar { background: var(--yellow); }
+  .bar .wrap { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; }
+  .logo { font: 800 1.6rem/1 var(--display); text-decoration: none; }
+  .bar nav { display: flex; gap: 22px; font-weight: 600; font-size: .95rem; }
+  .bar nav a { text-decoration: none; }
+  .bar nav a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+  /* ---------- hero ---------- */
+  .hero { background: var(--yellow); padding: 48px 0 0; overflow: hidden; }
+  .hero .wrap { display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px; align-items: end; }
+  .hero-copy { padding-bottom: 96px; position: relative; }
+  .hero h1 { font-size: clamp(3.2rem, 6.6vw, 6.4rem); line-height: .92; }
+  .hero h1 span { white-space: nowrap; }
+  .hero h1 span { display: block; }
+  .sticker {
+    display: inline-block; margin-bottom: 22px;
+    background: var(--tomato); color: #fff; font: 800 1.35rem/1 var(--display);
+    padding: 12px 20px 8px; border-radius: 14px; transform: rotate(7deg);
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+  .lede { margin-top: 28px; max-width: 34em; font-size: 1.15rem; color: var(--ink); }
+  .ctas { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 14px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
+    font: 700 1.05rem/1 var(--body); padding: 16px 24px; border-radius: 999px;
+    border: 2.5px solid var(--ink); transition: transform .12s ease;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-ink { background: var(--ink); color: var(--yellow); }
+  .btn-line { background: transparent; color: var(--ink); }
+  .btn svg { width: 20px; height: 20px; }
+
+  .phone-stage { position: relative; display: flex; justify-content: center; }
+  .phone {
+    width: min(330px, 78vw); aspect-ratio: 9 / 16; background: var(--ink);
+    border-radius: 46px; padding: 12px; transform: rotate(-5deg) translateY(56px);
+    box-shadow: 14px 14px 0 rgba(30, 27, 75, .18);
+  }
+  .phone img { width: 100%; height: 100%; object-fit: cover; border-radius: 35px; }
+  .tag {
+    position: absolute; z-index: 2; left: -8%; top: 60%; background: #fff; border: 2.5px solid var(--ink);
+    border-radius: 16px; padding: 10px 14px; font-size: .9rem; font-weight: 600; max-width: 210px;
+    transform: rotate(-3deg); line-height: 1.35;
+  }
+  .tag small { display: block; font-weight: 500; color: var(--ink-soft); }
+
+  /* ---------- chat ---------- */
+  .chat-sec { padding: 150px 0 110px; }
+  .chat-sec .wrap { display: grid; grid-template-columns: 1fr 1.35fr; gap: 64px; align-items: start; }
+  .chat-intro { position: sticky; top: 32px; }
+  .chat-intro p { margin-top: 20px; max-width: 30em; color: var(--ink-soft); }
+  .chat { display: flex; flex-direction: column; gap: 14px; }
+  .msg { max-width: 82%; padding: 14px 18px; border-radius: 22px; line-height: 1.5; }
+  .msg .who { display: block; font-size: .8rem; font-weight: 700; color: var(--ink-soft); margin-bottom: 2px; }
+  .me { align-self: flex-end; background: var(--ink); color: #fff; border-bottom-right-radius: 6px; }
+  .me .who { color: var(--yellow); }
+  .bot { align-self: flex-start; background: var(--bubble); border-bottom-left-radius: 6px; }
+  .bot img { margin-top: 12px; border-radius: 12px; border: 1px solid #b9cbe6; }
+  .bot code, .me code { font-family: var(--mono); font-size: .88em; }
+  .done { background: var(--yellow); border: 2.5px solid var(--ink); }
+  @media (prefers-reduced-motion: no-preference) {
+    .js .msg { opacity: 0; transform: translateY(10px); transition: opacity .4s ease, transform .4s ease; }
+    .js .msg.in { opacity: 1; transform: none; }
+  }
+
+  /* ---------- templates ---------- */
+  .tpl-sec { background: var(--ink); color: #fff; padding: 100px 0; }
+  .tpl-sec h2 { color: var(--yellow); }
+  .tpl-sec .sub { margin-top: 16px; color: #C9C7E8; max-width: 38em; }
+  .tpls { margin-top: 56px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; align-items: start; }
+  .tpl figure { margin: 0; }
+  .tpl .frame { border-radius: 28px; overflow: hidden; border: 3px solid #3A3672; background: #000; }
+  .tpl .frame.v { aspect-ratio: 9 / 16; }
+  .tpl .frame.p { aspect-ratio: 4 / 5; }
+  .tpl .frame img { width: 100%; height: 100%; object-fit: cover; }
+  .tpl h3 { margin-top: 22px; color: #fff; }
+  .tpl p { margin-top: 8px; color: #C9C7E8; font-size: 1rem; }
+  .tpl .name { font-family: var(--mono); font-size: .85rem; color: var(--yellow); margin-top: 10px; display: inline-block; }
+  .tpl:nth-child(2) { margin-top: 64px; }
+
+  /* ---------- why ---------- */
+  .why-sec { padding: 110px 0; }
+  .why { margin: 48px 0 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 64px; }
+  .why div { padding: 24px 0; border-top: 2px solid var(--line); }
+  .why dt { font: 800 1.5rem/1.15 var(--display); }
+  .why dd { margin: 8px 0 0; color: var(--ink-soft); max-width: 32em; }
+
+  /* ---------- install ---------- */
+  .install-sec { background: var(--yellow); padding: 100px 0; }
+  .install-sec .wrap { display: grid; grid-template-columns: 1fr 1.3fr; gap: 56px; align-items: center; }
+  .install-sec p { margin-top: 18px; max-width: 30em; }
+  .term { background: var(--ink); color: #fff; border-radius: 22px; padding: 22px 22px 18px; box-shadow: 10px 10px 0 rgba(30,27,75,.22); }
+  .term-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .dots { display: flex; gap: 7px; }
+  .dots i { width: 12px; height: 12px; border-radius: 50%; background: #4A4775; }
+  .copy {
+    font: 600 .85rem/1 var(--body); background: var(--yellow); color: var(--ink);
+    border: 0; border-radius: 999px; padding: 9px 14px; cursor: pointer;
+  }
+  .term pre { margin: 0; font: 400 .95rem/1.9 var(--mono); white-space: pre-wrap; word-break: break-all; }
+  .term .c { color: #8F8CC0; }
+  .term .p { color: var(--yellow); user-select: none; }
+  .then { margin-top: 18px; font-size: .95rem; }
+  .then code { font-family: var(--mono); background: rgba(30,27,75,.08); padding: 2px 6px; border-radius: 6px; }
+
+  /* ---------- contribute + footer ---------- */
+  .contrib-sec { padding: 100px 0 80px; }
+  .contrib-sec .wrap { max-width: 760px; }
+  .contrib-sec p { margin-top: 18px; color: var(--ink-soft); }
+  .contrib-sec ul { margin: 20px 0 0; padding-left: 1.2em; color: var(--ink-soft); }
+  .contrib-sec .ctas { margin-top: 28px; }
+  footer { border-top: 2px solid var(--line); padding: 32px 0 48px; font-size: .9rem; color: var(--ink-soft); }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 32px; }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 900px) {
+    .hero .wrap, .chat-sec .wrap, .install-sec .wrap { grid-template-columns: 1fr; }
+    .hero-copy { padding-bottom: 0; }
+    .sticker { transform: rotate(-4deg); }
+    .hero h1 span { white-space: normal; }
+    .phone-stage { margin-top: 24px; }
+    .tag { left: 0; top: 8%; }
+    .chat-sec { padding-top: 120px; }
+    .chat-intro { position: static; }
+    .tpls { grid-template-columns: 1fr; max-width: 360px; }
+    .tpl:nth-child(2) { margin-top: 0; }
+    .why { grid-template-columns: 1fr; }
+    .bar nav a:not(.gh) { display: none; }
+  }
+  @media (max-width: 480px) {
+    .msg { max-width: 92%; }
+    .tag { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="logo" href="#">meoedit 🐱</a>
+    <nav>
+      <a href="#cach-dung">Cách dùng</a>
+      <a href="#template">Template</a>
+      <a href="#cai-dat">Cài đặt</a>
+      <a class="gh" href="https://github.com/Syncore-Tech/meoedit">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="sticker">Miễn phí</span>
+      <h1><span>Quay xong rồi,</span><span>để agent dựng.</span></h1>
+      <p class="lede">meoedit biến Claude Code, Codex, Cursor hay Gemini CLI thành editor riêng của bạn. Đưa thư mục clip quay bằng điện thoại, agent chọn cảnh, viết chữ tiếng Việt, cho bạn duyệt bản nháp rồi xuất video 1080x1920. Mã nguồn mở, chạy trên máy bạn.</p>
+      <div class="ctas">
+        <a class="btn btn-ink" href="https://github.com/Syncore-Tech/meoedit">
+          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          Xem trên GitHub
+        </a>
+        <a class="btn btn-line" href="#cai-dat">Cài trong 2 phút</a>
+      </div>
+    </div>
+    <div class="phone-stage">
+      <div class="tag">Review quán Mây Chiều<small>8 cảnh, 17.6 giây, agent dựng</small></div>
+      <div class="phone"><img src="docs/demo-review-may-chieu.webp" alt="Video demo review quán cà phê do meoedit dựng: chữ tiếng Việt trên các cảnh pha cà phê"></div>
+    </div>
+  </div>
+</section>
+
+<section class="chat-sec" id="cach-dung">
+  <div class="wrap">
+    <div class="chat-intro">
+      <h2>Bạn nói, agent dựng.</h2>
+      <p>Không cần mở phần mềm dựng phim. Agent hỏi đúng những gì template cần, tự xem từng clip để chọn đoạn đẹp, và luôn dừng ở bản nháp để bạn duyệt trước khi xuất.</p>
+    </div>
+    <div class="chat" aria-label="Ví dụ một cuộc trò chuyện với agent">
+      <div class="msg me"><span class="who">Bạn</span>Dùng meoedit dựng video review quán từ thư mục <code>~/Movies/may-chieu</code> nha.</div>
+      <div class="msg bot"><span class="who">Agent</span>Quán tên gì, ở khu nào? Bạn gọi món gì, giá bao nhiêu, chấm mấy điểm?</div>
+      <div class="msg me"><span class="who">Bạn</span>Mây Chiều, Quận 3. Cold brew 45k, latte 55k. Chấm 8.5.</div>
+      <div class="msg bot"><span class="who">Agent</span>Mình xem 7 clip rồi, chọn ra 8 cảnh. Bản nháp dài 17.6 giây, mỗi khung dưới đây là một cảnh. Bạn muốn sửa gì không?
+        <img src="docs/demo-review-may-chieu-sheet.jpg" alt="Ảnh tổng quan bản nháp: 8 cảnh của video review quán cà phê" loading="lazy">
+      </div>
+      <div class="msg me"><span class="who">Bạn</span>Ok á, xuất đi.</div>
+      <div class="msg bot done"><span class="who">Agent</span>Xong: <code>review-may-chieu.mp4</code>, 1080x1920, âm thanh đã chuẩn cho TikTok và Reels.</div>
+    </div>
+  </div>
+</section>
+
+<section class="tpl-sec" id="template">
+  <div class="wrap">
+    <h2>Ba template đầu tiên</h2>
+    <p class="sub">Mỗi template là một phong cách trọn gói: bố cục, font, màu, nhịp cắt và cách viết chữ. Agent làm theo đúng phong cách đó với clip của bạn.</p>
+    <div class="tpls">
+      <article class="tpl">
+        <figure class="frame v"><img src="docs/demo-review-may-chieu.webp" alt="Demo template review quán cà phê" loading="lazy"></figure>
+        <h3>Review quán cà phê</h3>
+        <p>Tông nâu kem ấm, chữ mềm, chuyển cảnh mờ dần. Có nhãn giá và màn chấm điểm.</p>
+        <span class="name">review-quan-cafe</span>
+      </article>
+      <article class="tpl">
+        <figure class="frame v"><img src="docs/demo-vlog-mien-bac.webp" alt="Demo template vlog du lịch miền Bắc" loading="lazy"></figure>
+        <h3>Vlog du lịch</h3>
+        <p>Cắt nhanh theo nhịp nhạc, chữ in hoa vàng, phụ đề nền đen từng dòng.</p>
+        <span class="name">vlog-du-lich</span>
+      </article>
+      <article class="tpl">
+        <figure class="frame p"><img src="docs/demo-the-nen-thom.jpg" alt="Demo thẻ sản phẩm nến thơm, giá 159.000đ" loading="lazy"></figure>
+        <h3>Thẻ sản phẩm</h3>
+        <p>Ảnh 4:5 cho Facebook, Instagram, Threads, Shopee. Tên, mô tả, giá, nhãn giảm giá.</p>
+        <span class="name">the-san-pham</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="why-sec">
+  <div class="wrap">
+    <h2>Vì sao dùng meoedit</h2>
+    <dl class="why">
+      <div><dt>Miễn phí, mã nguồn mở</dt><dd>Giấy phép MIT. Không tài khoản, không đăng nhập, không trả tiền theo từng template.</dd></div>
+      <div><dt>Clip không rời khỏi máy</dt><dd>Mọi thứ dựng bằng ffmpeg ngay trên máy bạn. Không tải ảnh, video hay giọng nói lên đâu cả.</dd></div>
+      <div><dt>Tiếng Việt đủ dấu</dt><dd>Font Be Vietnam Pro, Baloo 2, Dancing Script hiển thị chuẩn từng dấu. Câu hỏi và chữ mẫu viết sẵn bằng tiếng Việt.</dd></div>
+      <div><dt>Bạn luôn duyệt trước</dt><dd>Agent gửi bản nháp và ảnh tổng quan từng cảnh, rồi chờ bạn đồng ý mới xuất bản cuối.</dd></div>
+      <div><dt>Agent nào cũng dùng được</dt><dd>Claude Code và Codex cài bằng một lệnh. Cursor, Gemini CLI hay agent khác chỉ cần đọc file SKILL.md.</dd></div>
+      <div><dt>Tự làm template được</dt><dd>Một template chỉ là một file style.json và một file hướng dẫn. Sửa màu, font, vị trí chữ trong vài phút.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="install-sec" id="cai-dat">
+  <div class="wrap">
+    <div>
+      <h2>Cài đặt</h2>
+      <p>Cần Python 3.9 trở lên và ffmpeg. Trên Windows, cài ffmpeg bằng <code>winget install ffmpeg</code>; trên Ubuntu, dùng <code>sudo apt install ffmpeg</code>.</p>
+    </div>
+    <div>
+      <div class="term">
+        <div class="term-head"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><button class="copy" type="button" data-copy="install">Sao chép</button></div>
+<pre id="install"><span class="c"># macOS</span>
+<span class="p">$ </span>brew install ffmpeg
+<span class="p">$ </span>python3 -m pip install --user pillow
+<span class="p">$ </span>git clone https://github.com/Syncore-Tech/meoedit.git
+<span class="p">$ </span>cd meoedit &amp;&amp; ./install.sh</pre>
+      </div>
+      <p class="then">Rồi mở agent và nói: <code>dùng meoedit dựng video review quán từ thư mục ~/Movies/cafe</code></p>
+    </div>
+  </div>
+</section>
+
+<section class="contrib-sec">
+  <div class="wrap">
+    <h2>Góp một template</h2>
+    <p>Bạn có phong cách dựng riêng? Đóng gói nó thành template để mọi người cùng dùng. Đang cần thêm:</p>
+    <ul>
+      <li>Review quán ăn, món ăn đường phố</li>
+      <li>Outfit, mở hộp sản phẩm, trước và sau</li>
+      <li>Ảnh vuông 1:1, ảnh story 9:16, ảnh trích dẫn</li>
+    </ul>
+    <div class="ctas">
+      <a class="btn btn-ink" href="https://github.com/Syncore-Tech/meoedit#t%E1%BB%B1-l%C3%A0m-template">Xem cách làm template</a>
+      <a class="btn btn-line" href="https://github.com/Syncore-Tech/meoedit/issues">Đề xuất template</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>meoedit, giấy phép MIT, làm bởi Syncore Tech.</span>
+    <span>Video demo: Pexels. Nhạc: Kevin MacLeod (incompetech.com), CC BY 4.0. Quán và shop trong demo là hư cấu.</span>
+  </div>
+</footer>
+
+<script>
+  document.documentElement.classList.add('js');
+  // Chat bubbles appear one by one the first time the conversation scrolls into view.
+  const msgs = [...document.querySelectorAll('.msg')];
+  const reveal = () => msgs.forEach((m, i) => setTimeout(() => m.classList.add('in'), i * 450));
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some(e => e.isIntersecting)) { reveal(); io.disconnect(); }
+    }, { threshold: 0.25 });
+    io.observe(document.querySelector('.chat'));
+  } else {
+    reveal();
+  }
+
+  document.querySelectorAll('[data-copy]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const text = document.getElementById(btn.dataset.copy).innerText.replace(/^\$ /gm, '').replace(/^# .*\n/gm, '');
+      try {
+        await navigator.clipboard.writeText(text);
+        btn.textContent = 'Đã sao chép';
+      } catch {
+        btn.textContent = 'Chọn và sao chép thủ công';
+      }
+      setTimeout(() => { btn.textContent = 'Sao chép'; }, 2000);
+    });
+  });
+</script>
+</body>
+</html>
