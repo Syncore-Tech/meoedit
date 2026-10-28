@@ -9,5 +9,10 @@
     "directory": "./_site",
     "binding": "ASSETS",
     "run_worker_first": ["/docs/*"]
-  }
+  },
+  "workers_dev": true,
+  "routes": [
+    { "pattern": "meoedit.com", "custom_domain": true },
+    { "pattern": "www.meoedit.com", "custom_domain": true }
+  ]
 }
