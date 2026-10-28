@@ -1,0 +1,153 @@
+{
+  "name": "so-sanh",
+  "kind": "video",
+  "title": "So sánh A với B — Hai khung, bảng điểm",
+  "description": "Video dọc 9:16, 15–30 giây. Hai sản phẩm chạy song song trong hai khung cam và xanh, các tiêu chí hiện lần lượt bên dưới, nhãn vàng chốt bên thắng. Hợp affiliate, điện thoại, mỹ phẩm, đồ gia dụng.",
+  "size": [
+    1080,
+    1920
+  ],
+  "fps": 30,
+  "transition": {
+    "type": "fade",
+    "duration": 0.25
+  },
+  "fade_out": 0.4,
+  "text_fade_in": 0.15,
+  "music_volume": 0.35,
+  "original_volume": 0,
+  "image_motion": "none",
+  "background": "#111216",
+  "panels": [
+    {
+      "box": [
+        0.04,
+        0.16,
+        0.45,
+        0.4
+      ],
+      "radius": 24
+    },
+    {
+      "box": [
+        0.51,
+        0.16,
+        0.45,
+        0.4
+      ],
+      "radius": 24
+    }
+  ],
+  "shapes": [
+    {
+      "type": "frame",
+      "box": [
+        0.04,
+        0.16,
+        0.45,
+        0.4
+      ],
+      "color": "#FF8A3D",
+      "width": 6,
+      "radius": 24
+    },
+    {
+      "type": "frame",
+      "box": [
+        0.51,
+        0.16,
+        0.45,
+        0.4
+      ],
+      "color": "#4DA3FF",
+      "width": 6,
+      "radius": 24
+    }
+  ],
+  "presets": {
+    "tieu-de": {
+      "font": "BeVietnamPro-Black",
+      "size": 62,
+      "color": "#FFFFFF",
+      "y": 0.085,
+      "max_width": 0.92,
+      "line_spacing": 1.05
+    },
+    "ten-a": {
+      "font": "BeVietnamPro-ExtraBold",
+      "size": 40,
+      "color": "#111216",
+      "box": {
+        "color": "#FF8A3D",
+        "radius": 28,
+        "pad": [
+          10,
+          24
+        ]
+      },
+      "x": 0.265,
+      "y": 0.6
+    },
+    "ten-b": {
+      "font": "BeVietnamPro-ExtraBold",
+      "size": 40,
+      "color": "#111216",
+      "box": {
+        "color": "#4DA3FF",
+        "radius": 28,
+        "pad": [
+          10,
+          24
+        ]
+      },
+      "x": 0.735,
+      "y": 0.6
+    },
+    "tieu-chi": {
+      "font": "BeVietnamPro-SemiBold",
+      "size": 36,
+      "color": "#FFFFFFB0",
+      "y": 0.68,
+      "max_width": 0.36
+    },
+    "diem-a": {
+      "font": "BeVietnamPro-ExtraBold",
+      "size": 44,
+      "color": "#FF8A3D",
+      "x": 0.15,
+      "y": 0.68,
+      "max_width": 0.28
+    },
+    "diem-b": {
+      "font": "BeVietnamPro-ExtraBold",
+      "size": 44,
+      "color": "#4DA3FF",
+      "x": 0.85,
+      "y": 0.68,
+      "max_width": 0.28
+    },
+    "thang": {
+      "font": "BeVietnamPro-Black",
+      "size": 46,
+      "color": "#111216",
+      "box": {
+        "color": "#FFE14D",
+        "radius": 30,
+        "pad": [
+          14,
+          30
+        ]
+      },
+      "y": 0.91,
+      "max_width": 0.9
+    },
+    "ket": {
+      "font": "BeVietnamPro-ExtraBold",
+      "size": 60,
+      "color": "#FFFFFF",
+      "y": 0.45,
+      "max_width": 0.86,
+      "line_spacing": 1.1
+    }
+  }
+}

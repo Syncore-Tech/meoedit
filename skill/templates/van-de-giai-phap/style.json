@@ -1,0 +1,170 @@
+{
+  "name": "van-de-giai-phap",
+  "kind": "video",
+  "title": "Vấn đề rồi giải pháp — Đỏ và xanh",
+  "description": "Video dọc 9:16, 15–30 giây. Mở bằng cái bực mình hằng ngày (nhãn đỏ), rồi sản phẩm xử lý gọn (nhãn xanh), lợi ích, giá và nút mua. Hợp TikTok Shop: đồ gia dụng, phụ kiện, đồ ăn vặt, mỹ phẩm.",
+  "size": [
+    1080,
+    1920
+  ],
+  "fps": 30,
+  "transition": {
+    "type": "fade",
+    "duration": 0.25
+  },
+  "fade_out": 0.4,
+  "text_fade_in": 0.2,
+  "music_volume": 0.35,
+  "original_volume": 0,
+  "image_motion": "pan",
+  "grade": "eq=saturation=1.08:contrast=1.04",
+  "shapes": [
+    {
+      "type": "gradient",
+      "box": [
+        0,
+        0,
+        1,
+        0.3
+      ],
+      "from": "#00000088",
+      "to": "#00000000"
+    },
+    {
+      "type": "gradient",
+      "box": [
+        0,
+        0.62,
+        1,
+        0.38
+      ],
+      "from": "#00000000",
+      "to": "#000000AA"
+    }
+  ],
+  "presets": {
+    "nhan-truoc": {
+      "font": "BeVietnamPro-Bold",
+      "size": 36,
+      "color": "#FFFFFF",
+      "box": {
+        "color": "#E5484D",
+        "radius": 30,
+        "pad": [
+          10,
+          26
+        ]
+      },
+      "x": 0.07,
+      "anchor_x": "left",
+      "y": 0.07,
+      "anchor": "top"
+    },
+    "nhan-sau": {
+      "font": "BeVietnamPro-Bold",
+      "size": 36,
+      "color": "#FFFFFF",
+      "box": {
+        "color": "#16A34A",
+        "radius": 30,
+        "pad": [
+          10,
+          26
+        ]
+      },
+      "x": 0.07,
+      "anchor_x": "left",
+      "y": 0.07,
+      "anchor": "top"
+    },
+    "van-de": {
+      "font": "BeVietnamPro-Black",
+      "size": 74,
+      "color": "#FFFFFF",
+      "stroke": {
+        "width": 6,
+        "color": "#000000"
+      },
+      "x": 0.07,
+      "anchor_x": "left",
+      "align": "left",
+      "y": 0.12,
+      "anchor": "top",
+      "max_width": 0.86,
+      "line_spacing": 1.06
+    },
+    "giai-phap": {
+      "font": "BeVietnamPro-ExtraBold",
+      "size": 58,
+      "color": "#0B2E1A",
+      "box": {
+        "color": "#FFFFFFF2",
+        "radius": 22,
+        "pad": [
+          20,
+          32
+        ]
+      },
+      "y": 0.76,
+      "max_width": 0.86,
+      "line_spacing": 1.1
+    },
+    "loi-ich": {
+      "font": "BeVietnamPro-Bold",
+      "size": 46,
+      "color": "#FFFFFF",
+      "box": {
+        "color": "#16A34AEE",
+        "radius": 36,
+        "pad": [
+          12,
+          28
+        ]
+      },
+      "x": 0.07,
+      "anchor_x": "left",
+      "align": "left",
+      "y": 0.62,
+      "max_width": 0.86
+    },
+    "gia": {
+      "font": "BeVietnamPro-Black",
+      "size": 128,
+      "color": "#FFE14D",
+      "stroke": {
+        "width": 8,
+        "color": "#000000"
+      },
+      "y": 0.52
+    },
+    "gia-cu": {
+      "font": "BeVietnamPro-SemiBold",
+      "size": 40,
+      "color": "#FFFFFFD0",
+      "shadow": {
+        "offset": [
+          0,
+          3
+        ],
+        "blur": 8,
+        "color": "#000000B0"
+      },
+      "y": 0.6
+    },
+    "cta": {
+      "font": "BeVietnamPro-ExtraBold",
+      "size": 46,
+      "color": "#FFFFFF",
+      "box": {
+        "color": "#16A34A",
+        "radius": 16,
+        "pad": [
+          18,
+          34
+        ]
+      },
+      "y": 0.86,
+      "max_width": 0.86
+    }
+  }
+}

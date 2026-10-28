@@ -1,0 +1,173 @@
+{
+  "name": "gym-bai-tap",
+  "kind": "video",
+  "title": "Gym — Bài tập và đồng hồ đếm",
+  "description": "Video dọc 9:16, 20–45 giây. Mỗi bài một cảnh: tên bài chữ đậm, nhãn số hiệp và số lần, đồng hồ đếm ngược ở góc dưới, một mẹo tư thế. Hợp PT, phòng gym, yoga, thể dục tại nhà.",
+  "size": [
+    1080,
+    1920
+  ],
+  "fps": 30,
+  "transition": {
+    "type": "cut"
+  },
+  "fade_out": 0.3,
+  "text_fade_in": 0,
+  "music_volume": 0.5,
+  "original_volume": 0,
+  "image_motion": "pan",
+  "grade": "eq=saturation=0.92:contrast=1.1",
+  "shapes": [
+    {
+      "type": "gradient",
+      "box": [
+        0,
+        0,
+        1,
+        0.32
+      ],
+      "from": "#000000B8",
+      "to": "#00000000"
+    },
+    {
+      "type": "gradient",
+      "box": [
+        0,
+        0.66,
+        1,
+        0.34
+      ],
+      "from": "#00000000",
+      "to": "#000000A0"
+    }
+  ],
+  "presets": {
+    "tieu-de": {
+      "font": "Oswald",
+      "variation": "Bold",
+      "size": 140,
+      "color": "#FFFFFF",
+      "uppercase": true,
+      "y": 0.28,
+      "max_width": 0.9,
+      "line_spacing": 0.95,
+      "shadow": {
+        "offset": [
+          0,
+          4
+        ],
+        "blur": 14,
+        "color": "#000000B0"
+      },
+      "anchor": "bottom"
+    },
+    "phu": {
+      "font": "BeVietnamPro-Bold",
+      "size": 44,
+      "color": "#FFFFFF",
+      "box": {
+        "color": "#FF2E2E",
+        "radius": 10,
+        "pad": [
+          12,
+          26
+        ]
+      },
+      "y": 0.32,
+      "max_width": 0.86
+    },
+    "ten-bai": {
+      "font": "Oswald",
+      "variation": "Bold",
+      "size": 96,
+      "color": "#FFFFFF",
+      "uppercase": true,
+      "x": 0.06,
+      "anchor_x": "left",
+      "align": "left",
+      "y": 0.06,
+      "anchor": "top",
+      "max_width": 0.88,
+      "line_spacing": 0.95,
+      "shadow": {
+        "offset": [
+          0,
+          4
+        ],
+        "blur": 12,
+        "color": "#000000B0"
+      }
+    },
+    "hiep": {
+      "font": "BeVietnamPro-ExtraBold",
+      "size": 44,
+      "color": "#FFFFFF",
+      "box": {
+        "color": "#FF2E2E",
+        "radius": 10,
+        "pad": [
+          12,
+          24
+        ]
+      },
+      "x": 0.06,
+      "anchor_x": "left",
+      "y": 0.19,
+      "anchor": "top"
+    },
+    "dong-ho": {
+      "font": "Oswald",
+      "variation": "Bold",
+      "size": 150,
+      "color": "#FFFFFF",
+      "box": {
+        "color": "#000000A6",
+        "radius": 28,
+        "pad": [
+          6,
+          34
+        ]
+      },
+      "x": 0.94,
+      "anchor_x": "right",
+      "y": 0.94,
+      "anchor": "bottom"
+    },
+    "meo": {
+      "font": "BeVietnamPro-SemiBold",
+      "size": 42,
+      "color": "#FFFFFF",
+      "box": {
+        "color": "#000000AA",
+        "radius": 16,
+        "pad": [
+          12,
+          24
+        ]
+      },
+      "x": 0.06,
+      "anchor_x": "left",
+      "align": "left",
+      "y": 0.72,
+      "max_width": 0.88
+    },
+    "ket": {
+      "font": "Oswald",
+      "variation": "Bold",
+      "size": 110,
+      "color": "#FFFFFF",
+      "uppercase": true,
+      "y": 0.5,
+      "max_width": 0.88,
+      "line_spacing": 0.95,
+      "shadow": {
+        "offset": [
+          0,
+          4
+        ],
+        "blur": 14,
+        "color": "#000000B0"
+      }
+    }
+  }
+}

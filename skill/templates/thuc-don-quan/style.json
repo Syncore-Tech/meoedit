@@ -1,0 +1,148 @@
+{
+  "name": "thuc-don-quan",
+  "kind": "video",
+  "title": "Thực đơn quán — Bảng gỗ ấm",
+  "description": "Video dọc 9:16, 15–35 giây. Tên quán viết kiểu bảng hiệu, mỗi món một cảnh với tên món, giá vàng to và một dòng mô tả, nhãn combo nghiêng. Địa chỉ và giờ mở cửa nằm cố định dưới cùng suốt video. Hợp quán ăn, quán nước, tiệm bánh.",
+  "size": [
+    1080,
+    1920
+  ],
+  "fps": 30,
+  "transition": {
+    "type": "fade",
+    "duration": 0.3
+  },
+  "fade_out": 0.5,
+  "text_fade_in": 0.25,
+  "music_volume": 0.35,
+  "original_volume": 0,
+  "image_motion": "pan",
+  "grade": "colorbalance=rs=0.04:bs=-0.04:rm=0.02,eq=saturation=1.08:contrast=1.04",
+  "shapes": [
+    {
+      "type": "gradient",
+      "box": [
+        0,
+        0,
+        1,
+        0.25
+      ],
+      "from": "#1E120A99",
+      "to": "#1E120A00"
+    },
+    {
+      "type": "gradient",
+      "box": [
+        0,
+        0.58,
+        1,
+        0.42
+      ],
+      "from": "#1E120A00",
+      "to": "#1E120AE6"
+    }
+  ],
+  "presets": {
+    "ten-quan": {
+      "font": "Lobster",
+      "size": 112,
+      "color": "#FFF4E0",
+      "y": 0.13,
+      "max_width": 0.9,
+      "shadow": {
+        "offset": [
+          0,
+          5
+        ],
+        "blur": 14,
+        "color": "#000000C0"
+      }
+    },
+    "phu": {
+      "font": "BeVietnamPro-SemiBold",
+      "size": 40,
+      "color": "#FFF4E0",
+      "shadow": {
+        "offset": [
+          0,
+          3
+        ],
+        "blur": 8,
+        "color": "#000000B0"
+      },
+      "y": 0.21,
+      "max_width": 0.86
+    },
+    "mon": {
+      "font": "Baloo2",
+      "variation": "ExtraBold",
+      "size": 84,
+      "color": "#FFFFFF",
+      "y": 0.7,
+      "max_width": 0.88,
+      "line_spacing": 0.95,
+      "shadow": {
+        "offset": [
+          0,
+          4
+        ],
+        "blur": 10,
+        "color": "#000000B0"
+      }
+    },
+    "gia": {
+      "font": "Oswald",
+      "variation": "Bold",
+      "size": 104,
+      "color": "#FFC93C",
+      "y": 0.785,
+      "shadow": {
+        "offset": [
+          0,
+          4
+        ],
+        "blur": 10,
+        "color": "#000000B0"
+      }
+    },
+    "mo-ta": {
+      "font": "BeVietnamPro-Medium",
+      "size": 38,
+      "color": "#FFF4E0E6",
+      "y": 0.85,
+      "max_width": 0.84
+    },
+    "combo": {
+      "font": "BeVietnamPro-Black",
+      "size": 50,
+      "color": "#2A1A0E",
+      "box": {
+        "color": "#FFC93C",
+        "radius": 14,
+        "pad": [
+          14,
+          28
+        ]
+      },
+      "rotate": -4,
+      "x": 0.93,
+      "anchor_x": "right",
+      "y": 0.33
+    },
+    "dia-chi": {
+      "font": "BeVietnamPro-SemiBold",
+      "size": 32,
+      "color": "#2A1A0E",
+      "box": {
+        "color": "#FFF4E0EE",
+        "radius": 14,
+        "pad": [
+          8,
+          22
+        ]
+      },
+      "y": 0.94,
+      "max_width": 0.9
+    }
+  }
+}

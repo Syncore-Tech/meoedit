@@ -58,6 +58,13 @@ Quán, chuyến đi, shop, sản phẩm và giá trong demo là hư cấu; media
 | `truoc-sau-neon` | Video 9:16 | Trước và sau kiểu team edit BĐS: khung gốc nhỏ, khung kết quả lớn viền vàng neon, dải ưu đãi vàng |
 | `portfolio-dich-vu` | Video 9:16 | Studio, team quay dựng khoe sản phẩm. Câu khách hỏi, cắt 1 giây, nhãn loại việc |
 | `hau-truong` | Video 9:16 | Hậu trường, một ngày đi làm. Giờ trong ngày, chữ gõ từng ký tự |
+| `noi-chuyen-phu-de` | Video 9:16 | Một người nói vào camera: hook trong hộp vàng, phụ đề to bám lời từ file SRT |
+| `van-de-giai-phap` | Video 9:16 | TikTok Shop: cái bực mình (nhãn đỏ), sản phẩm xử lý (nhãn xanh), lợi ích, giá, nút mua |
+| `so-sanh` | Video 9:16 | So sánh A với B: hai khung chạy song song, tiêu chí hiện lần lượt, nhãn chốt bên thắng |
+| `top-danh-sach` | Video 9:16 | Top 3, top 5 quán, địa điểm, sản phẩm. Số thứ tự to, đếm ngược về số 1 |
+| `hoi-dap` | Video 9:16 | Mỗi video một câu khách hỏi: câu hỏi gõ trong bong bóng tin nhắn, trả lời, ý chính |
+| `thuc-don-quan` | Video 9:16 | Thực đơn quán: tên món, giá vàng, nhãn combo, địa chỉ và giờ mở cửa cố định |
+| `gym-bai-tap` | Video 9:16 | Gym, PT: tên bài, số hiệp × số lần, đồng hồ đếm ngược, mẹo tư thế |
 | `huong-dan` | Video 16:9 | Hướng dẫn phần mềm, quay màn hình: khung bo góc trên nền vàng, nhãn Bước 1, 2, 3 |
 | `the-san-pham` | Ảnh 4:5 | Ảnh bán hàng Facebook, Instagram, Threads, Shopee |
 | `story-khuyen-mai` | Ảnh 9:16 | Story flash sale: phần trăm giảm, giá mới, giá cũ, thời hạn |
@@ -139,7 +146,7 @@ Một template là một thư mục trong `skill/templates/`:
 - `style.json`: khung hình, màu chỉnh video (`grade`, bộ lọc ffmpeg), chuyển cảnh, và các kiểu chữ (`presets`: font, cỡ, màu, viền, hộp nền, vị trí, độ nghiêng), gõ từng ký tự với `typewriter`), lớp nền `shapes` (dải màu, gradient, khung `frame` có phát sáng, lưới `grid`; `"back": true` để nằm dưới video), và `panels` để chia màn hình thành nhiều khung video.
 - `TEMPLATE.md`: câu hỏi cho người dùng, cấu trúc cảnh, độ dài chữ. Agent đọc file này.
 
-Sao chép một template có sẵn, đổi tên, sửa màu và chữ, chạy `tests/smoke.sh`. PR template mới rất được hoan nghênh: gym, tin tức, thực đơn quán...
+Sao chép một template có sẵn, đổi tên, sửa màu và chữ, chạy `tests/smoke.sh`. PR template mới rất được hoan nghênh: tin tức, sự kiện, giáo dục...
 
 ## Lộ trình
 
@@ -147,7 +154,7 @@ Sao chép một template có sẵn, đổi tên, sửa màu và chữ, chạy `t
 - [ ] Phụ đề tự động từ lời nói (Whisper chạy trên máy)
 - [x] Thêm template: review quán ăn, outfit, mở hộp, nấu ăn, ảnh vuông 1:1, ảnh story 9:16
 - [x] Thêm template bất động sản: giới thiệu dự án, trước và sau video, portfolio, hậu trường
-- [ ] Thêm template: gym, thực đơn quán
+- [x] Thêm template theo xu hướng TikTok Shop: nói chuyện có phụ đề, vấn đề và giải pháp, so sánh, top, hỏi đáp, thực đơn quán, gym
 - [ ] Cắt theo nhịp nhạc tự động
 - [x] Xuất project CapCut để sửa tiếp, phụ đề SRT, zoom trong cảnh
 - [ ] Chuyển cảnh và hiệu ứng chữ trong project CapCut

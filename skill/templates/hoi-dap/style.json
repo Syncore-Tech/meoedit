@@ -1,0 +1,144 @@
+{
+  "name": "hoi-dap",
+  "kind": "video",
+  "title": "Hỏi đáp — Bong bóng tin nhắn",
+  "description": "Video dọc 9:16, 10–25 giây. Mỗi video trả lời một câu khách hay hỏi: câu hỏi gõ trong bong bóng tin nhắn, câu trả lời to bên dưới, vài ý chính trong nhãn xanh. Hợp môi giới nhà, gym, spa, dịch vụ, shop.",
+  "size": [
+    1080,
+    1920
+  ],
+  "fps": 30,
+  "transition": {
+    "type": "fade",
+    "duration": 0.3
+  },
+  "fade_out": 0.4,
+  "text_fade_in": 0.2,
+  "music_volume": 0.3,
+  "original_volume": 0,
+  "image_motion": "pan",
+  "grade": "eq=saturation=1.02:contrast=1.03",
+  "shapes": [
+    {
+      "type": "gradient",
+      "box": [
+        0,
+        0,
+        1,
+        0.38
+      ],
+      "from": "#00000099",
+      "to": "#00000000"
+    },
+    {
+      "type": "gradient",
+      "box": [
+        0,
+        0.6,
+        1,
+        0.4
+      ],
+      "from": "#00000000",
+      "to": "#000000B0"
+    }
+  ],
+  "presets": {
+    "nhan": {
+      "font": "BeVietnamPro-Bold",
+      "size": 34,
+      "color": "#FFFFFF",
+      "box": {
+        "color": "#0A7CFF",
+        "radius": 30,
+        "pad": [
+          10,
+          24
+        ]
+      },
+      "x": 0.07,
+      "anchor_x": "left",
+      "y": 0.07,
+      "anchor": "top"
+    },
+    "cau-hoi": {
+      "font": "BeVietnamPro-SemiBold",
+      "size": 54,
+      "color": "#141414",
+      "box": {
+        "color": "#FFFFFFF2",
+        "radius": 40,
+        "pad": [
+          24,
+          34
+        ]
+      },
+      "typewriter": 28,
+      "x": 0.07,
+      "anchor_x": "left",
+      "align": "left",
+      "y": 0.12,
+      "anchor": "top",
+      "max_width": 0.8,
+      "line_spacing": 1.12
+    },
+    "tra-loi": {
+      "font": "BeVietnamPro-ExtraBold",
+      "size": 58,
+      "color": "#FFFFFF",
+      "stroke": {
+        "width": 6,
+        "color": "#000000"
+      },
+      "y": 0.72,
+      "max_width": 0.86,
+      "line_spacing": 1.08
+    },
+    "y-chinh": {
+      "font": "BeVietnamPro-Bold",
+      "size": 44,
+      "color": "#FFFFFF",
+      "box": {
+        "color": "#0A7CFFEE",
+        "radius": 18,
+        "pad": [
+          12,
+          26
+        ]
+      },
+      "x": 0.07,
+      "anchor_x": "left",
+      "align": "left",
+      "y": 0.62,
+      "max_width": 0.86
+    },
+    "ten-shop": {
+      "font": "BeVietnamPro-SemiBold",
+      "size": 32,
+      "color": "#FFFFFF",
+      "box": {
+        "color": "#00000099",
+        "radius": 14,
+        "pad": [
+          8,
+          20
+        ]
+      },
+      "y": 0.94
+    },
+    "cta": {
+      "font": "BeVietnamPro-ExtraBold",
+      "size": 46,
+      "color": "#FFFFFF",
+      "box": {
+        "color": "#0A7CFF",
+        "radius": 16,
+        "pad": [
+          18,
+          34
+        ]
+      },
+      "y": 0.85,
+      "max_width": 0.86
+    }
+  }
+}

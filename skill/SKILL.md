@@ -84,7 +84,7 @@ Trường của một cảnh:
 | `zoom_to` | điểm tiến lại gần, `[x, y]` từ 0 đến 1 (mặc định giữa khung), ví dụ `[0.5, 0.3]` là món ăn ở nửa trên |
 | `transition` | kiểu chuyển vào cảnh này (tên xfade của ffmpeg: `fade`, `slideleft`, `smoothup`, `circleopen`...), chỉ khi template không dùng `cut` |
 
-Cấp plan: `music` (file nhạc, tự lặp và mờ dần cuối, tự nhỏ lại khi có tiếng gốc), `music_volume`, `original_volume`, `transition` (`{"type": "fade", "duration": 0.3}`), `subtitles` (phụ đề từ file SRT: `{"file": "phu-de.srt", "preset": "caption"}`, mốc thời gian tính trên video thành phẩm, kiểu chữ lấy từ template).
+Cấp plan: `music` (file nhạc, tự lặp và mờ dần cuối, tự nhỏ lại khi có tiếng gốc), `music_volume`, `original_volume`, `transition` (`{"type": "fade", "duration": 0.3}`), `subtitles` (phụ đề từ file SRT: `{"file": "phu-de.srt", "preset": "caption"}`, mốc thời gian tính trên video thành phẩm, kiểu chữ lấy từ template; ghi đè vị trí hay cỡ ngay trong đó, ví dụ `"y": 0.6`).
 
 Chữ cố định suốt video (logo, nút liên hệ, nhãn trước/sau): đặt `texts` ở cấp plan thay vì lặp lại ở từng cảnh. Lớp này nằm trên cả chuyển cảnh.
 
@@ -95,6 +95,8 @@ Template chia khung (ví dụ `truoc-sau-video`) dùng `srcs` thay cho `src`: m�
 | `srcs` | danh sách clip/ảnh, một cho mỗi khung (khung 1 là bản gốc) |
 | `starts` | giây bắt đầu cắt cho từng clip trong `srcs` (thiếu thì lấy `start`) |
 | `audio_panel` | lấy tiếng gốc từ khung nào (số thứ tự từ 0, mặc định khung cuối), dùng cùng `volume` |
+
+Chữ hiện muộn trong cảnh: thêm `"at": 1.2` (giây tính từ đầu cảnh), hợp với hàng tiêu chí hiện lần lượt hay lợi ích từng cái một. Đồng hồ đếm ngược: `{"preset": "dong-ho", "countdown": 30}` chạy từ `0:30` về `0:00` rồi đứng yên, không cần `text`.
 
 Kiểu chữ có `typewriter` trong template (ví dụ `hau-truong`) tự gõ từng ký tự. Muốn chậm hơn hay nhanh hơn, ghi đè trên chữ: `"typewriter": 12` (ký tự mỗi giây), hoặc `"typewriter": 0` để hiện ngay. Câu gõ cần thời gian: cảnh nên dài hơn số ký tự chia tốc độ, cộng một giây để người xem đọc.
 

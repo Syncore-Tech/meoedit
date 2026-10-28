@@ -79,12 +79,12 @@ def _overlay_input(sc, style, W, H, OW, OH, dur, fps, work, i, shapes):
         im = Image.alpha_composite(shape_layer, text.render_layers(presets, texts, W, H, t_now))
         return im.resize((OW, OH), Image.LANCZOS) if (OW, OH) != (W, H) else im
 
-    typing = [t for t in texts if {**presets.get(t.get("preset"), {}), **t}.get("typewriter")]
-    if not typing:
+    timed = [t for t in texts if text.is_timed({**presets.get(t.get("preset"), {}), **t})]
+    if not timed:
         png = work / f"ov{i:02d}.png"
         frame().save(png)
         return ["-loop", "1", "-framerate", str(fps), "-t", f"{dur}", "-i", str(png)]
-    # One frame every 1/12 s while typing; the last frame holds until the scene ends.
+    # One frame every 1/12 s (typing, texts that appear later, countdowns); the last holds to the end.
     step = 1 / 12
     lines, n, t_now = [], 0, 0.0
     while t_now < dur:
@@ -237,7 +237,7 @@ def render(plan_path, preview=False, keep_work=False):
             vlast = "[vg]"
         else:
             vlast = "[vx]"
-        cues, sub_preset = subtitles.load(plan, base)
+        cues, sub_style = subtitles.load(plan, base)
         if cues:
             # One concat input: a transparent frame between cues, the cue's text while it is on.
             blank = work / "sub_blank.png"
@@ -249,7 +249,7 @@ def render(plan_path, preview=False, keep_work=False):
                     continue
                 if a > t_at:
                     lines += [f"file '{blank}'", f"duration {a - t_at:.3f}"]
-                im = text.render_layers(style["presets"], [{"preset": sub_preset, "text": cue["text"]}], W, H)
+                im = text.render_layers(style["presets"], [{**sub_style, "text": cue["text"]}], W, H)
                 png = work / f"sub{c_i:03d}.png"
                 (im.resize((OW, OH), Image.LANCZOS) if (OW, OH) != (W, H) else im).save(png)
                 lines += [f"file '{png}'", f"duration {b - a:.3f}"]
