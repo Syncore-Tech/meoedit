@@ -1,0 +1,23 @@
+{
+  "template": "anh-trich-dan",
+  "output": "out/trich-dan.png",
+  "photo": "media/photo-40529241.jpg",
+  "texts": [
+    {
+      "preset": "ngoac",
+      "text": "“"
+    },
+    {
+      "preset": "cau-noi",
+      "text": "Biển không vội. Mình cũng không cần vội."
+    },
+    {
+      "preset": "tac-gia",
+      "text": "Ghi chú ở Cửa Tùng"
+    },
+    {
+      "preset": "ten-trang",
+      "text": "@tiemnhameo"
+    }
+  ]
+}

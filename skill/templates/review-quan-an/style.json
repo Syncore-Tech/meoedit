@@ -1,0 +1,127 @@
+{
+  "name": "review-quan-an",
+  "kind": "video",
+  "title": "Review quán ăn — Đường phố đỏ vàng",
+  "description": "Video dọc 9:16, 15–30 giây. Chữ đứng in hoa trên nền đỏ, tên món viết tay vàng, nhãn giá nghiêng, chuyển cảnh trượt. Hợp review quán ăn, đồ ăn đường phố, food tour.",
+  "size": [
+    1080,
+    1920
+  ],
+  "fps": 30,
+  "transition": {
+    "type": "slideleft",
+    "duration": 0.25
+  },
+  "fade_out": 0.4,
+  "text_fade_in": 0.15,
+  "music_volume": 0.4,
+  "original_volume": 0,
+  "image_motion": "pan",
+  "grade": "eq=saturation=1.14:contrast=1.05,colorbalance=rs=0.03:bs=-0.02",
+  "shapes": [
+    {
+      "type": "gradient",
+      "box": [
+        0,
+        0.62,
+        1,
+        0.38
+      ],
+      "from": "#00000000",
+      "to": "#000000B0"
+    }
+  ],
+  "presets": {
+    "hook": {
+      "font": "Oswald",
+      "variation": "Bold",
+      "size": 100,
+      "color": "#FFFFFF",
+      "uppercase": true,
+      "box": {
+        "color": "#D62828",
+        "radius": 10,
+        "pad": [
+          14,
+          30
+        ]
+      },
+      "y": 0.19,
+      "max_width": 0.86,
+      "line_spacing": 1.05,
+      "rotate": -2
+    },
+    "dia-chi": {
+      "font": "BeVietnamPro-SemiBold",
+      "size": 36,
+      "color": "#FFFFFF",
+      "box": {
+        "color": "#000000A6",
+        "radius": 30,
+        "pad": [
+          12,
+          26
+        ]
+      },
+      "x": 0.06,
+      "anchor_x": "left",
+      "y": 0.045
+    },
+    "mon": {
+      "font": "Lobster",
+      "size": 104,
+      "color": "#FCBF49",
+      "stroke": {
+        "width": 6,
+        "color": "#3A0D0D"
+      },
+      "y": 0.6,
+      "max_width": 0.9,
+      "line_spacing": 1.0
+    },
+    "gia": {
+      "font": "Oswald",
+      "variation": "Bold",
+      "size": 72,
+      "color": "#2B0A0A",
+      "box": {
+        "color": "#FCBF49",
+        "radius": 14,
+        "pad": [
+          8,
+          28
+        ]
+      },
+      "x": 0.92,
+      "anchor_x": "right",
+      "y": 0.69,
+      "rotate": 5
+    },
+    "caption": {
+      "font": "BeVietnamPro-Bold",
+      "size": 54,
+      "color": "#FFFFFF",
+      "stroke": {
+        "width": 6,
+        "color": "#000000"
+      },
+      "y": 0.82,
+      "max_width": 0.86
+    },
+    "diem": {
+      "font": "Oswald",
+      "variation": "Bold",
+      "size": 250,
+      "color": "#FCBF49",
+      "y": 0.38
+    },
+    "ket-luan": {
+      "font": "BeVietnamPro-SemiBold",
+      "size": 50,
+      "color": "#FFFFFF",
+      "y": 0.54,
+      "max_width": 0.8,
+      "line_spacing": 1.3
+    }
+  }
+}

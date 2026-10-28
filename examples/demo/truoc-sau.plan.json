@@ -1,0 +1,26 @@
+{
+  "template": "truoc-sau",
+  "output": "out/truoc-sau.png",
+  "photos": [
+    "media/photo-32116008.jpg",
+    "media/photo-8534373.jpg"
+  ],
+  "texts": [
+    {
+      "preset": "tieu-de",
+      "text": "Góc làm việc sau 30 phút dọn"
+    },
+    {
+      "preset": "nhan-truoc",
+      "text": "Trước"
+    },
+    {
+      "preset": "nhan-sau",
+      "text": "Sau"
+    },
+    {
+      "preset": "ket-qua",
+      "text": "Bỏ 2 túi giấy tờ cũ, thêm một chậu cây"
+    }
+  ]
+}

@@ -22,6 +22,10 @@ FONTS = {
     "BeVietnamPro-Black": "bevietnampro/BeVietnamPro-Black.ttf",
     "DancingScript": "dancingscript/DancingScript%5Bwght%5D.ttf",
     "Baloo2": "baloo2/Baloo2%5Bwght%5D.ttf",
+    "PlayfairDisplay": "playfairdisplay/PlayfairDisplay%5Bwght%5D.ttf",
+    "PlayfairDisplay-Italic": "playfairdisplay/PlayfairDisplay-Italic%5Bwght%5D.ttf",
+    "Oswald": "oswald/Oswald%5Bwght%5D.ttf",
+    "Lobster": "lobster/Lobster-Regular.ttf",
 }
 
 

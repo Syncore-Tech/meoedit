@@ -30,7 +30,8 @@ def _segment(i, sc, style, plan, W, H, OW, OH, fps, enc, work, base):
     speed = float(sc.get("speed", 1))
     grade = sc.get("grade", style.get("grade"))
 
-    overlay = text.render_layers(style["presets"], sc.get("texts", []), W, H)
+    overlay = text.render_shapes(sc.get("shapes", style.get("shapes", [])), W, H)
+    overlay = Image.alpha_composite(overlay, text.render_layers(style["presets"], sc.get("texts", []), W, H))
     if (OW, OH) != (W, H):
         overlay = overlay.resize((OW, OH), Image.LANCZOS)
     ov_png = work / f"ov{i:02d}.png"
@@ -146,6 +147,8 @@ def render(plan_path, preview=False, keep_work=False):
                      f"atrim=0:{total:.3f}[speech]")
 
         music = plan.get("music")
+        has_speech = any(float(s.get("volume", plan.get("original_volume", style.get("original_volume", 0)))) > 0
+                         for s in scenes)
         if music:
             mpath = _resolve(base, music)
             mi = n
@@ -154,8 +157,7 @@ def render(plan_path, preview=False, keep_work=False):
             parts.append(f"[{mi}:a]aresample=48000,aformat=channel_layouts=stereo,atrim=0:{total:.3f},"
                          f"asetpts=PTS-STARTPTS,volume={mv},afade=t=in:d=0.4,"
                          f"afade=t=out:st={max(total - 1.5, 0):.3f}:d=1.5[m]")
-            if any(float(s.get("volume", plan.get("original_volume", style.get("original_volume", 0)))) > 0
-                   for s in scenes):
+            if has_speech:
                 parts.append("[speech]asplit=2[sp1][sp2]")
                 parts.append("[m][sp1]sidechaincompress=threshold=0.03:ratio=8:attack=20:release=400[md]")
                 parts.append("[md][sp2]amix=inputs=2:normalize=0:duration=first[aout]")
@@ -165,7 +167,11 @@ def render(plan_path, preview=False, keep_work=False):
             parts.append("[speech]anull[aout]")
 
         # Social apps play everything at about -14 LUFS; normalize so the video is not quieter than its neighbours.
-        parts.append("[aout]loudnorm=I=-14:TP=-1.5:LRA=11,aresample=48000[afinal]")
+        # A silent track (no music, original sound off) makes loudnorm output NaN, so leave it as is.
+        if music or has_speech:
+            parts.append("[aout]loudnorm=I=-14:TP=-1.5:LRA=11,aresample=48000[afinal]")
+        else:
+            parts.append("[aout]anull[afinal]")
         media.run(["ffmpeg", "-y", "-v", "error", *inputs, "-filter_complex", ";".join(parts),
                    "-map", "[vout]", "-map", "[afinal]", *enc, "-c:a", "aac", "-b:a", "192k",
                    "-movflags", "+faststart", "-t", f"{total:.3f}", str(out)])

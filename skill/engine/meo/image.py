@@ -23,9 +23,8 @@ def render(plan_path):
 
     W, H = style["size"]
     canvas = Image.new("RGBA", (W, H), text.rgba(plan.get("background", style.get("background", "#FFFFFF"))))
-    d = ImageDraw.Draw(canvas)
-    for s in style.get("shapes", []):
-        d.rounded_rectangle(_box(s["box"], W, H), radius=s.get("radius", 0), fill=text.rgba(s["color"]))
+    shapes = style.get("shapes", [])
+    canvas = Image.alpha_composite(canvas, text.render_shapes([s for s in shapes if not s.get("above_photo")], W, H))
 
     photos = plan.get("photos") or ([plan["photo"]] if plan.get("photo") else [])
     for slot, src in zip(style.get("photo_slots", []), photos):
@@ -41,6 +40,7 @@ def render(plan_path):
                                                radius=slot.get("radius", 0), fill=255)
         canvas.paste(ph, (x0, y0), mask)
 
+    canvas = Image.alpha_composite(canvas, text.render_shapes([s for s in shapes if s.get("above_photo")], W, H))
     canvas = Image.alpha_composite(canvas, text.render_layers(style["presets"], plan.get("texts", []), W, H))
 
     out = Path(plan.get("output", "meoedit-image.png")).expanduser()

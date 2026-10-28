@@ -1,0 +1,86 @@
+{
+  "template": "mo-hop-san-pham",
+  "output": "out/mo-hop-kem-duong.mp4",
+  "music": "media/music-Lobby-Time.mp3",
+  "scenes": [
+    {
+      "src": "media/unbox-7316364.mp4",
+      "start": 0.5,
+      "duration": 2.4,
+      "texts": [
+        {
+          "preset": "hook",
+          "text": "Đơn hàng của chị Mai đã tới"
+        }
+      ]
+    },
+    {
+      "src": "media/unbox-7316363.mp4",
+      "start": 3,
+      "duration": 2.4,
+      "texts": [
+        {
+          "preset": "ten-sp",
+          "text": "Kem Mây"
+        },
+        {
+          "preset": "caption",
+          "text": "Kem dưỡng ẩm thuần chay"
+        }
+      ]
+    },
+    {
+      "src": "media/unbox-7316374.mp4",
+      "start": 1,
+      "duration": 2.4,
+      "texts": [
+        {
+          "preset": "diem-nhan",
+          "text": "Thấm nhanh, không bết",
+          "y": 0.62
+        },
+        {
+          "preset": "diem-nhan",
+          "text": "Hũ 50ml dùng 2 tháng",
+          "y": 0.7
+        }
+      ]
+    },
+    {
+      "src": "media/unbox-7316370.mp4",
+      "start": 3,
+      "duration": 2.2,
+      "texts": [
+        {
+          "preset": "caption",
+          "text": "Đóng gói túi giấy, không nilon"
+        }
+      ]
+    },
+    {
+      "src": "color:#FFE3EE",
+      "duration": 2.8,
+      "texts": [
+        {
+          "preset": "ten-sp",
+          "text": "Kem Mây",
+          "y": 0.27,
+          "color": "#4B1D3F",
+          "shadow": null
+        },
+        {
+          "preset": "gia",
+          "text": "289.000đ"
+        },
+        {
+          "preset": "gia-cu",
+          "text": "Giá gốc 340.000đ"
+        },
+        {
+          "preset": "cta",
+          "text": "Đặt ở link trong bio"
+        }
+      ]
+    }
+  ]
+}

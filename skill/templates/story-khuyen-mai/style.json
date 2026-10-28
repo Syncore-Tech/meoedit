@@ -1,0 +1,90 @@
+{
+  "name": "story-khuyen-mai",
+  "kind": "image",
+  "title": "Story khuyến mãi — Đỏ flash sale",
+  "description": "Ảnh dọc 1080x1920 cho story Facebook, Instagram, Zalo. Nền đỏ, chữ FLASH SALE to, ảnh sản phẩm bo góc, nhãn phần trăm giảm, giá mới, giá cũ, thời hạn.",
+  "size": [
+    1080,
+    1920
+  ],
+  "background": "#E5241B",
+  "photo_slots": [
+    {
+      "box": [
+        0.08,
+        0.17,
+        0.84,
+        0.46
+      ],
+      "radius": 48
+    }
+  ],
+  "shapes": [
+    {
+      "box": [
+        0,
+        0.885,
+        1,
+        0.115
+      ],
+      "color": "#B5150F"
+    }
+  ],
+  "presets": {
+    "tieu-de": {
+      "font": "Oswald",
+      "variation": "Bold",
+      "size": 170,
+      "color": "#FFFFFF",
+      "uppercase": true,
+      "y": 0.09,
+      "max_width": 0.94
+    },
+    "phan-tram": {
+      "font": "Oswald",
+      "variation": "Bold",
+      "size": 150,
+      "color": "#E5241B",
+      "box": {
+        "color": "#FFE45C",
+        "radius": 28,
+        "pad": [
+          4,
+          34
+        ]
+      },
+      "x": 0.95,
+      "anchor_x": "right",
+      "y": 0.6,
+      "rotate": -6
+    },
+    "ten-sp": {
+      "font": "BeVietnamPro-ExtraBold",
+      "size": 64,
+      "color": "#FFFFFF",
+      "y": 0.7,
+      "max_width": 0.86,
+      "line_spacing": 1.08
+    },
+    "gia": {
+      "font": "Oswald",
+      "variation": "Bold",
+      "size": 130,
+      "color": "#FFE45C",
+      "y": 0.785
+    },
+    "gia-cu": {
+      "font": "BeVietnamPro-Medium",
+      "size": 46,
+      "color": "#FFFFFFB3",
+      "y": 0.846
+    },
+    "han": {
+      "font": "BeVietnamPro-Bold",
+      "size": 42,
+      "color": "#FFFFFF",
+      "y": 0.942,
+      "max_width": 0.9
+    }
+  }
+}

@@ -122,6 +122,29 @@ def _block(preset, text, W):
     return tile, margin
 
 
+def render_shapes(shapes, W, H):
+    """Shapes from a template: {"box": [x, y, w, h] as fractions, "color": "#RRGGBBAA", "radius": px}
+    or {"type": "gradient", "box": [...], "from": "#00000000", "to": "#000000CC"} (top to bottom)."""
+    canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    for s in shapes:
+        x, y, w, h = s["box"]
+        x0, y0, x1, y1 = int(x * W), int(y * H), int((x + w) * W), int((y + h) * H)
+        layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        if s.get("type") == "gradient":
+            c0, c1 = rgba(s["from"]), rgba(s["to"])
+            band = Image.new("RGBA", (1, max(y1 - y0, 1)))
+            n = band.height
+            for i in range(n):
+                t = i / max(n - 1, 1)
+                band.putpixel((0, i), tuple(int(c0[k] + (c1[k] - c0[k]) * t) for k in range(4)))
+            layer.paste(band.resize((x1 - x0, n)), (x0, y0))
+        else:
+            ImageDraw.Draw(layer).rounded_rectangle([x0, y0, x1 - 1, y1 - 1], radius=s.get("radius", 0),
+                                                    fill=rgba(s["color"]))
+        canvas = Image.alpha_composite(canvas, layer)
+    return canvas
+
+
 def render_layers(presets, texts, W, H):
     """texts: [{"preset": name, "text": "...", ...overrides}] -> RGBA canvas W x H."""
     canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))

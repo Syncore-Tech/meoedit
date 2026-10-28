@@ -1,0 +1,110 @@
+{
+  "name": "mo-hop-san-pham",
+  "kind": "video",
+  "title": "Mở hộp sản phẩm — Hồng phấn",
+  "description": "Video dọc 9:16, 15–30 giây. Tông hồng mềm, tên sản phẩm viết tay, nhãn điểm nổi bật, màn giá và lời kêu gọi đặt hàng. Hợp shop mỹ phẩm, đồ handmade, quà tặng.",
+  "size": [
+    1080,
+    1920
+  ],
+  "fps": 30,
+  "transition": {
+    "type": "smoothup",
+    "duration": 0.3
+  },
+  "fade_out": 0.5,
+  "text_fade_in": 0.25,
+  "music_volume": 0.35,
+  "original_volume": 0,
+  "image_motion": "pan",
+  "grade": "eq=saturation=1.02:brightness=0.02,colorbalance=rh=0.03:bh=0.02",
+  "presets": {
+    "hook": {
+      "font": "BeVietnamPro-ExtraBold",
+      "size": 78,
+      "color": "#4B1D3F",
+      "box": {
+        "color": "#FFFFFFF0",
+        "radius": 44,
+        "pad": [
+          24,
+          40
+        ]
+      },
+      "y": 0.14,
+      "max_width": 0.84,
+      "line_spacing": 1.12
+    },
+    "ten-sp": {
+      "font": "Lobster",
+      "size": 110,
+      "color": "#FFFFFF",
+      "shadow": {
+        "offset": [
+          0,
+          6
+        ],
+        "blur": 16,
+        "color": "#4B1D3F99"
+      },
+      "y": 0.44,
+      "max_width": 0.9
+    },
+    "diem-nhan": {
+      "font": "BeVietnamPro-Bold",
+      "size": 46,
+      "color": "#FFFFFF",
+      "box": {
+        "color": "#FF6FA3",
+        "radius": 30,
+        "pad": [
+          14,
+          30
+        ]
+      },
+      "x": 0.06,
+      "anchor_x": "left",
+      "y": 0.66,
+      "align": "left",
+      "max_width": 0.8
+    },
+    "caption": {
+      "font": "BeVietnamPro-SemiBold",
+      "size": 54,
+      "color": "#FFFFFF",
+      "stroke": {
+        "width": 6,
+        "color": "#4B1D3F"
+      },
+      "y": 0.82,
+      "max_width": 0.86
+    },
+    "gia": {
+      "font": "BeVietnamPro-Black",
+      "size": 120,
+      "color": "#4B1D3F",
+      "y": 0.42
+    },
+    "gia-cu": {
+      "font": "BeVietnamPro-Medium",
+      "size": 48,
+      "color": "#9C6B8E",
+      "y": 0.5
+    },
+    "cta": {
+      "font": "BeVietnamPro-Bold",
+      "size": 48,
+      "color": "#FFFFFF",
+      "box": {
+        "color": "#4B1D3F",
+        "radius": 44,
+        "pad": [
+          18,
+          40
+        ]
+      },
+      "y": 0.6,
+      "max_width": 0.84
+    }
+  }
+}

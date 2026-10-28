@@ -1,0 +1,96 @@
+{
+  "template": "cong-thuc-nau-an",
+  "output": "out/mi-xao-15-phut.mp4",
+  "music": "media/music-Happy-Alley.mp3",
+  "scenes": [
+    {
+      "src": "media/cook-12837558.mp4",
+      "start": 6.5,
+      "duration": 2.6,
+      "texts": [
+        {
+          "preset": "ten-mon",
+          "text": "Mì xào 15 phút"
+        },
+        {
+          "preset": "thong-tin",
+          "text": "2 người ăn, không cần chảo to"
+        }
+      ]
+    },
+    {
+      "src": "color:#1F4D3A",
+      "duration": 3.2,
+      "texts": [
+        {
+          "preset": "tieu-de",
+          "text": "Nguyên liệu"
+        },
+        {
+          "preset": "nguyen-lieu",
+          "text": "200g mì trứng\n1 củ hành tây\nNửa bắp cải nhỏ\n2 thìa nước tương\n1 thìa dầu hào"
+        }
+      ]
+    },
+    {
+      "src": "media/cook-12837556.mp4",
+      "start": 0,
+      "duration": 2.4,
+      "texts": [
+        {
+          "preset": "buoc",
+          "text": "Bước 1"
+        },
+        {
+          "preset": "mo-ta",
+          "text": "Luộc mì 3 phút rồi xả nước lạnh"
+        }
+      ]
+    },
+    {
+      "src": "media/cook-35733990.mp4",
+      "start": 0.5,
+      "duration": 2.4,
+      "texts": [
+        {
+          "preset": "buoc",
+          "text": "Bước 2"
+        },
+        {
+          "preset": "mo-ta",
+          "text": "Phi hành, xào bắp cải lửa lớn"
+        }
+      ]
+    },
+    {
+      "src": "media/cook-35733990.mp4",
+      "start": 7,
+      "duration": 2.4,
+      "texts": [
+        {
+          "preset": "buoc",
+          "text": "Bước 3"
+        },
+        {
+          "preset": "mo-ta",
+          "text": "Cho mì vào, nêm nước tương và dầu hào"
+        }
+      ]
+    },
+    {
+      "src": "media/cook-37848045.mp4",
+      "start": 2.2,
+      "duration": 2.6,
+      "texts": [
+        {
+          "preset": "buoc",
+          "text": "Xong"
+        },
+        {
+          "preset": "mo-ta",
+          "text": "Bày ra đĩa, ăn nóng"
+        }
+      ]
+    }
+  ]
+}
