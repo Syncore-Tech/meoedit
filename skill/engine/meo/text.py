@@ -125,7 +125,7 @@ def _block(preset, text, W, reveal=None):
 
     if preset.get("rotate"):
         tile = tile.rotate(preset["rotate"], expand=True, resample=Image.BICUBIC)
-    return tile, margin
+    return tile, margin, lines
 
 
 def render_shapes(shapes, W, H):
@@ -173,6 +173,32 @@ def render_shapes(shapes, W, H):
     return canvas
 
 
+def _preset(presets, t):
+    if t.get("preset") not in presets:
+        raise ValueError(f"Template không có kiểu chữ '{t.get('preset')}'. Có: {', '.join(presets)}")
+    return {**presets[t["preset"]], **{k: v for k, v in t.items() if k not in ("preset", "text")}}
+
+
+def _top_left(preset, tile, margin, W, H):
+    tw, th = tile.size
+    cx, cy = preset.get("x", 0.5) * W, preset.get("y", 0.5) * H
+    ax = preset.get("anchor_x", "center")
+    x = cx - margin if ax == "left" else cx - tw + margin if ax == "right" else cx - tw / 2
+    ay = preset.get("anchor", "center")
+    y = cy - margin if ay == "top" else cy - th + margin if ay == "bottom" else cy - th / 2
+    return x, y
+
+
+def layout(presets, t, W, H):
+    """Where one text lands, for writers that draw text themselves (CapCut export):
+    the merged preset, the wrapped lines and the block centre in pixels."""
+    preset = _preset(presets, t)
+    tile, margin, lines = _block(preset, t["text"], W)
+    x, y = _top_left(preset, tile, margin, W, H)
+    return {"preset": preset, "lines": lines,
+            "center": (x + tile.width / 2, y + tile.height / 2)}
+
+
 def render_layers(presets, texts, W, H, t_now=None):
     """texts: [{"preset": name, "text": "...", ...overrides}] -> RGBA canvas W x H.
     t_now = seconds into the scene; texts with "typewriter": chars per second show only what is typed by then."""
@@ -180,18 +206,11 @@ def render_layers(presets, texts, W, H, t_now=None):
     for t in texts:
         if not t.get("text"):
             continue
-        if t.get("preset") not in presets:
-            raise ValueError(f"Template không có kiểu chữ '{t.get('preset')}'. Có: {', '.join(presets)}")
-        preset = {**presets[t["preset"]], **{k: v for k, v in t.items() if k not in ("preset", "text")}}
+        preset = _preset(presets, t)
         reveal = None
         if preset.get("typewriter") and t_now is not None:
             reveal = max(t_now - float(preset.get("typewriter_delay", 0)), 0) * float(preset["typewriter"])
-        tile, margin = _block(preset, t["text"], W, reveal)
-        tw, th = tile.size
-        cx, cy = preset.get("x", 0.5) * W, preset.get("y", 0.5) * H
-        ax = preset.get("anchor_x", "center")
-        x = cx - margin if ax == "left" else cx - tw + margin if ax == "right" else cx - tw / 2
-        ay = preset.get("anchor", "center")
-        y = cy - margin if ay == "top" else cy - th + margin if ay == "bottom" else cy - th / 2
+        tile, margin, _ = _block(preset, t["text"], W, reveal)
+        x, y = _top_left(preset, tile, margin, W, H)
         canvas = place(canvas, tile, int(round(x)), int(round(y)))
     return canvas

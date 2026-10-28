@@ -8,6 +8,7 @@ CLI="$ROOT/skill/engine/cli.py"
 OUT="${1:-$(mktemp -d -t meoedit-smoke)}"
 mkdir -p "$OUT"
 cd "$OUT"
+mkdir -p drafts
 
 ff() { ffmpeg -y -v error "$@"; }
 ff -f lavfi -i "testsrc2=s=1080x1920:r=30:d=6" -f lavfi -i "sine=f=440:d=6" -shortest -c:v libx264 -pix_fmt yuv420p doc.mp4
@@ -76,8 +77,16 @@ cat > card.plan.json <<'JSON'
 }
 JSON
 
+printf '1\n00:00:00,500 --> 00:00:02,000\nPhụ đề thử\n\n2\n00:00:02,500 --> 00:00:04,000\nDòng thứ hai\n' > sub.srt
+cat > zoom.plan.json <<'JSON'
+{"template": "review-quan-cafe", "output": "zoom.mp4", "subtitles": {"file": "sub.srt", "preset": "caption"},
+ "scenes": [{"src": "doc.mp4", "duration": 2.5, "zoom": [1, 1.2], "zoom_to": [0.5, 0.3]},
+            {"src": "anh.jpg", "duration": 2.0, "zoom": [1.2, 1]}]}
+JSON
+
 python3 "$CLI" video cafe.plan.json --preview
 python3 "$CLI" video vlog.plan.json --preview
+python3 "$CLI" video zoom.plan.json --preview
 python3 "$CLI" video cafe.plan.json
 python3 "$CLI" image card.plan.json
 
@@ -101,10 +110,15 @@ for t in json.loads(subprocess.check_output([sys.executable, cli, "templates"]))
     json.dump(plan, open(path, "w"), ensure_ascii=False)
     subprocess.run([sys.executable, cli, cmd, path] + (["--preview"] if cmd == "video" else []),
                    check=True, stdout=subprocess.DEVNULL)
+    if cmd == "video":
+        # Same plan as a CapCut draft, written into a throwaway drafts folder.
+        out = json.loads(subprocess.check_output([sys.executable, cli, "capcut", path, "--drafts", "drafts"]))
+        draft = json.load(open(out["folder"] + "/draft_info.json"))
+        assert draft["tracks"] and draft["duration"] > 0, t["name"]
     print("ok", t["name"])
 PY
 
-for f in cafe.preview.mp4 cafe.preview.jpg vlog.preview.mp4 vlog.preview.jpg cafe.mp4 card.png thumbs.jpg; do
+for f in zoom.preview.mp4 cafe.preview.mp4 cafe.preview.jpg vlog.preview.mp4 vlog.preview.jpg cafe.mp4 card.png thumbs.jpg; do
   test -s "$f" || { echo "THIẾU $f"; exit 1; }
 done
 ffprobe -v error -show_entries stream=codec_type,width,height:format=duration -of compact cafe.mp4
