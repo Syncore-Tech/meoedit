@@ -12,6 +12,12 @@ Quay bằng điện thoại, đưa thư mục cho agent (Claude Code, Codex, Cur
 - **Bạn duyệt trước.** Luôn có bản nháp + ảnh tổng quan từng cảnh trước khi xuất bản cuối.
 - **Không cần Remotion hay dịch vụ ngoài.** Chỉ cần ffmpeg và Python.
 
+## Xem hướng dẫn (69 giây)
+
+[![Video hướng dẫn: cài meoedit, gõ một câu, duyệt bản nháp, nhận video](docs/meoedit-huong-dan-cover.jpg)](docs/meoedit-huong-dan.mp4)
+
+Cài plugin, gõ một câu tiếng Việt, duyệt bản nháp, nhận video 1080x1920. Quay thẳng từ Claude Code. Video này cũng dựng bằng meoedit (template `huong-dan`).
+
 ## Demo
 
 | Review quán cà phê | Vlog du lịch | Thẻ sản phẩm |
