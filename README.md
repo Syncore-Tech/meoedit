@@ -52,6 +52,7 @@ Quán, chuyến đi, shop, sản phẩm và giá trong demo là hư cấu; media
 | `truoc-sau-neon` | Video 9:16 | Trước và sau kiểu team edit BĐS: khung gốc nhỏ, khung kết quả lớn viền vàng neon, dải ưu đãi vàng |
 | `portfolio-dich-vu` | Video 9:16 | Studio, team quay dựng khoe sản phẩm. Câu khách hỏi, cắt 1 giây, nhãn loại việc |
 | `hau-truong` | Video 9:16 | Hậu trường, một ngày đi làm. Giờ trong ngày, chữ gõ từng ký tự |
+| `huong-dan` | Video 16:9 | Hướng dẫn phần mềm, quay màn hình: khung bo góc trên nền vàng, nhãn Bước 1, 2, 3 |
 | `the-san-pham` | Ảnh 4:5 | Ảnh bán hàng Facebook, Instagram, Threads, Shopee |
 | `story-khuyen-mai` | Ảnh 9:16 | Story flash sale: phần trăm giảm, giá mới, giá cũ, thời hạn |
 | `truoc-sau` | Ảnh 4:5 | So sánh trước và sau: dọn nhà, làm tóc, chăm da, sửa chữa |

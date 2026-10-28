@@ -271,7 +271,11 @@ def render(plan_path, preview=False, keep_work=False):
                 media.frame_at(out, tmid, jpg)
                 with Image.open(jpg) as im:
                     tiles.append((im.copy(), f"Cảnh {i + 1} @{tmid:.1f}s"))
-            media.grid(tiles, min(n, 5), 270, 480, sheet, title=f"{plan['template']} · {total:.1f}s · bản nháp")
+            # Tiles keep the template's shape: 270 wide for vertical/square, 480 wide for landscape.
+            tw = 480 if W > H else 270
+            th = round(tw * H / W)
+            media.grid(tiles, min(n, 3 if W > H else 5), tw, th, sheet,
+                       title=f"{plan['template']} · {total:.1f}s · bản nháp")
             result["sheet"] = str(sheet)
         return result
     finally:
