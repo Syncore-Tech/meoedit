@@ -1,0 +1,12 @@
+{
+  "name": "meoedit",
+  "description": "meoedit: dựng video dọc và thiết kế ảnh từ template, miễn phí, mã nguồn mở",
+  "owner": { "name": "Paul Nguyen", "url": "https://github.com/Syncore-Tech" },
+  "plugins": [
+    {
+      "name": "meoedit",
+      "source": "./skill",
+      "description": "Dựng video dọc và thiết kế ảnh từ 10 template, chạy trên máy bằng ffmpeg"
+    }
+  ]
+}

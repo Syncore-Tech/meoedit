@@ -155,7 +155,7 @@
   .term .c { color: #8F8CC0; }
   .term .p { color: var(--yellow); user-select: none; }
   .then { margin-top: 18px; font-size: .95rem; }
-  .then code { font-family: var(--mono); background: rgba(30,27,75,.08); padding: 2px 6px; border-radius: 6px; }
+  .then code { font-family: var(--mono); background: rgba(30,27,75,.08); padding: 2px 6px; border-radius: 6px; overflow-wrap: anywhere; }
 
   /* ---------- contribute + footer ---------- */
   .contrib-sec { padding: 100px 0 80px; }
@@ -324,7 +324,7 @@
       <div><dt>Clip không rời khỏi máy</dt><dd>Mọi thứ dựng bằng ffmpeg ngay trên máy bạn. Không tải ảnh, video hay giọng nói lên đâu cả.</dd></div>
       <div><dt>Tiếng Việt đủ dấu</dt><dd>Font Be Vietnam Pro, Baloo 2, Dancing Script hiển thị chuẩn từng dấu. Câu hỏi và chữ mẫu viết sẵn bằng tiếng Việt.</dd></div>
       <div><dt>Bạn luôn duyệt trước</dt><dd>Agent gửi bản nháp và ảnh tổng quan từng cảnh, rồi chờ bạn đồng ý mới xuất bản cuối.</dd></div>
-      <div><dt>Agent nào cũng dùng được</dt><dd>Claude Code và Codex cài bằng một lệnh. Cursor, Gemini CLI hay agent khác chỉ cần đọc file SKILL.md.</dd></div>
+      <div><dt>Agent nào cũng dùng được</dt><dd>Claude Code cài bằng một lệnh plugin, Codex bằng install.sh. Cursor, Gemini CLI hay agent khác chỉ cần đọc file SKILL.md.</dd></div>
       <div><dt>Tự làm template được</dt><dd>Một template chỉ là một file style.json và một file hướng dẫn. Sửa màu, font, vị trí chữ trong vài phút.</dd></div>
     </dl>
   </div>
@@ -342,9 +342,10 @@
 <pre id="install"><span class="c"># macOS</span>
 <span class="p">$ </span>brew install ffmpeg
 <span class="p">$ </span>python3 -m pip install --user pillow
-<span class="p">$ </span>git clone https://github.com/Syncore-Tech/meoedit.git
-<span class="p">$ </span>cd meoedit &amp;&amp; ./install.sh</pre>
+<span class="c"># cài skill cho Claude Code</span>
+<span class="p">$ </span>claude plugin install meoedit --marketplace Syncore-Tech/meoedit</pre>
       </div>
+      <p class="then">Đang mở Claude Code thì gõ <code>/plugin install meoedit --marketplace Syncore-Tech/meoedit</code>. Codex, Cursor và agent khác: xem <a href="https://github.com/Syncore-Tech/meoedit#c%C3%A0i-%C4%91%E1%BA%B7t">hướng dẫn trên GitHub</a>.</p>
       <p class="then">Rồi mở agent và nói: <code>dùng meoedit dựng video review quán từ thư mục ~/Movies/cafe</code></p>
     </div>
   </div>

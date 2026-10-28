@@ -1,0 +1,22 @@
+{
+  "name": "meoedit",
+  "displayName": "meoedit",
+  "version": "0.2.0",
+  "description": "Dựng video dọc (TikTok, Reels, Shorts) và thiết kế ảnh từ 10 template, chạy trên máy bằng ffmpeg. Vietnamese-first.",
+  "author": {
+    "name": "Paul Nguyen",
+    "url": "https://github.com/Syncore-Tech"
+  },
+  "homepage": "https://meoedit.gaupoit.workers.dev",
+  "repository": "https://github.com/Syncore-Tech/meoedit",
+  "license": "MIT",
+  "keywords": [
+    "video",
+    "ffmpeg",
+    "tiktok",
+    "reels",
+    "template",
+    "vietnamese"
+  ],
+  "icon": "./.claude-plugin/icon.png"
+}
