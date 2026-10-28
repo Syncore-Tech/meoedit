@@ -1,0 +1,128 @@
+{
+  "name": "outfit-ootd",
+  "kind": "video",
+  "title": "Outfit — Tạp chí đen trắng",
+  "description": "Video dọc 9:16, 10–25 giây. Tiêu đề chữ có chân nghiêng kiểu tạp chí, nhãn từng món đồ kèm giá, màu hơi trầm. Hợp OOTD, phối đồ, review quần áo, shop thời trang.",
+  "size": [
+    1080,
+    1920
+  ],
+  "fps": 30,
+  "transition": {
+    "type": "fade",
+    "duration": 0.2
+  },
+  "fade_out": 0.5,
+  "text_fade_in": 0.3,
+  "music_volume": 0.45,
+  "original_volume": 0,
+  "image_motion": "pan",
+  "grade": "eq=saturation=0.88:contrast=1.08:brightness=0.01",
+  "shapes": [
+    {
+      "type": "gradient",
+      "box": [
+        0,
+        0,
+        1,
+        0.26
+      ],
+      "from": "#0000008C",
+      "to": "#00000000"
+    },
+    {
+      "type": "gradient",
+      "box": [
+        0,
+        0.74,
+        1,
+        0.26
+      ],
+      "from": "#00000000",
+      "to": "#0000008C"
+    }
+  ],
+  "presets": {
+    "tieu-de": {
+      "font": "PlayfairDisplay-Italic",
+      "variation": "SemiBold Italic",
+      "size": 112,
+      "color": "#FFFFFF",
+      "y": 0.1,
+      "max_width": 0.9,
+      "line_spacing": 1.0,
+      "shadow": {
+        "offset": [
+          0,
+          3
+        ],
+        "blur": 8,
+        "color": "#000000B3"
+      }
+    },
+    "phu": {
+      "font": "BeVietnamPro-Medium",
+      "size": 36,
+      "color": "#FFFFFF",
+      "y": 0.175,
+      "max_width": 0.8,
+      "shadow": {
+        "offset": [
+          0,
+          3
+        ],
+        "blur": 8,
+        "color": "#000000B3"
+      }
+    },
+    "mon-do": {
+      "font": "BeVietnamPro-SemiBold",
+      "size": 38,
+      "color": "#111111",
+      "box": {
+        "color": "#FFFFFFEE",
+        "radius": 4,
+        "pad": [
+          12,
+          22
+        ]
+      },
+      "x": 0.06,
+      "anchor_x": "left",
+      "y": 0.5,
+      "align": "left",
+      "max_width": 0.6
+    },
+    "caption": {
+      "font": "PlayfairDisplay",
+      "variation": "Bold",
+      "size": 60,
+      "color": "#FFFFFF",
+      "y": 0.8,
+      "max_width": 0.86,
+      "line_spacing": 1.1,
+      "shadow": {
+        "offset": [
+          0,
+          3
+        ],
+        "blur": 8,
+        "color": "#000000B3"
+      }
+    },
+    "tong": {
+      "font": "BeVietnamPro-Bold",
+      "size": 44,
+      "color": "#111111",
+      "box": {
+        "color": "#FFFFFF",
+        "radius": 40,
+        "pad": [
+          14,
+          34
+        ]
+      },
+      "y": 0.71
+    }
+  }
+}

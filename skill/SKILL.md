@@ -75,7 +75,8 @@ Trường của một cảnh:
 | `src` | file clip/ảnh, hoặc `color:#RRGGBB` cho nền màu |
 | `start` | giây bắt đầu cắt trong clip (mặc định 0) |
 | `duration` | độ dài cảnh trên video (giây) |
-| `texts` | danh sách chữ: `preset` là kiểu chữ của template, `text` là nội dung. Có thể ghi đè vị trí, ví dụ `"y": 0.3` (0 là mép trên, 1 là mép dưới) |
+| `texts` | danh sách chữ: `preset` là kiểu chữ của template, `text` là nội dung. Có thể ghi đè vị trí, ví dụ `"y": 0.3` (0 là mép trên, 1 là mép dưới), hoặc màu `"color": "#4B1D3F"`. Xuống dòng bằng `\n` |
+| `shapes` | ghi đè lớp nền của template cho cảnh này (dải tối, khung màu). `[]` = bỏ hết, hợp với cảnh `color:` |
 | `volume` | giữ tiếng gốc của clip (0 đến 1). Mặc định 0 = tắt. Dùng khi có lời nói hoặc tiếng không khí hay |
 | `speed` | tua nhanh, ví dụ `2` (khi đó tắt tiếng gốc) |
 | `motion` | với ảnh: `pan` (lia sang phải), `pan-back` (lia sang trái), `none` |
@@ -95,7 +96,7 @@ Cấp plan: `music` (file nhạc, tự lặp và mờ dần cuối, tự nhỏ l
 }
 ```
 
-`focus` là điểm cần giữ khi cắt ảnh cho vừa khung (x, y từ 0 đến 1).
+`focus` là điểm cần giữ khi cắt ảnh cho vừa khung (x, y từ 0 đến 1). Template có nhiều khung ảnh (ví dụ `truoc-sau`) dùng `"photos": ["truoc.jpg", "sau.jpg"]` theo thứ tự khung.
 
 Nhạc: meoedit không kèm nhạc. Dùng nhạc người dùng đưa, hoặc gợi ý họ lấy nhạc miễn phí bản quyền (YouTube Audio Library, Pixabay Music). Không có nhạc thì bỏ trường `music`.
 

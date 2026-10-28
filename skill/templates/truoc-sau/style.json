@@ -1,0 +1,81 @@
+{
+  "name": "truoc-sau",
+  "kind": "image",
+  "title": "Trước và sau — So sánh 4:5",
+  "description": "Ảnh 1080x1350, hai ảnh xếp trên dưới với nhãn TRƯỚC và SAU, tiêu đề và một dòng kết quả. Hợp dọn nhà, sửa chữa, làm tóc, chăm sóc da, cải tạo phòng.",
+  "size": [
+    1080,
+    1350
+  ],
+  "background": "#F4F2EC",
+  "photo_slots": [
+    {
+      "box": [
+        0.05,
+        0.1,
+        0.9,
+        0.39
+      ],
+      "radius": 28
+    },
+    {
+      "box": [
+        0.05,
+        0.515,
+        0.9,
+        0.39
+      ],
+      "radius": 28
+    }
+  ],
+  "presets": {
+    "tieu-de": {
+      "font": "BeVietnamPro-ExtraBold",
+      "size": 56,
+      "color": "#1E1E1E",
+      "y": 0.052,
+      "max_width": 0.9
+    },
+    "nhan-truoc": {
+      "font": "BeVietnamPro-Black",
+      "size": 36,
+      "color": "#FFFFFF",
+      "box": {
+        "color": "#1E1E1EDD",
+        "radius": 24,
+        "pad": [
+          8,
+          22
+        ]
+      },
+      "uppercase": true,
+      "x": 0.08,
+      "anchor_x": "left",
+      "y": 0.14
+    },
+    "nhan-sau": {
+      "font": "BeVietnamPro-Black",
+      "size": 36,
+      "color": "#FFFFFF",
+      "box": {
+        "color": "#2BB673",
+        "radius": 24,
+        "pad": [
+          8,
+          22
+        ]
+      },
+      "uppercase": true,
+      "x": 0.08,
+      "anchor_x": "left",
+      "y": 0.555
+    },
+    "ket-qua": {
+      "font": "BeVietnamPro-SemiBold",
+      "size": 38,
+      "color": "#1E1E1E",
+      "y": 0.952,
+      "max_width": 0.9
+    }
+  }
+}

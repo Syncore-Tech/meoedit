@@ -19,11 +19,19 @@ Quay bằng điện thoại, đưa thư mục cho agent (Claude Code, Codex, Cur
 | <img src="docs/demo-review-may-chieu.webp" width="260"> | <img src="docs/demo-vlog-mien-bac.webp" width="260"> | <img src="docs/demo-the-nen-thom.jpg" width="260"> |
 | 8 cảnh, 17.6s, nhạc nền | 7 cảnh, 12.7s, cắt nhanh | 1080x1350 |
 
+| Review quán ăn | Outfit | Mở hộp sản phẩm | Công thức nấu ăn |
+|---|---|---|---|
+| <img src="docs/demo-review-pho-goc-pho.webp" width="190"> | <img src="docs/demo-ootd-tuan-nay.webp" width="190"> | <img src="docs/demo-mo-hop-kem-duong.webp" width="190"> | <img src="docs/demo-mi-xao-15-phut.webp" width="190"> |
+
+| Story khuyến mãi | Trước và sau | Ảnh trích dẫn |
+|---|---|---|
+| <img src="docs/demo-story-flash-sale.jpg" width="200"> | <img src="docs/demo-truoc-sau.jpg" width="260"> | <img src="docs/demo-trich-dan.jpg" width="260"> |
+
 Trước khi xuất, agent gửi bạn ảnh tổng quan từng cảnh để duyệt:
 
 <img src="docs/demo-review-may-chieu-sheet.jpg" width="640">
 
-Quán, chuyến đi và shop trong demo là hư cấu; media lấy từ Pexels và nhạc của Kevin MacLeod (CC BY 4.0). Xem [examples/demo/CREDITS.md](examples/demo/CREDITS.md). Tự dựng lại: `examples/demo/fetch-media.sh` rồi chạy plan trong `examples/demo/`.
+Quán, chuyến đi, shop, sản phẩm và giá trong demo là hư cấu; media lấy từ Pexels và nhạc của Kevin MacLeod (CC BY 4.0). Xem [examples/demo/CREDITS.md](examples/demo/CREDITS.md). Tự dựng lại: `examples/demo/fetch-media.sh` rồi chạy plan trong `examples/demo/`.
 
 ## Template có sẵn
 
@@ -31,7 +39,14 @@ Quán, chuyến đi và shop trong demo là hư cấu; media lấy từ Pexels v
 |---|---|---|
 | `review-quan-cafe` | Video 9:16 | Review quán cà phê, tiệm bánh. Tông nâu kem, chữ mềm, mờ dần |
 | `vlog-du-lich` | Video 9:16 | Vlog du lịch, recap chuyến đi. Cắt nhanh, chữ in hoa vàng |
+| `review-quan-an` | Video 9:16 | Review quán ăn, đồ ăn đường phố, food tour. Đỏ vàng, nhãn giá nghiêng |
+| `outfit-ootd` | Video 9:16 | OOTD, phối đồ, shop thời trang. Chữ nghiêng kiểu tạp chí, nhãn từng món |
+| `mo-hop-san-pham` | Video 9:16 | Mở hộp, giới thiệu mỹ phẩm, đồ handmade. Hồng phấn, màn giá và nút đặt hàng |
+| `cong-thuc-nau-an` | Video 9:16 | Công thức, mẹo bếp. Màn nguyên liệu, nhãn Bước 1, 2, 3 |
 | `the-san-pham` | Ảnh 4:5 | Ảnh bán hàng Facebook, Instagram, Threads, Shopee |
+| `story-khuyen-mai` | Ảnh 9:16 | Story flash sale: phần trăm giảm, giá mới, giá cũ, thời hạn |
+| `truoc-sau` | Ảnh 4:5 | So sánh trước và sau: dọn nhà, làm tóc, chăm da, sửa chữa |
+| `anh-trich-dan` | Ảnh 1:1 | Câu nói hay, lời khách khen trên nền ảnh phủ tối |
 
 ## Cài đặt
 
@@ -83,13 +98,14 @@ Một template là một thư mục trong `skill/templates/`:
 - `style.json`: khung hình, màu chỉnh video (`grade`, bộ lọc ffmpeg), chuyển cảnh, và các kiểu chữ (`presets`: font, cỡ, màu, viền, hộp nền, vị trí, độ nghiêng).
 - `TEMPLATE.md`: câu hỏi cho người dùng, cấu trúc cảnh, độ dài chữ. Agent đọc file này.
 
-Sao chép một template có sẵn, đổi tên, sửa màu và chữ, chạy `tests/smoke.sh`. PR template mới rất được hoan nghênh: review quán ăn, outfit, unbox, bất động sản, ảnh quote...
+Sao chép một template có sẵn, đổi tên, sửa màu và chữ, chạy `tests/smoke.sh`. PR template mới rất được hoan nghênh: bất động sản, gym, tin tức, thực đơn quán...
 
 ## Lộ trình
 
 - [ ] Giọng đọc AI tiếng Việt chạy trên máy (tuỳ chọn)
 - [ ] Phụ đề tự động từ lời nói (Whisper chạy trên máy)
-- [ ] Thêm template: review quán ăn, outfit, ảnh vuông 1:1, ảnh story 9:16
+- [x] Thêm template: review quán ăn, outfit, mở hộp, nấu ăn, ảnh vuông 1:1, ảnh story 9:16
+- [ ] Thêm template: bất động sản, gym, thực đơn quán
 - [ ] Cắt theo nhịp nhạc tự động
 
 ## Giấy phép

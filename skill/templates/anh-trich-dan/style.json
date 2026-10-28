@@ -1,0 +1,63 @@
+{
+  "name": "anh-trich-dan",
+  "kind": "image",
+  "title": "Ảnh trích dẫn — Nền ảnh tối",
+  "description": "Ảnh vuông 1080x1080. Ảnh nền phủ tối, dấu ngoặc kép vàng, câu nói chữ có chân nghiêng, tên tác giả. Hợp câu nói hay, lời khách khen, châm ngôn của shop.",
+  "size": [
+    1080,
+    1080
+  ],
+  "background": "#1B1B1B",
+  "photo_slots": [
+    {
+      "box": [
+        0,
+        0,
+        1,
+        1
+      ]
+    }
+  ],
+  "shapes": [
+    {
+      "box": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "color": "#00000080",
+      "above_photo": true
+    }
+  ],
+  "presets": {
+    "ngoac": {
+      "font": "PlayfairDisplay",
+      "variation": "Black",
+      "size": 320,
+      "color": "#FFD23F",
+      "y": 0.22
+    },
+    "cau-noi": {
+      "font": "PlayfairDisplay-Italic",
+      "variation": "Medium Italic",
+      "size": 66,
+      "color": "#FFFFFF",
+      "y": 0.5,
+      "max_width": 0.8,
+      "line_spacing": 1.25
+    },
+    "tac-gia": {
+      "font": "BeVietnamPro-SemiBold",
+      "size": 34,
+      "color": "#FFD23F",
+      "y": 0.77
+    },
+    "ten-trang": {
+      "font": "BeVietnamPro-Medium",
+      "size": 28,
+      "color": "#FFFFFFB3",
+      "y": 0.93
+    }
+  }
+}

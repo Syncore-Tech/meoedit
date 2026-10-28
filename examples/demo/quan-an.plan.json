@@ -1,0 +1,112 @@
+{
+  "template": "review-quan-an",
+  "output": "out/review-pho-goc-pho.mp4",
+  "music": "media/music-Happy-Alley.mp3",
+  "scenes": [
+    {
+      "src": "media/food-30320645.mp4",
+      "start": 0.5,
+      "duration": 2.4,
+      "texts": [
+        {
+          "preset": "dia-chi",
+          "text": "Phố cổ Hà Nội"
+        },
+        {
+          "preset": "hook",
+          "text": "Tô phở 45k đáng xếp hàng"
+        }
+      ]
+    },
+    {
+      "src": "media/food-32017237.mp4",
+      "start": 4,
+      "duration": 2.0,
+      "texts": [
+        {
+          "preset": "caption",
+          "text": "Cô chủ cuốn chả giò tại chỗ, giòn rụm"
+        }
+      ]
+    },
+    {
+      "src": "media/food-37266179.mp4",
+      "start": 2,
+      "duration": 2.0,
+      "texts": [
+        {
+          "preset": "caption",
+          "text": "Quán vỉa hè, ngồi ghế nhựa mới đúng vị"
+        }
+      ]
+    },
+    {
+      "src": "media/food-40420097.mp4",
+      "start": 5,
+      "duration": 2.4,
+      "texts": [
+        {
+          "preset": "mon",
+          "text": "Bún cá"
+        },
+        {
+          "preset": "gia",
+          "text": "40k"
+        },
+        {
+          "preset": "caption",
+          "text": "Nước dùng ngọt thanh, cá chiên thơm"
+        }
+      ]
+    },
+    {
+      "src": "media/food-6645806.mp4",
+      "start": 3,
+      "duration": 2.2,
+      "texts": [
+        {
+          "preset": "mon",
+          "text": "Phở bò"
+        },
+        {
+          "preset": "gia",
+          "text": "45k"
+        }
+      ]
+    },
+    {
+      "src": "media/food-9888677.mp4",
+      "start": 5.5,
+      "duration": 2.2,
+      "texts": [
+        {
+          "preset": "mon",
+          "text": "Nem rán"
+        },
+        {
+          "preset": "gia",
+          "text": "35k"
+        },
+        {
+          "preset": "caption",
+          "text": "Chấm nước mắm chua ngọt là hết sảy"
+        }
+      ]
+    },
+    {
+      "src": "color:#D62828",
+      "duration": 2.6,
+      "shapes": [],
+      "texts": [
+        {
+          "preset": "diem",
+          "text": "9/10"
+        },
+        {
+          "preset": "ket-luan",
+          "text": "Ăn sáng no bụng chưa tới 100k cho hai người."
+        }
+      ]
+    }
+  ]
+}

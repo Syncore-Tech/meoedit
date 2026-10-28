@@ -81,6 +81,27 @@ python3 "$CLI" video vlog.plan.json --preview
 python3 "$CLI" video cafe.plan.json
 python3 "$CLI" image card.plan.json
 
+# Every template, every text style: one sample plan per template from its own preset list.
+python3 - "$CLI" <<'PY'
+import json, subprocess, sys
+cli = sys.argv[1]
+for t in json.loads(subprocess.check_output([sys.executable, cli, "templates"])):
+    texts = [{"preset": p, "text": "Chữ mẫu " + p} for p in t["text_styles"]]
+    if t["kind"] == "video":
+        plan = {"template": t["name"], "output": f"all-{t['name']}.mp4", "scenes": [
+            {"src": "doc.mp4", "duration": 1.2, "texts": texts},
+            {"src": "anh.jpg", "duration": 1.0, "texts": texts[:1]}]}
+        cmd = "video"
+    else:
+        plan = {"template": t["name"], "output": f"all-{t['name']}.png", "photos": ["anh.jpg", "anh.jpg"], "texts": texts}
+        cmd = "image"
+    path = f"all-{t['name']}.plan.json"
+    json.dump(plan, open(path, "w"), ensure_ascii=False)
+    subprocess.run([sys.executable, cli, cmd, path] + (["--preview"] if cmd == "video" else []),
+                   check=True, stdout=subprocess.DEVNULL)
+    print("ok", t["name"])
+PY
+
 for f in cafe.preview.mp4 cafe.preview.jpg vlog.preview.mp4 vlog.preview.jpg cafe.mp4 card.png thumbs.jpg; do
   test -s "$f" || { echo "THIẾU $f"; exit 1; }
 done

@@ -1,0 +1,95 @@
+{
+  "template": "outfit-ootd",
+  "output": "out/ootd-tuan-nay.mp4",
+  "music": "media/music-Life-of-Riley.mp3",
+  "scenes": [
+    {
+      "src": "media/ootd-35132257.mp4",
+      "start": 1,
+      "duration": 2.4,
+      "texts": [
+        {
+          "preset": "tieu-de",
+          "text": "5 outfit đi làm"
+        },
+        {
+          "preset": "phu",
+          "text": "Tuần này mặc gì, ngân sách dưới 1 triệu"
+        }
+      ]
+    },
+    {
+      "src": "media/ootd-35132253.mp4",
+      "start": 2,
+      "duration": 2.6,
+      "texts": [
+        {
+          "preset": "mon-do",
+          "text": "Sơ mi xanh 350k",
+          "y": 0.42
+        },
+        {
+          "preset": "mon-do",
+          "text": "Chân váy đen 290k",
+          "y": 0.58
+        },
+        {
+          "preset": "caption",
+          "text": "Thứ Hai: sáng và gọn"
+        }
+      ]
+    },
+    {
+      "src": "media/ootd-34057218.mp4",
+      "start": 4,
+      "duration": 2.4,
+      "texts": [
+        {
+          "preset": "mon-do",
+          "text": "Áo khoác nâu 690k",
+          "y": 0.5
+        },
+        {
+          "preset": "caption",
+          "text": "Thứ Tư: trời trở lạnh"
+        }
+      ]
+    },
+    {
+      "src": "media/ootd-34733102.mp4",
+      "start": 0.5,
+      "duration": 2.4,
+      "texts": [
+        {
+          "preset": "mon-do",
+          "text": "Trench coat be 750k",
+          "y": 0.45
+        },
+        {
+          "preset": "mon-do",
+          "text": "Túi da nâu 420k",
+          "y": 0.6
+        },
+        {
+          "preset": "caption",
+          "text": "Thứ Sáu: đi cà phê sau giờ làm"
+        }
+      ]
+    },
+    {
+      "src": "media/ootd-18156289.mp4",
+      "start": 0.3,
+      "duration": 2.4,
+      "texts": [
+        {
+          "preset": "caption",
+          "text": "Cuối tuần: áo phông và kính đen"
+        },
+        {
+          "preset": "tong",
+          "text": "Áo phông 190k"
+        }
+      ]
+    }
+  ]
+}

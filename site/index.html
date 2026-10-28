@@ -119,11 +119,18 @@
   .tpl .frame { border-radius: 28px; overflow: hidden; border: 3px solid #3A3672; background: #000; }
   .tpl .frame.v { aspect-ratio: 9 / 16; }
   .tpl .frame.p { aspect-ratio: 4 / 5; }
+  .tpl .frame.s { aspect-ratio: 1 / 1; }
   .tpl .frame img { width: 100%; height: 100%; object-fit: cover; }
   .tpl h3 { margin-top: 22px; color: #fff; }
   .tpl p { margin-top: 8px; color: #C9C7E8; font-size: 1rem; }
   .tpl .name { font-family: var(--mono); font-size: .85rem; color: var(--yellow); margin-top: 10px; display: inline-block; }
-  .tpl:nth-child(2) { margin-top: 64px; }
+  .tpls:not(.img) .tpl:nth-child(3n+2) { margin-top: 64px; }
+  .tpls.img { grid-template-columns: repeat(4, 1fr); gap: 0 28px; }
+  .tpls.img .tpl { display: grid; grid-row: span 4; grid-template-rows: subgrid; align-content: start; }
+  .tpls.img .tpl figure { align-self: end; }
+  .tpls.img .tpl .name { justify-self: start; }
+  .tpl-sec .group { margin-top: 64px; color: #fff; font-size: 1.25rem; }
+  .tpl-sec .group + .tpls { margin-top: 24px; }
 
   /* ---------- why ---------- */
   .why-sec { padding: 110px 0; }
@@ -169,8 +176,10 @@
     .tag { left: 0; top: 8%; }
     .chat-sec { padding-top: 120px; }
     .chat-intro { position: static; }
-    .tpls { grid-template-columns: 1fr; max-width: 360px; }
-    .tpl:nth-child(2) { margin-top: 0; }
+    .tpls, .tpls.img { grid-template-columns: repeat(2, 1fr); gap: 24px 16px; }
+    .tpls:not(.img) .tpl:nth-child(3n+2) { margin-top: 0; }
+    .tpl .frame { border-radius: 18px; }
+    .tpl p { font-size: .92rem; }
     .why { grid-template-columns: 1fr; }
     .bar nav a:not(.gh) { display: none; }
   }
@@ -236,8 +245,9 @@
 
 <section class="tpl-sec" id="template">
   <div class="wrap">
-    <h2>Ba template đầu tiên</h2>
-    <p class="sub">Mỗi template là một phong cách trọn gói: bố cục, font, màu, nhịp cắt và cách viết chữ. Agent làm theo đúng phong cách đó với clip của bạn.</p>
+    <h2>Mười template có sẵn</h2>
+    <p class="sub">Mỗi template là một phong cách trọn gói: bố cục, font, màu, nhịp cắt và cách viết chữ. Agent làm theo đúng phong cách đó với clip và ảnh của bạn.</p>
+    <h3 class="group">Video dọc 9:16</h3>
     <div class="tpls">
       <article class="tpl">
         <figure class="frame v"><img src="docs/demo-review-may-chieu.webp" alt="Demo template review quán cà phê" loading="lazy"></figure>
@@ -246,16 +256,61 @@
         <span class="name">review-quan-cafe</span>
       </article>
       <article class="tpl">
+        <figure class="frame v"><img src="docs/demo-review-pho-goc-pho.webp" alt="Demo template review quán ăn: phở, bún cá, nem rán" loading="lazy"></figure>
+        <h3>Review quán ăn</h3>
+        <p>Câu mở đầu in hoa trên hộp đỏ, tên món viết tay vàng, nhãn giá nghiêng, trượt ngang.</p>
+        <span class="name">review-quan-an</span>
+      </article>
+      <article class="tpl">
         <figure class="frame v"><img src="docs/demo-vlog-mien-bac.webp" alt="Demo template vlog du lịch miền Bắc" loading="lazy"></figure>
         <h3>Vlog du lịch</h3>
         <p>Cắt nhanh theo nhịp nhạc, chữ in hoa vàng, phụ đề nền đen từng dòng.</p>
         <span class="name">vlog-du-lich</span>
       </article>
       <article class="tpl">
+        <figure class="frame v"><img src="docs/demo-ootd-tuan-nay.webp" alt="Demo template outfit: 5 outfit đi làm" loading="lazy"></figure>
+        <h3>Outfit</h3>
+        <p>Tiêu đề nghiêng kiểu tạp chí, nhãn trắng cho từng món đồ kèm giá, màu hơi trầm.</p>
+        <span class="name">outfit-ootd</span>
+      </article>
+      <article class="tpl">
+        <figure class="frame v"><img src="docs/demo-mo-hop-kem-duong.webp" alt="Demo template mở hộp kem dưỡng" loading="lazy"></figure>
+        <h3>Mở hộp sản phẩm</h3>
+        <p>Tông hồng mềm, nhãn điểm nổi bật, màn giá cuối với nút đặt hàng.</p>
+        <span class="name">mo-hop-san-pham</span>
+      </article>
+      <article class="tpl">
+        <figure class="frame v"><img src="docs/demo-mi-xao-15-phut.webp" alt="Demo template công thức mì xào 15 phút" loading="lazy"></figure>
+        <h3>Công thức nấu ăn</h3>
+        <p>Màn nguyên liệu nền xanh, nhãn Bước 1, 2, 3 vàng mù tạt, mô tả từng bước.</p>
+        <span class="name">cong-thuc-nau-an</span>
+      </article>
+    </div>
+    <h3 class="group">Ảnh</h3>
+    <div class="tpls img">
+      <article class="tpl">
         <figure class="frame p"><img src="docs/demo-the-nen-thom.jpg" alt="Demo thẻ sản phẩm nến thơm, giá 159.000đ" loading="lazy"></figure>
         <h3>Thẻ sản phẩm</h3>
-        <p>Ảnh 4:5 cho Facebook, Instagram, Threads, Shopee. Tên, mô tả, giá, nhãn giảm giá.</p>
+        <p>Ảnh 4:5 cho Facebook, Instagram, Threads, Shopee. Tên, mô tả, giá, nhãn giảm.</p>
         <span class="name">the-san-pham</span>
+      </article>
+      <article class="tpl">
+        <figure class="frame v"><img src="docs/demo-story-flash-sale.jpg" alt="Demo story flash sale túi da giảm 40%" loading="lazy"></figure>
+        <h3>Story khuyến mãi</h3>
+        <p>Story 9:16 nền đỏ, nhãn phần trăm giảm, giá mới, giá cũ, thời hạn.</p>
+        <span class="name">story-khuyen-mai</span>
+      </article>
+      <article class="tpl">
+        <figure class="frame p"><img src="docs/demo-truoc-sau.jpg" alt="Demo ảnh trước và sau khi dọn góc làm việc" loading="lazy"></figure>
+        <h3>Trước và sau</h3>
+        <p>Hai ảnh xếp chồng với nhãn Trước, Sau và một dòng kết quả.</p>
+        <span class="name">truoc-sau</span>
+      </article>
+      <article class="tpl">
+        <figure class="frame s"><img src="docs/demo-trich-dan.jpg" alt="Demo ảnh trích dẫn trên nền biển Cửa Tùng" loading="lazy"></figure>
+        <h3>Ảnh trích dẫn</h3>
+        <p>Ảnh vuông, nền ảnh phủ tối, câu nói chữ nghiêng, dấu ngoặc vàng.</p>
+        <span class="name">anh-trich-dan</span>
       </article>
     </div>
   </div>

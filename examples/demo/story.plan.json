@@ -1,0 +1,35 @@
+{
+  "template": "story-khuyen-mai",
+  "output": "out/story-flash-sale.png",
+  "photo": "media/photo-bag-34733102.jpg",
+  "texts": [
+    {
+      "preset": "tieu-de",
+      "text": "Flash sale"
+    },
+    {
+      "preset": "phan-tram",
+      "text": "-40%"
+    },
+    {
+      "preset": "ten-sp",
+      "text": "Túi da nâu công sở"
+    },
+    {
+      "preset": "gia",
+      "text": "420.000đ"
+    },
+    {
+      "preset": "gia-cu",
+      "text": "Giá gốc 700.000đ"
+    },
+    {
+      "preset": "han",
+      "text": "Chỉ 20h đến 22h tối nay"
+    }
+  ],
+  "focus": [
+    0.5,
+    0.62
+  ]
+}
