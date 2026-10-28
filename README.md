@@ -27,9 +27,9 @@ Quay bằng điện thoại, đưa thư mục cho agent (Claude Code, Codex, Cur
 |---|---|---|
 | <img src="docs/demo-story-flash-sale.jpg" width="200"> | <img src="docs/demo-truoc-sau.jpg" width="260"> | <img src="docs/demo-trich-dan.jpg" width="260"> |
 
-| Giới thiệu dự án BĐS | Trước và sau video | Portfolio dịch vụ | Hậu trường |
-|---|---|---|---|
-| <img src="docs/demo-du-an-vuon-may.webp" width="190"> | <img src="docs/demo-truoc-sau-video.webp" width="190"> | <img src="docs/demo-portfolio-may-studio.webp" width="190"> | <img src="docs/demo-hau-truong.webp" width="190"> |
+| Giới thiệu dự án BĐS | Trước và sau video | Trước và sau neon | Portfolio dịch vụ | Hậu trường |
+|---|---|---|---|---|
+| <img src="docs/demo-du-an-vuon-may.webp" width="150"> | <img src="docs/demo-truoc-sau-video.webp" width="150"> | <img src="docs/demo-truoc-sau-neon.webp" width="150"> | <img src="docs/demo-portfolio-may-studio.webp" width="150"> | <img src="docs/demo-hau-truong.webp" width="150"> |
 
 Trước khi xuất, agent gửi bạn ảnh tổng quan từng cảnh để duyệt:
 
@@ -49,6 +49,7 @@ Quán, chuyến đi, shop, sản phẩm và giá trong demo là hư cấu; media
 | `cong-thuc-nau-an` | Video 9:16 | Công thức, mẹo bếp. Màn nguyên liệu, nhãn Bước 1, 2, 3 |
 | `gioi-thieu-du-an` | Video 9:16 | Sale bất động sản: tên dự án, vị trí, điểm nổi bật, giá "chỉ từ", nút liên hệ cố định |
 | `truoc-sau-video` | Video 9:16 | Hai video chạy cạnh nhau trong khung sáng: bản gốc và bản đã làm. Khoe kết quả edit, sửa nhà |
+| `truoc-sau-neon` | Video 9:16 | Trước và sau kiểu team edit BĐS: khung gốc nhỏ, khung kết quả lớn viền vàng neon, dải ưu đãi vàng |
 | `portfolio-dich-vu` | Video 9:16 | Studio, team quay dựng khoe sản phẩm. Câu khách hỏi, cắt 1 giây, nhãn loại việc |
 | `hau-truong` | Video 9:16 | Hậu trường, một ngày đi làm. Giờ trong ngày, chữ gõ từng ký tự |
 | `the-san-pham` | Ảnh 4:5 | Ảnh bán hàng Facebook, Instagram, Threads, Shopee |
