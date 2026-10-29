@@ -2,6 +2,7 @@
 # Smoke test: makes synthetic media with ffmpeg, then renders every template.
 # Usage: tests/smoke.sh [out_dir]   (default: a new temp dir)
 set -euo pipefail
+export MEOEDIT_NO_PING=1  # test runs are not users
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 CLI="$ROOT/skill/engine/cli.py"

@@ -119,6 +119,12 @@ python3 skill/engine/cli.py doctor
 
 `install.sh` chép skill vào `~/.claude/skills/meoedit` và `~/.codex/skills/meoedit` nếu có. Với Cursor, Gemini CLI hay agent khác: mở thư mục repo và bảo agent *"đọc skill/SKILL.md rồi làm theo"*.
 
+### Đếm lượt dùng (ẩn danh)
+
+Lần đầu chạy mỗi phiên bản, engine gửi một request tới `meoedit.com/ping` với đúng ba thứ: số phiên bản, hệ điều hành (mac, windows, linux) và tên lệnh. Không gửi tên file, nội dung hay mã định danh nào. Máy chủ chỉ cộng một vào bảng đếm theo ngày, phiên bản, hệ điều hành và quốc gia; không lưu IP. Nhờ vậy nhóm biết có bao nhiêu người đang dùng để làm tiếp. Mã ở `skill/engine/meo/ping.py` và `worker/index.js`.
+
+Tắt hẳn: đặt biến môi trường `MEOEDIT_NO_PING=1` (hoặc `DO_NOT_TRACK=1`).
+
 ## Dùng thế nào
 
 Nói với agent:
