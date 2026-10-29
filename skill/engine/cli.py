@@ -19,7 +19,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from meo import __version__, capcut, fonts, image, media, templates, video  # noqa: E402
+from meo import __version__, capcut, fonts, image, media, ping, templates, video  # noqa: E402
 
 
 def emit(obj):
@@ -41,6 +41,8 @@ def doctor(_):
         ok = False
         print(f"✗ tải font lỗi: {e}")
     print(f"meoedit {__version__}: {'sẵn sàng' if ok else 'cần sửa các mục ✗ ở trên'}")
+    if not ping.disabled():
+        print("Lần đầu chạy mỗi phiên bản, meoedit gửi một lượt đếm ẩn danh (phiên bản, hệ điều hành). Tắt: MEOEDIT_NO_PING=1")
     return 0 if ok else 1
 
 
@@ -66,6 +68,7 @@ def main():
     p.add_argument("--name", help="tên project trong CapCut (mặc định theo output của plan)")
     p.add_argument("--drafts", help="thư mục draft của CapCut (mặc định tự tìm)")
     a = ap.parse_args()
+    ping.once(a.cmd)
 
     try:
         if a.cmd == "doctor":

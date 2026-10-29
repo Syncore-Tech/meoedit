@@ -1,7 +1,33 @@
 // Static assets answer a Range request with the whole file (200). Safari on iPhone
 // only plays <video> when it gets 206 Partial Content, so /docs/* goes through here.
+// /ping counts installs: the engine calls it once per version (skill/engine/meo/ping.py).
+const OSES = ["mac", "windows", "linux", "other"];
+const CMDS = ["doctor", "templates", "probe", "thumbs", "video", "image", "capcut"];
+
+async function ping(request, env) {
+  const url = new URL(request.url);
+  const v = url.searchParams.get("v") ?? "";
+  const ua = request.headers.get("user-agent") ?? "";
+  // Only the engine sends "meoedit/<version>"; anything else (scanners, browsers) is not counted.
+  if (request.method !== "GET" || !/^\d{1,3}\.\d{1,3}\.\d{1,3}$/.test(v) || ua !== `meoedit/${v}`) {
+    return new Response(null, { status: 404 });
+  }
+  const os = OSES.includes(url.searchParams.get("os")) ? url.searchParams.get("os") : "other";
+  const cmd = CMDS.includes(url.searchParams.get("cmd")) ? url.searchParams.get("cmd") : "other";
+  const country = /^[A-Z]{2}$/.test(request.cf?.country ?? "") ? request.cf.country : "XX";
+  const day = new Date().toISOString().slice(0, 10);
+  await env.DB.prepare(
+    "INSERT INTO pings (day, version, os, cmd, country, n) VALUES (?, ?, ?, ?, ?, 1) " +
+      "ON CONFLICT (day, version, os, cmd, country) DO UPDATE SET n = n + 1",
+  )
+    .bind(day, v, os, cmd, country)
+    .run();
+  return new Response(null, { status: 204 });
+}
+
 export default {
   async fetch(request, env) {
+    if (new URL(request.url).pathname === "/ping") return ping(request, env);
     const res = await env.ASSETS.fetch(request);
     const range = request.headers.get("range");
     const headers = new Headers(res.headers);
