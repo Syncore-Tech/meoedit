@@ -4,8 +4,10 @@ The draft format is CapCut's own JSON (draft_content.json). Field shapes follow 
 and re-saved; pyJianYingDraft (Apache 2.0) documents the same format for Jianying.
 What maps 1:1: clips and their cut points, images, colour scenes, split panels, texts with their template
 font, size, colour, box and position, plan-level texts, SRT subtitles, music, volume, speed, zoom.
-What does not (yet): transitions, typewriter, colour grade, rounded panel corners. Shapes from the template
-(frames, gradients, glow) come over as transparent PNG layers.
+Mapped to CapCut's own effects (ids in TRANSITIONS / TEXT_INTROS / RECT_MASK): transitions between scenes,
+typewriter and fade-in on scene texts, rounded panel corners (rectangle mask).
+What does not (yet): colour grade. Shapes from the template (frames, gradients, glow) come over as
+transparent PNG layers.
 """
 
 import json
@@ -30,6 +32,31 @@ MATERIAL_KINDS = [
     "primary_color_wheels", "realtime_denoises", "shapes", "smart_crops", "smart_relights",
     "sound_channel_mappings", "speeds", "stickers", "tail_leaders", "text_templates", "texts", "time_marks",
     "transitions", "video_effects", "video_trackings", "videos", "vocal_beautifys", "vocal_separations"]
+
+# CapCut effects are referenced by resource id (effect_id is the same number). Names and ids read from a
+# sample draft that pyCapCut 0.0.4 wrote (its names are the Jianying ones); only what meoedit needs.
+# ffmpeg xfade name -> (CapCut name, id). Anything else falls back to "fade".
+TRANSITIONS = {
+    "fade": ("叠化", "6724845717472416269"),
+    "fadeblack": ("闪黑", "6724239388189921806"),
+    "fadewhite": ("闪白", "6724845376098013708"),
+    "slideleft": ("向左", "6724227717195108867"),
+    "slideright": ("向右", "6724227599616184836"),
+    "slideup": ("向上", "6724227090872275463"),
+    "slidedown": ("向下", "6724227330190873100"),
+    "wipeleft": ("向左擦除", "6724849999336706573"),
+    "wiperight": ("向右擦除", "6724849898857959950"),
+    "wipeup": ("向上擦除", "6724849456891564557"),
+    "wipedown": ("向下擦除", "6724849752921346573"),
+    "circleopen": ("圆形遮罩", "6725767129519362573"),
+    "zoomin": ("推近", "6724226861666144779"),
+}
+for _a, _b in (("dissolve", "fade"), ("fadefast", "fade"), ("fadeslow", "fade"), ("smoothleft", "slideleft"),
+               ("smoothright", "slideright"), ("smoothup", "slideup"), ("smoothdown", "slidedown"),
+               ("circleclose", "circleopen"), ("circlecrop", "circleopen")):
+    TRANSITIONS[_a] = TRANSITIONS[_b]
+TEXT_INTROS = {"typewriter": ("打字机", "7210980292243231233"), "fade": ("渐显", "6724916044072227332")}
+RECT_MASK = ("矩形", "6791700809454195207")
 
 
 def default_drafts_dir():
@@ -111,7 +138,8 @@ class Draft:
             "enable_smart_color_adjust": False, "last_nonzero_volume": 1.0, "reverse": False,
             "track_attribute": 0, "track_render_index": 0, "visible": True,
             "id": _id(), "material_id": material_id,
-            "target_timerange": {"start": _us(start), "duration": _us(dur)},
+            # end - start in microseconds, so clips that touch in seconds also touch after rounding
+            "target_timerange": {"start": _us(start), "duration": _us(start + dur) - _us(start)},
             "common_keyframes": keyframes or [], "keyframe_refs": [],
             "source_timerange": source, "speed": speed, "volume": volume,
             "extra_material_refs": list(refs), "is_tone_modify": False,
@@ -131,9 +159,10 @@ class Draft:
         return m["id"]
 
     def visual(self, path, start, dur, *, src_start=0.0, speed=1.0, volume=0.0, box=None, zoom=None,
-               pan=None, layer=0):
+               pan=None, layer=0, radius=0, transition=None):
         """A video or image on the timeline, filling `box` ([x, y, w, h] fractions, default the frame)
-        the way ffmpeg's cover crop does."""
+        the way ffmpeg's cover crop does. radius = rounded corners in template px (rectangle mask);
+        transition = (xfade name, seconds) into the next clip on the same track."""
         path = self.copy_in(path) if not str(path).startswith(str(self.folder)) else Path(path)
         info = media.probe(path)
         is_photo = info["type"] == "image"
@@ -175,17 +204,55 @@ class Draft:
             a, b = (shift, -shift) if pan == "pan" else (-shift, shift)
             kfs.append(_keyframes("KFTypePositionX", dur, x + a, x + b))
         source = None if is_photo else {"start": _us(src_start), "duration": _us(dur * speed)}
+        refs = [self._speed(speed)]
+        if radius:
+            refs.append(self._mask(radius / (min(tw, th) / 2)))
         seg = self._seg(mat["id"], start, dur, source=source, speed=speed, volume=volume,
-                        clip={"scale": scale, "x": x, "y": y}, refs=[self._speed(speed)], keyframes=kfs,
+                        clip={"scale": scale, "x": x, "y": y}, refs=refs, keyframes=kfs,
                         render_index=layer)
+        if transition:
+            seg["_transition"] = transition  # becomes a material in save(), if the next clip is adjacent
         self.place("video", seg, layer)
+
+    def _mask(self, corner):
+        """Rectangle mask over the whole (cropped) picture; corner = radius / half the shorter side."""
+        name, rid = RECT_MASK
+        config = {"aspectRatio": 1.0, "centerX": 0.0, "centerY": 0.0, "feather": 0.0, "height": 1.0,
+                  "invert": False, "rotation": 0.0, "roundCorner": min(corner, 1.0), "width": 1.0}
+        m = {"config": config, "id": _id(), "name": name, "platform": "all", "position_info": "",
+             "resource_type": "rectangle", "resource_id": rid, "type": "mask"}
+        self.materials["masks"].append(m)
+        # Newer CapCut keeps the same mask (same id) in common_mask too.
+        self.materials["common_mask"].append({**m, "config": {**config, "expansion": 0.0}, "category": "video",
+                                              "category_id": "", "category_name": "", "panel": "",
+                                              "source_platform": 0})
+        return m["id"]
+
+    def _transition(self, kind, seconds):
+        name, rid = TRANSITIONS.get(kind, TRANSITIONS["fade"])
+        m = {"category_id": "", "category_name": "", "duration": _us(seconds), "effect_id": rid, "id": _id(),
+             "is_overlap": True, "name": name, "platform": "all", "resource_id": rid, "type": "transition"}
+        self.materials["transitions"].append(m)
+        return m["id"]
+
+    def _intro(self, kind, seconds):
+        """Text intro animation (typewriter / fade-in), from the start of the text segment."""
+        name, rid = TEXT_INTROS[kind]
+        m = {"id": _id(), "type": "sticker_animation", "multi_language_current": "none",
+             "animations": [{"anim_adjust_params": None, "platform": "all", "panel": "", "material_type": "sticker",
+                             "name": name, "id": rid, "type": "in", "resource_id": rid, "start": 0,
+                             "duration": _us(seconds)}]}
+        self.materials["material_animations"].append(m)
+        return m["id"]
 
     def image_layer(self, im, name, start, dur, layer):
         """A full-frame transparent PNG (template shapes) on its own video track above the clips."""
         p = self.png(im, name)
         self.visual(p, start, dur, layer=layer)
 
-    def text(self, presets, t, start, dur):
+    def text(self, presets, t, start, dur, fade_in=None):
+        """fade_in = None: no intro (plan texts, subtitles), like the MP4. Otherwise a "typewriter" preset
+        types in at its chars per second, any other text fades in over fade_in seconds (0 = none)."""
         lay = text.layout(presets, t, self.W, self.H)
         p = lay["preset"]
         body = "\n".join(lay["lines"])
@@ -234,10 +301,18 @@ class Draft:
             flag |= 16
         mat["check_flag"] = flag
         self.materials["texts"].append(mat)
+        refs = []
+        if fade_in is not None and p.get("typewriter"):
+            # Nothing shows before typewriter_delay, then the whole text types in.
+            delay = min(float(p.get("typewriter_delay", 0)), dur * 0.5)
+            start, dur = start + delay, dur - delay
+            refs.append(self._intro("typewriter", min(len(t["text"]) / float(p["typewriter"]), dur)))
+        elif fade_in:
+            refs.append(self._intro("fade", min(fade_in, dur)))
         cx, cy = lay["center"]
         seg = self._seg(mat["id"], start, dur, clip={"x": cx / self.W * 2 - 1, "y": 1 - cy / self.H * 2,
                                                        "rotation": -float(p.get("rotate", 0))},
-                        render_index=15000)
+                        refs=refs, render_index=15000)
         self.place("text", seg)
 
     def audio(self, path, start, dur, volume):
@@ -259,6 +334,14 @@ class Draft:
 
     def save(self, duration):
         order = {"video": 0, "audio": 1, "text": 2}
+        for tr in self.tracks:
+            segs = sorted(tr["segments"], key=lambda s: s["target_timerange"]["start"])
+            for a, b in zip(segs, segs[1:] + [None]):
+                tran = a.pop("_transition", None)
+                # A transition sits on the clip before the cut; only between two clips that touch.
+                if tran and b and a["target_timerange"]["start"] + a["target_timerange"]["duration"] \
+                        == b["target_timerange"]["start"]:
+                    a["extra_material_refs"].append(self._transition(*tran))
         tracks = []
         for tr in sorted(self.tracks, key=lambda t: (order[t["type"]], t.get("layer") or 0)):
             tracks.append({"attribute": 0, "flag": 0, "id": _id(), "is_default_name": False,
@@ -345,10 +428,23 @@ def export(plan_path, name=None, drafts_dir=None):
 
     try:
         d = Draft(folder, W, H, int(style.get("fps", 30)))
-        t = 0.0
+        # Same overlap as the MP4 (video.render): scene k starts x seconds before scene k-1 ends, so the
+        # total length, and with it the subtitle timing, match. CapCut draws a transition across the cut,
+        # so each cut sits in the middle of the MP4's xfade and every scene loses x/2 at each joined side.
+        trans = {**style.get("transition", {}), **plan.get("transition", {})}
+        durs = [float(sc["duration"]) for sc in scenes]
+        n = len(scenes)
+        x = 0.0 if trans.get("type", "fade") == "cut" or n == 1 else \
+            min(float(trans.get("duration", 0.3)), min(durs) / 2.5)
+        cuts = [0.0] + [sum(durs[:k]) - k * x + x / 2 for k in range(1, n)] + [sum(durs) - (n - 1) * x]
+        fade_in = float(style.get("text_fade_in", 0.25))
         for i, sc in enumerate(scenes):
-            dur = float(sc["duration"])
+            t, dur = cuts[i], cuts[i + 1] - cuts[i]
             speed = float(sc.get("speed", 1))
+            lead = (x / 2 if i else 0.0) * speed  # source seconds hidden under the incoming transition
+            # Transition into the next scene, on the main track (layer 0) only.
+            kind = scenes[i + 1].get("transition", trans.get("type", "fade")) if x and i < n - 1 else "cut"
+            tran = None if kind == "cut" else (kind, x)
             vol = float(sc.get("volume", plan.get("original_volume", style.get("original_volume", 0))))
             shapes = sc.get("shapes", style.get("shapes", []))
             srcs = sc.get("srcs")
@@ -359,34 +455,33 @@ def export(plan_path, name=None, drafts_dir=None):
                                      f"cảnh {i + 1} có {len(srcs)} nguồn.")
                 bg = Image.new("RGBA", (W, H), text.rgba(style.get("background", "#000000")))
                 bg = Image.alpha_composite(bg, text.render_shapes([s for s in shapes if s.get("back")], W, H))
-                d.visual(d.png(bg.convert("RGB"), f"bg{i:02d}.png"), t, dur, layer=0)
+                d.visual(d.png(bg.convert("RGB"), f"bg{i:02d}.png"), t, dur, layer=0, transition=tran)
                 starts = list(sc.get("starts", [])) + [sc.get("start", 0)] * len(srcs)
                 pick = int(sc.get("audio_panel", len(srcs) - 1))
                 for j, (src, panel) in enumerate(zip(srcs, panels)):
-                    d.visual(_resolve(base, src), t, dur, src_start=float(starts[j]), speed=speed,
+                    d.visual(_resolve(base, src), t, dur, src_start=float(starts[j]) + lead, speed=speed,
                              volume=vol if j == pick else 0.0, box=panel["box"], zoom=sc.get("zoom"),
-                             layer=1 + j)
+                             layer=1 + j, radius=panel.get("radius", 0))
             else:
                 src = sc["src"]
                 if src.startswith("color:"):
                     p = d.png(Image.new("RGB", (W, H), text.rgba(src.split(":", 1)[1])[:3]), f"color{i:02d}.png")
-                    d.visual(p, t, dur, layer=0)
+                    d.visual(p, t, dur, layer=0, transition=tran)
                 else:
                     p = _resolve(base, src)
                     pan = None
                     if media.is_image(p) and not sc.get("zoom"):
                         motion = sc.get("motion", style.get("image_motion", "pan"))
                         pan = None if motion == "none" else motion
-                    d.visual(p, t, dur, src_start=float(sc.get("start", 0)), speed=speed, volume=vol,
-                             zoom=sc.get("zoom"), pan=pan, layer=0)
+                    d.visual(p, t, dur, src_start=float(sc.get("start", 0)) + lead, speed=speed, volume=vol,
+                             zoom=sc.get("zoom"), pan=pan, layer=0, transition=tran)
             front = [s for s in shapes if not s.get("back")]
             if front:
                 d.image_layer(text.render_shapes(front, W, H), f"shapes{i:02d}.png", t, dur, layer=10)
             for tx in sc.get("texts", []):
                 if tx.get("text"):
-                    d.text(presets, tx, t, dur)
-            t += dur
-        total = t
+                    d.text(presets, tx, t, dur, fade_in)
+        total = cuts[-1]
 
         for tx in plan.get("texts", []):
             if tx.get("text"):
@@ -405,4 +500,4 @@ def export(plan_path, name=None, drafts_dir=None):
         raise
     return {"draft": folder.name, "folder": str(folder), "duration": round(total, 2), "scenes": len(scenes),
             "note": "Mở CapCut (thoát hẳn rồi mở lại nếu đang chạy), chọn project này. "
-                    "Chuyển cảnh, chữ gõ từng ký tự và chỉnh màu chưa sang được, thêm trong CapCut nếu cần."}
+                    "Chỉnh màu chưa sang được, thêm trong CapCut nếu cần."}

@@ -134,6 +134,10 @@ python3 "$MEO/engine/cli.py" video plan.json
 
 Xuất 1080x1920, 30fps, H.264, âm thanh chuẩn hoá -14 LUFS. Báo đường dẫn file và thời lượng.
 
+Báo xong thì hỏi một câu ngắn: có muốn sửa tiếp trong CapCut không (bước 8). Chỉ hỏi khi người dùng có vẻ dùng loại công cụ này. Kiểm tra trước thư mục draft của CapCut: macOS `~/Movies/CapCut/User Data/Projects/com.lveditor.draft`, Windows `%LOCALAPPDATA%\CapCut\User Data\Projects\com.lveditor.draft`. Không có thư mục thì nói một lần là máy chưa cài CapCut (hoặc chưa mở lần nào), không nhắc lại.
+
+Nếu ngay từ đầu người dùng nói sẽ làm nốt trong CapCut, có thể bỏ bước xuất MP4 này: bản nháp được duyệt thì xuất luôn project CapCut.
+
 ### 8. Sửa tiếp trong CapCut (khi người dùng muốn)
 
 Người dùng quen CapCut, muốn tự chỉnh chữ, nhạc, thêm hiệu ứng: xuất cùng plan thành project CapCut.
@@ -144,7 +148,7 @@ python3 "$MEO/engine/cli.py" capcut plan.json --name ten-project
 
 Lệnh ghi project vào thư mục draft của CapCut (macOS, Windows; tự tìm, hoặc chỉ bằng `--drafts`) và chép media, font vào trong project. Không ghi đè project cũ: trùng tên thì thêm `-2`. Dặn người dùng thoát hẳn CapCut rồi mở lại, chọn project đó, xuất video trong CapCut.
 
-Sang được: clip và điểm cắt, ảnh, nền màu, khung chia đôi, chữ (đúng font, cỡ, màu, hộp nền, vị trí), chữ cấp plan, phụ đề SRT, nhạc, âm lượng, tốc độ, `zoom`, ảnh lia. Lớp `shapes` sang thành ảnh PNG trong suốt. Chưa sang: chuyển cảnh, chữ gõ từng ký tự, chỉnh màu `grade`, góc bo của khung clip. Nói rõ cho người dùng các mục này để họ thêm trong CapCut.
+Sang được: clip và điểm cắt, ảnh, nền màu, khung chia đôi, chữ (đúng font, cỡ, màu, hộp nền, vị trí), chữ cấp plan, phụ đề SRT, nhạc, âm lượng, tốc độ, `zoom`, ảnh lia. Lớp `shapes` sang thành ảnh PNG trong suốt. Chuyển cảnh, hiệu ứng chữ (gõ từng ký tự, hiện dần) và góc bo của khung clip giờ cũng sang. Chưa sang: chỉnh màu `grade`. Nói rõ cho người dùng mục này để họ thêm trong CapCut.
 
 ## Quy tắc viết chữ
 
