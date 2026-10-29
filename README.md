@@ -117,6 +117,7 @@ Agent sẽ:
 3. Viết `plan.json`: cảnh nào, cắt từ giây mấy, chữ gì.
 4. Xuất bản nháp 540x960 + ảnh tổng quan, rồi **dừng chờ bạn duyệt**.
 5. Sửa theo ý bạn, xuất bản cuối 1080x1920, âm thanh chuẩn -14 LUFS.
+6. Muốn tự chỉnh tiếp: xuất thành **project CapCut** (đúng font, chữ, vị trí, nhạc), mở CapCut sửa và xuất như bình thường.
 
 Dùng tay không cần agent cũng được:
 
@@ -126,6 +127,7 @@ python3 skill/engine/cli.py thumbs clips/*.MOV -o thumbs.jpg
 python3 skill/engine/cli.py video plan.json --preview
 python3 skill/engine/cli.py video plan.json
 python3 skill/engine/cli.py image card.json
+python3 skill/engine/cli.py capcut plan.json     # project CapCut để sửa tiếp
 ```
 
 Định dạng `plan.json` xem trong [skill/SKILL.md](skill/SKILL.md).
@@ -147,10 +149,12 @@ Sao chép một template có sẵn, đổi tên, sửa màu và chữ, chạy `t
 - [x] Thêm template bất động sản: giới thiệu dự án, trước và sau video, portfolio, hậu trường
 - [ ] Thêm template: gym, thực đơn quán
 - [ ] Cắt theo nhịp nhạc tự động
+- [x] Xuất project CapCut để sửa tiếp, phụ đề SRT, zoom trong cảnh
+- [ ] Chuyển cảnh và hiệu ứng chữ trong project CapCut
 
 ## Giấy phép
 
-Mã nguồn: [MIT](LICENSE). Media demo: xem [CREDITS](examples/demo/CREDITS.md). Font tải từ Google Fonts theo giấy phép SIL Open Font License. meoedit không kèm nhạc; bạn tự chịu trách nhiệm bản quyền nhạc và media đưa vào.
+Mã nguồn: [MIT](LICENSE). Định dạng draft CapCut tham khảo từ [pyJianYingDraft](https://github.com/GuanYixuan/pyJianYingDraft) (Apache 2.0) và [VectCutAPI](https://github.com/sun-guannan/VectCutAPI); meoedit không dùng mã của hai dự án này. CapCut là thương hiệu của ByteDance, meoedit không liên quan. Media demo: xem [CREDITS](examples/demo/CREDITS.md). Font tải từ Google Fonts theo giấy phép SIL Open Font License. meoedit không kèm nhạc; bạn tự chịu trách nhiệm bản quyền nhạc và media đưa vào.
 
 ---
 

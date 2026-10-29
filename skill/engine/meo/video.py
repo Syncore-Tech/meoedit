@@ -7,7 +7,7 @@ from pathlib import Path
 
 from PIL import Image, ImageDraw
 
-from . import media, templates, text
+from . import media, subtitles, templates, text
 
 
 def _even(n):
@@ -24,6 +24,20 @@ def _resolve(base, src):
     return p
 
 
+def _zoom(sc, w, h, dur):
+    """Scene "zoom": [from, to] scales the picture over the scene (1 = fill the frame);
+    "zoom_to": [x, y] picks the point it closes in on (fractions, default the centre)."""
+    if not sc.get("zoom"):
+        return ""
+    a, b = (float(v) for v in sc["zoom"])
+    if min(a, b) < 1:
+        raise ValueError("zoom nhỏ nhất là 1 (vừa khung), ví dụ [1, 1.15].")
+    fx, fy = sc.get("zoom_to", [0.5, 0.5])
+    z = f"({a}+({b - a})*min(t/{dur},1))"
+    return (f",scale=w='trunc({w}*{z}/2)*2':h='trunc({h}*{z}/2)*2':eval=frame,"
+            f"crop={w}:{h}:x='(iw-{w})*{fx}':y='(ih-{h})*{fy}'")
+
+
 def _source(k, src, sc, style, w, h, dur, fps, start=0.0):
     """ffmpeg inputs + filter chain that turn one source into a w x h clip of dur seconds, as stream [s{k}].
     Returns (inputs, chain, has_audio)."""
@@ -35,9 +49,10 @@ def _source(k, src, sc, style, w, h, dur, fps, start=0.0):
     if media.is_image(src):
         inputs = ["-loop", "1", "-framerate", str(fps), "-t", f"{dur}", "-i", str(src)]
         zw, zh = _even(w * 1.12), _even(h * 1.12)
-        motion = sc.get("motion", style.get("image_motion", "pan"))
+        motion = "none" if sc.get("zoom") else sc.get("motion", style.get("image_motion", "pan"))
         if motion == "none":
             chain = f"[{k}:v]scale={w}:{h}:force_original_aspect_ratio=increase,crop={w}:{h},setsar=1"
+            chain += _zoom(sc, w, h, dur)
         else:
             direction = "(iw-{w})*min(t/{d},1)" if motion == "pan" else "(iw-{w})*(1-min(t/{d},1))"
             x = direction.format(w=w, d=dur)
@@ -49,6 +64,7 @@ def _source(k, src, sc, style, w, h, dur, fps, start=0.0):
     chain = f"[{k}:v]scale={w}:{h}:force_original_aspect_ratio=increase,crop={w}:{h},setsar=1"
     if speed != 1:
         chain += f",setpts=PTS/{speed}"
+    chain += _zoom(sc, w, h, dur)
     chain += f",fps={fps},tpad=stop_mode=clone:stop_duration={dur}[s{k}]"
     return inputs, chain, bool(info.get("has_audio")) and speed == 1
 
@@ -221,6 +237,30 @@ def render(plan_path, preview=False, keep_work=False):
             vlast = "[vg]"
         else:
             vlast = "[vx]"
+        cues, sub_preset = subtitles.load(plan, base)
+        if cues:
+            # One concat input: a transparent frame between cues, the cue's text while it is on.
+            blank = work / "sub_blank.png"
+            Image.new("RGBA", (OW, OH), (0, 0, 0, 0)).save(blank)
+            lines, t_at = [], 0.0
+            for c_i, cue in enumerate(cues):
+                a, b = min(cue["start"], total), min(cue["end"], total)
+                if b <= a or a < t_at:
+                    continue
+                if a > t_at:
+                    lines += [f"file '{blank}'", f"duration {a - t_at:.3f}"]
+                im = text.render_layers(style["presets"], [{"preset": sub_preset, "text": cue["text"]}], W, H)
+                png = work / f"sub{c_i:03d}.png"
+                (im.resize((OW, OH), Image.LANCZOS) if (OW, OH) != (W, H) else im).save(png)
+                lines += [f"file '{png}'", f"duration {b - a:.3f}"]
+                t_at = b
+            lines += [f"file '{blank}'", f"duration {max(total - t_at, 0.04):.3f}", f"file '{blank}'"]
+            lst = work / "subs.txt"
+            lst.write_text("\n".join(lines) + "\n")
+            inputs += ["-f", "concat", "-safe", "0", "-i", str(lst)]
+            parts.append(f"[{extra}:v]format=rgba,fps={fps}[subs];{vlast}[subs]overlay=0:0:eof_action=pass[vs]")
+            extra += 1
+            vlast = "[vs]"
         fo = float(style.get("fade_out", 0))
         parts.append(f"{vlast}fade=t=out:st={max(total - fo, 0):.3f}:d={fo}[vout]" if fo else f"{vlast}null[vout]")
 

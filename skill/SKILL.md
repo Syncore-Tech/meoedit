@@ -80,9 +80,11 @@ Trường của một cảnh:
 | `volume` | giữ tiếng gốc của clip (0 đến 1). Mặc định 0 = tắt. Dùng khi có lời nói hoặc tiếng không khí hay |
 | `speed` | tua nhanh, ví dụ `2` (khi đó tắt tiếng gốc) |
 | `motion` | với ảnh: `pan` (lia sang phải), `pan-back` (lia sang trái), `none` |
+| `zoom` | phóng dần trong cảnh, `[từ, đến]`, 1 = vừa khung: `[1, 1.15]` tiến lại gần, `[1.15, 1]` lùi ra. Dùng cho cả clip và ảnh (thay cho `motion`) |
+| `zoom_to` | điểm tiến lại gần, `[x, y]` từ 0 đến 1 (mặc định giữa khung), ví dụ `[0.5, 0.3]` là món ăn ở nửa trên |
 | `transition` | kiểu chuyển vào cảnh này (tên xfade của ffmpeg: `fade`, `slideleft`, `smoothup`, `circleopen`...), chỉ khi template không dùng `cut` |
 
-Cấp plan: `music` (file nhạc, tự lặp và mờ dần cuối, tự nhỏ lại khi có tiếng gốc), `music_volume`, `original_volume`, `transition` (`{"type": "fade", "duration": 0.3}`).
+Cấp plan: `music` (file nhạc, tự lặp và mờ dần cuối, tự nhỏ lại khi có tiếng gốc), `music_volume`, `original_volume`, `transition` (`{"type": "fade", "duration": 0.3}`), `subtitles` (phụ đề từ file SRT: `{"file": "phu-de.srt", "preset": "caption"}`, mốc thời gian tính trên video thành phẩm, kiểu chữ lấy từ template).
 
 Chữ cố định suốt video (logo, nút liên hệ, nhãn trước/sau): đặt `texts` ở cấp plan thay vì lặp lại ở từng cảnh. Lớp này nằm trên cả chuyển cảnh.
 
@@ -131,6 +133,18 @@ python3 "$MEO/engine/cli.py" video plan.json
 ```
 
 Xuất 1080x1920, 30fps, H.264, âm thanh chuẩn hoá -14 LUFS. Báo đường dẫn file và thời lượng.
+
+### 8. Sửa tiếp trong CapCut (khi người dùng muốn)
+
+Người dùng quen CapCut, muốn tự chỉnh chữ, nhạc, thêm hiệu ứng: xuất cùng plan thành project CapCut.
+
+```bash
+python3 "$MEO/engine/cli.py" capcut plan.json --name ten-project
+```
+
+Lệnh ghi project vào thư mục draft của CapCut (macOS, Windows; tự tìm, hoặc chỉ bằng `--drafts`) và chép media, font vào trong project. Không ghi đè project cũ: trùng tên thì thêm `-2`. Dặn người dùng thoát hẳn CapCut rồi mở lại, chọn project đó, xuất video trong CapCut.
+
+Sang được: clip và điểm cắt, ảnh, nền màu, khung chia đôi, chữ (đúng font, cỡ, màu, hộp nền, vị trí), chữ cấp plan, phụ đề SRT, nhạc, âm lượng, tốc độ, `zoom`, ảnh lia. Lớp `shapes` sang thành ảnh PNG trong suốt. Chưa sang: chuyển cảnh, chữ gõ từng ký tự, chỉnh màu `grade`, góc bo của khung clip. Nói rõ cho người dùng các mục này để họ thêm trong CapCut.
 
 ## Quy tắc viết chữ
 

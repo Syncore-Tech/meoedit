@@ -8,6 +8,7 @@
   python3 cli.py video plan.json --preview   bản nháp 540x960 + ảnh tổng quan
   python3 cli.py video plan.json             bản cuối 1080x1920
   python3 cli.py image plan.json             thiết kế ảnh
+  python3 cli.py capcut plan.json            xuất draft để sửa tiếp trong CapCut
 """
 
 import argparse
@@ -18,7 +19,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from meo import __version__, fonts, image, media, templates, video  # noqa: E402
+from meo import __version__, capcut, fonts, image, media, templates, video  # noqa: E402
 
 
 def emit(obj):
@@ -60,6 +61,10 @@ def main():
     p.add_argument("--keep-work", action="store_true")
     p = sub.add_parser("image")
     p.add_argument("plan")
+    p = sub.add_parser("capcut")
+    p.add_argument("plan")
+    p.add_argument("--name", help="tên project trong CapCut (mặc định theo output của plan)")
+    p.add_argument("--drafts", help="thư mục draft của CapCut (mặc định tự tìm)")
     a = ap.parse_args()
 
     try:
@@ -75,6 +80,8 @@ def main():
             emit(video.render(a.plan, preview=a.preview, keep_work=a.keep_work))
         elif a.cmd == "image":
             emit(image.render(a.plan))
+        elif a.cmd == "capcut":
+            emit(capcut.export(a.plan, a.name, a.drafts))
     except (ValueError, FileNotFoundError, media.FFmpegError) as e:
         print(f"Lỗi: {e}", file=sys.stderr)
         return 1
