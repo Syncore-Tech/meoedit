@@ -1,0 +1,128 @@
+{
+ "template": "so-sanh",
+ "output": "out/so-sanh-gia-do-dien-thoai.mp4",
+ "music": "media/music-Lobby-Time.mp3",
+ "scenes": [
+  {
+   "srcs": [
+    "media/gadget-19162466.mp4",
+    "media/gadget-10145272.mp4"
+   ],
+   "starts": [
+    2,
+    1
+   ],
+   "duration": 2.6,
+   "texts": [
+    {
+     "preset": "tieu-de",
+     "text": "Giá đỡ điện thoại: loại nào đáng mua?"
+    },
+    {
+     "preset": "ten-a",
+     "text": "Để bàn"
+    },
+    {
+     "preset": "ten-b",
+     "text": "Kẹp tay dài"
+    }
+   ]
+  },
+  {
+   "srcs": [
+    "media/gadget-19162466.mp4",
+    "media/gadget-10145272.mp4"
+   ],
+   "starts": [
+    8,
+    4
+   ],
+   "duration": 7,
+   "texts": [
+    {
+     "preset": "tieu-de",
+     "text": "So nhanh 3 điểm"
+    },
+    {
+     "preset": "ten-a",
+     "text": "Để bàn"
+    },
+    {
+     "preset": "ten-b",
+     "text": "Kẹp tay dài"
+    },
+    {
+     "preset": "tieu-chi",
+     "text": "Giá",
+     "y": 0.68,
+     "at": 0.4
+    },
+    {
+     "preset": "diem-a",
+     "text": "59k",
+     "y": 0.68,
+     "at": 0.4
+    },
+    {
+     "preset": "diem-b",
+     "text": "149k",
+     "y": 0.68,
+     "at": 0.4
+    },
+    {
+     "preset": "tieu-chi",
+     "text": "Góc quay",
+     "y": 0.74,
+     "at": 1.6
+    },
+    {
+     "preset": "diem-a",
+     "text": "Cố định",
+     "y": 0.74,
+     "at": 1.6
+    },
+    {
+     "preset": "diem-b",
+     "text": "Xoay 360°",
+     "y": 0.74,
+     "at": 1.6
+    },
+    {
+     "preset": "tieu-chi",
+     "text": "Gọn",
+     "y": 0.8,
+     "at": 2.8
+    },
+    {
+     "preset": "diem-a",
+     "text": "Bỏ túi",
+     "y": 0.8,
+     "at": 2.8
+    },
+    {
+     "preset": "diem-b",
+     "text": "Chiếm bàn",
+     "y": 0.8,
+     "at": 2.8
+    },
+    {
+     "preset": "thang",
+     "text": "Quay video nhiều: chọn kẹp tay dài",
+     "at": 4
+    }
+   ]
+  },
+  {
+   "src": "media/phone-6624858.mp4",
+   "start": 1,
+   "duration": 2.6,
+   "texts": [
+    {
+     "preset": "ket",
+     "text": "Chỉ xem phim, gọi video: loại để bàn là đủ"
+    }
+   ],
+   "shapes": []
+  }
+ ]
+}

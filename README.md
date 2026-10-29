@@ -37,6 +37,14 @@ Cài plugin, gõ một câu tiếng Việt, duyệt bản nháp, nhận video 10
 |---|---|---|---|---|
 | <img src="docs/demo-du-an-vuon-may.webp" width="150"> | <img src="docs/demo-truoc-sau-video.webp" width="150"> | <img src="docs/demo-truoc-sau-neon.webp" width="150"> | <img src="docs/demo-portfolio-may-studio.webp" width="150"> | <img src="docs/demo-hau-truong.webp" width="150"> |
 
+| Nói chuyện có phụ đề | Vấn đề và giải pháp | So sánh | Top danh sách |
+|---|---|---|---|
+| <img src="docs/demo-noi-chuyen-da-dau.webp" width="190"> | <img src="docs/demo-xit-tay-dau-mo.webp" width="190"> | <img src="docs/demo-so-sanh-gia-do-dien-thoai.webp" width="190"> | <img src="docs/demo-top-3-quan-an-q1.webp" width="190"> |
+
+| Hỏi đáp | Thực đơn quán | Gym bài tập |
+|---|---|---|
+| <img src="docs/demo-hoi-dap-can-ho.webp" width="190"> | <img src="docs/demo-thuc-don-bep-nha-mo.webp" width="190"> | <img src="docs/demo-gym-chan-mong-20-phut.webp" width="190"> |
+
 Trước khi xuất, agent gửi bạn ảnh tổng quan từng cảnh để duyệt:
 
 <img src="docs/demo-review-may-chieu-sheet.jpg" width="640">

@@ -1,0 +1,16 @@
+{"template": "gym-bai-tap", "output": "out/gym-chan-mong-20-phut.mp4", "music": "media/music-Life-of-Riley.mp3",
+ "scenes": [
+  {"src": "media/gym-34491185.mp4", "start": 1, "duration": 2.5, "texts": [
+    {"preset": "tieu-de", "text": "Chân mông 20 phút"}, {"preset": "phu", "text": "4 bài, tập tại phòng"}]},
+  {"src": "media/gym-26540715.mp4", "start": 3, "duration": 5, "texts": [
+    {"preset": "ten-bai", "text": "Squat máy"}, {"preset": "hiep", "text": "4 hiệp × 12 lần"},
+    {"preset": "meo", "text": "Gối không vượt mũi chân"}, {"preset": "dong-ho", "countdown": 4, "at": 0.5}]},
+  {"src": "media/gym-35585591.mp4", "start": 2, "duration": 5, "texts": [
+    {"preset": "ten-bai", "text": "Lunge tạ đơn"}, {"preset": "hiep", "text": "3 hiệp × 10 lần mỗi chân"},
+    {"preset": "meo", "text": "Lưng thẳng, bước dài vừa đủ"}, {"preset": "dong-ho", "countdown": 4, "at": 0.5}]},
+  {"src": "media/gym-37281098.mp4", "start": 2, "duration": 5, "texts": [
+    {"preset": "ten-bai", "text": "Hít đất"}, {"preset": "hiep", "text": "3 hiệp × 15 lần"},
+    {"preset": "meo", "text": "Siết bụng, hông không võng"}, {"preset": "dong-ho", "countdown": 4, "at": 0.5}]},
+  {"src": "media/gym-35075300.mp4", "start": 5, "duration": 2.6, "texts": [
+    {"preset": "ket", "text": "Lưu lại tập tối nay"}]}
+ ]}

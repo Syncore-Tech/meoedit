@@ -1,6 +1,6 @@
 # Nguồn media của bản demo
 
-Quán "Mây Chiều", quán phở, dự án "Vườn Mây Residence", "Mây Studio", chuyến đi, "Kem Mây", "Tiệm Nhà Mèo" và các mức giá là hư cấu, chỉ để minh hoạ. Media không nằm trong repo; `fetch-media.sh` tải về từ nguồn gốc.
+Quán "Mây Chiều", quán phở, dự án "Vườn Mây Residence", "Mây Studio", chuyến đi, "Kem Mây", "Tiệm Nhà Mèo", "Bếp Nhà Mơ", các quán trong top 3, người nói trong video phụ đề và các mức giá là hư cấu, chỉ để minh hoạ. Media không nằm trong repo; `fetch-media.sh` tải về từ nguồn gốc.
 
 **Video và ảnh:** [Pexels](https://www.pexels.com/license/), dùng miễn phí, được chỉnh sửa. Cảm ơn các tác giả:
 
@@ -58,9 +58,19 @@ Quán "Mây Chiều", quán phở, dự án "Vườn Mây Residence", "Mây Stud
 | bds-7646763 | https://www.pexels.com/video/7646763/ |
 | bds-7817246 | https://www.pexels.com/video/7817246/ |
 | bds-8293132 | https://www.pexels.com/video/8293132/ |
+| talk-8814493 | https://www.pexels.com/video/8814493/ |
+| gadget-10145272 | https://www.pexels.com/video/10145272/ |
+| gadget-19162466 | https://www.pexels.com/video/19162466/ |
+| gadget-6612202 | https://www.pexels.com/video/6612202/ |
+| phone-6624858 | https://www.pexels.com/video/6624858/ |
+| gym-26540715 | https://www.pexels.com/video/26540715/ |
+| gym-34491185 | https://www.pexels.com/video/34491185/ |
+| gym-35075300 | https://www.pexels.com/video/35075300/ |
+| gym-35585591 | https://www.pexels.com/video/35585591/ |
+| gym-37281098 | https://www.pexels.com/video/37281098/ |
 
 **Nhạc:** Kevin MacLeod ([incompetech.com](https://incompetech.com)), giấy phép [Creative Commons: By Attribution 4.0](http://creativecommons.org/licenses/by/4.0/):
-- "Lobby Time" (video review quán cà phê, video mở hộp)
-- "Life of Riley" (video vlog du lịch, video outfit, video hậu trường)
-- "Happy Alley" (video review quán ăn, video công thức nấu ăn, video portfolio)
+- "Lobby Time" (video review quán cà phê, video mở hộp, video nói chuyện, so sánh, hỏi đáp)
+- "Life of Riley" (video vlog du lịch, video outfit, video hậu trường, top danh sách, gym)
+- "Happy Alley" (video review quán ăn, video công thức nấu ăn, video portfolio, vấn đề và giải pháp, thực đơn quán)
 - "Local Forecast - Elevator" (video giới thiệu dự án, video trước và sau)

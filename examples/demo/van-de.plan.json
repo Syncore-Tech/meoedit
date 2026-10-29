@@ -1,0 +1,81 @@
+{
+ "template": "van-de-giai-phap",
+ "output": "out/xit-tay-dau-mo.mp4",
+ "music": "media/music-Happy-Alley.mp3",
+ "scenes": [
+  {
+   "src": "media/cook-35733990.mp4",
+   "start": 0.5,
+   "duration": 2.8,
+   "texts": [
+    {
+     "preset": "nhan-truoc",
+     "text": "Trước đây"
+    },
+    {
+     "preset": "van-de",
+     "text": "Chảo dầu mỡ bám, cọ mãi không sạch"
+    }
+   ]
+  },
+  {
+   "src": "media/gadget-6612202.mp4",
+   "start": 1,
+   "duration": 3,
+   "texts": [
+    {
+     "preset": "nhan-sau",
+     "text": "Giờ thì"
+    },
+    {
+     "preset": "giai-phap",
+     "text": "Xịt tẩy dầu mỡ, để 1 phút là lau sạch"
+    }
+   ]
+  },
+  {
+   "src": "media/gadget-6612202.mp4",
+   "start": 5,
+   "duration": 3.2,
+   "texts": [
+    {
+     "preset": "loi-ich",
+     "text": "Không cần cọ mạnh",
+     "y": 0.55,
+     "at": 0.2
+    },
+    {
+     "preset": "loi-ich",
+     "text": "Không mùi hắc",
+     "y": 0.625,
+     "at": 0.8
+    },
+    {
+     "preset": "loi-ich",
+     "text": "Chai 500ml dùng 2 tháng",
+     "y": 0.7,
+     "at": 1.4
+    }
+   ]
+  },
+  {
+   "src": "media/gadget-6612202.mp4",
+   "start": 9,
+   "duration": 3,
+   "texts": [
+    {
+     "preset": "gia",
+     "text": "89.000đ"
+    },
+    {
+     "preset": "gia-cu",
+     "text": "Giá gốc 129.000đ"
+    },
+    {
+     "preset": "cta",
+     "text": "Bấm giỏ hàng góc trái"
+    }
+   ]
+  }
+ ]
+}
