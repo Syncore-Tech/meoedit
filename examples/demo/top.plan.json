@@ -1,0 +1,16 @@
+{"template": "top-danh-sach", "output": "out/top-3-quan-an-q1.mp4", "music": "media/music-Life-of-Riley.mp3",
+ "scenes": [
+  {"src": "media/food-9888677.mp4", "start": 1, "duration": 2.6, "texts": [
+    {"preset": "tieu-de", "text": "Top 3 quán trưa dưới 50k ở Quận 1"}, {"preset": "phu", "text": "Số 1 đông nhất"}]},
+  {"src": "media/food-37266179.mp4", "start": 1, "duration": 2.8, "texts": [
+    {"preset": "so", "text": "3"}, {"preset": "ten-muc", "text": "Cơm gà Bà Ba"},
+    {"preset": "mo-ta", "text": "45k, phần đầy, ngồi máy lạnh"}]},
+  {"src": "media/food-40420097.mp4", "start": 2, "duration": 2.8, "texts": [
+    {"preset": "so", "text": "2"}, {"preset": "ten-muc", "text": "Bún bò Cô Hai"},
+    {"preset": "mo-ta", "text": "Nước dùng đậm, chả cua to"}]},
+  {"src": "media/food-32017237.mp4", "start": 3, "duration": 2.8, "texts": [
+    {"preset": "so", "text": "1"}, {"preset": "ten-muc", "text": "Bếp Nhà Mơ"},
+    {"preset": "mo-ta", "text": "Hết món lúc 12 giờ rưỡi, đi sớm"}]},
+  {"src": "color:#FF3D7F", "duration": 2.2, "shapes": [], "texts": [
+    {"preset": "ket", "text": "Lưu lại cho trưa mai nha"}]}
+ ]}

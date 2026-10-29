@@ -15,6 +15,10 @@ for id in 32116008 8534373 40529241; do get "photo-$id.jpg" "https://images.pexe
 # Ảnh túi cho story khuyến mãi: một khung hình từ clip ootd-34733102.
 [ -s media/photo-bag-34733102.jpg ] || ffmpeg -v error -y -ss 1.5 -i media/ootd-34733102.mp4 -frames:v 1 -q:v 2 media/photo-bag-34733102.jpg
 for id in 32953540 36371120 36796001 37674124 38410480 39204540 40187590 40397792 40398038 7646600 7646763 7817246 8293132; do get "bds-$id.mp4" "https://www.pexels.com/download/video/$id/"; done
+get talk-8814493.mp4 "https://www.pexels.com/download/video/8814493/"
+for id in 10145272 19162466 6612202; do get "gadget-$id.mp4" "https://www.pexels.com/download/video/$id/"; done
+get phone-6624858.mp4 "https://www.pexels.com/download/video/6624858/"
+for id in 26540715 34491185 35075300 35585591 37281098; do get "gym-$id.mp4" "https://www.pexels.com/download/video/$id/"; done
 get music-Lobby-Time.mp3 "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Lobby%20Time.mp3"
 get music-Life-of-Riley.mp3 "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Life%20of%20Riley.mp3"
 get music-Happy-Alley.mp3 "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Happy%20Alley.mp3"

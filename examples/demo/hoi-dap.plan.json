@@ -1,0 +1,15 @@
+{"template": "hoi-dap", "output": "out/hoi-dap-can-ho.mp4", "music": "media/music-Lobby-Time.mp3",
+ "texts": [{"preset": "ten-shop", "text": "Minh Anh · Nhà phố Thủ Đức"}],
+ "scenes": [
+  {"src": "media/bds-36371120.mp4", "duration": 3.8, "texts": [
+    {"preset": "nhan", "text": "Khách hỏi"},
+    {"preset": "cau-hoi", "text": "Căn 2 phòng ngủ này có vay ngân hàng được không em?"}]},
+  {"src": "media/bds-37674124.mp4", "duration": 3, "texts": [
+    {"preset": "tra-loi", "text": "Được, vay tới 70% giá trị"}]},
+  {"src": "media/bds-38410480.mp4", "duration": 3.4, "texts": [
+    {"preset": "y-chinh", "text": "Trả trước 900 triệu", "y": 0.55},
+    {"preset": "y-chinh", "text": "Góp khoảng 14 triệu mỗi tháng", "y": 0.63},
+    {"preset": "y-chinh", "text": "Ân hạn gốc 24 tháng", "y": 0.71}]},
+  {"src": "media/bds-40187590.mp4", "duration": 2.6, "texts": [
+    {"preset": "cta", "text": "Nhắn \"2PN\" để nhận bảng tính"}]}
+ ]}

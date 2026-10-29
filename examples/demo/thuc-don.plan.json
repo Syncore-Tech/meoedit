@@ -1,0 +1,15 @@
+{"template": "thuc-don-quan", "output": "out/thuc-don-bep-nha-mo.mp4", "music": "media/music-Happy-Alley.mp3",
+ "texts": [{"preset": "dia-chi", "text": "12 Trần Quang Khải, Q1 · Mở 10:00–22:00"}],
+ "scenes": [
+  {"src": "media/food-32017237.mp4", "start": 1, "duration": 3, "texts": [
+    {"preset": "ten-quan", "text": "Bếp Nhà Mơ"}, {"preset": "phu", "text": "Thực đơn trưa tuần này"}]},
+  {"src": "media/food-37266179.mp4", "start": 1, "duration": 3, "texts": [
+    {"preset": "mon", "text": "Cơm gà xối mỡ"}, {"preset": "gia", "text": "45k"},
+    {"preset": "mo-ta", "text": "Da giòn rụm, cơm chiên nghệ"}]},
+  {"src": "media/food-40420097.mp4", "start": 2, "duration": 3, "texts": [
+    {"preset": "mon", "text": "Bún bò Huế"}, {"preset": "gia", "text": "50k"},
+    {"preset": "mo-ta", "text": "Nước dùng ninh xương 8 tiếng"}]},
+  {"src": "media/food-6645806.mp4", "start": 2, "duration": 3.2, "texts": [
+    {"preset": "combo", "text": "Combo 2 người 99k"}, {"preset": "mon", "text": "Gà + bún + 2 trà đá"},
+    {"preset": "gia", "text": "99k"}]}
+ ]}

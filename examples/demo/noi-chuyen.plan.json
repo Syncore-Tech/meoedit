@@ -1,0 +1,9 @@
+{"template": "noi-chuyen-phu-de", "output": "out/noi-chuyen-da-dau.mp4", "music": "media/music-Lobby-Time.mp3", "music_volume": 0.3,
+ "subtitles": {"file": "noi-chuyen.srt", "preset": "phu-de"},
+ "scenes": [
+  {"src": "media/talk-8814493.mp4", "start": 0.5, "duration": 3, "volume": 0, "texts": [
+    {"preset": "hook", "text": "Da dầu đừng dùng kem đặc nữa"}, {"preset": "ten", "text": "Thảo · da dầu 5 năm"}]},
+  {"src": "media/talk-8814493.mp4", "start": 4, "duration": 5, "volume": 0},
+  {"src": "media/talk-8814493.mp4", "start": 9.5, "duration": 3, "volume": 0, "texts": [
+    {"preset": "cta", "text": "Tên gel trong bình luận"}]}
+ ]}
