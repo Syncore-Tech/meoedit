@@ -1,0 +1,147 @@
+{
+  "name": "top-danh-sach",
+  "kind": "video",
+  "title": "Top danh sách — Số to đếm ngược",
+  "description": "Video dọc 9:16, 15–40 giây. Tiêu đề \"Top 5…\" mở đầu, mỗi mục một cảnh với số thứ tự cỡ lớn ở góc trên, tên mục và một dòng lý do. Hợp top quán ăn, địa điểm, sản phẩm, mẹo.",
+  "size": [
+    1080,
+    1920
+  ],
+  "fps": 30,
+  "transition": {
+    "type": "slideleft",
+    "duration": 0.25
+  },
+  "fade_out": 0.4,
+  "text_fade_in": 0.15,
+  "music_volume": 0.4,
+  "original_volume": 0,
+  "image_motion": "pan",
+  "grade": "eq=saturation=1.05:contrast=1.05",
+  "shapes": [
+    {
+      "type": "gradient",
+      "box": [
+        0,
+        0,
+        1,
+        0.42
+      ],
+      "from": "#000000B0",
+      "to": "#00000000"
+    },
+    {
+      "type": "gradient",
+      "box": [
+        0,
+        0.7,
+        1,
+        0.3
+      ],
+      "from": "#00000000",
+      "to": "#00000099"
+    }
+  ],
+  "presets": {
+    "tieu-de": {
+      "font": "BeVietnamPro-Black",
+      "size": 86,
+      "color": "#FFFFFF",
+      "uppercase": true,
+      "y": 0.2,
+      "max_width": 0.86,
+      "line_spacing": 1.04,
+      "shadow": {
+        "offset": [
+          0,
+          4
+        ],
+        "blur": 12,
+        "color": "#000000B0"
+      }
+    },
+    "phu": {
+      "font": "BeVietnamPro-Bold",
+      "size": 44,
+      "color": "#FFFFFF",
+      "box": {
+        "color": "#FF3D7F",
+        "radius": 30,
+        "pad": [
+          12,
+          28
+        ]
+      },
+      "y": 0.33,
+      "max_width": 0.86
+    },
+    "so": {
+      "font": "Oswald",
+      "variation": "Bold",
+      "size": 300,
+      "color": "#FF3D7F",
+      "x": 0.07,
+      "anchor_x": "left",
+      "y": 0.03,
+      "anchor": "top",
+      "shadow": {
+        "offset": [
+          0,
+          6
+        ],
+        "blur": 16,
+        "color": "#00000080"
+      }
+    },
+    "ten-muc": {
+      "font": "BeVietnamPro-ExtraBold",
+      "size": 64,
+      "color": "#FFFFFF",
+      "x": 0.08,
+      "anchor_x": "left",
+      "align": "left",
+      "y": 0.25,
+      "anchor": "top",
+      "max_width": 0.84,
+      "line_spacing": 1.06,
+      "shadow": {
+        "offset": [
+          0,
+          3
+        ],
+        "blur": 10,
+        "color": "#000000B0"
+      }
+    },
+    "mo-ta": {
+      "font": "BeVietnamPro-SemiBold",
+      "size": 44,
+      "color": "#FFFFFF",
+      "box": {
+        "color": "#000000AA",
+        "radius": 18,
+        "pad": [
+          14,
+          26
+        ]
+      },
+      "y": 0.82,
+      "max_width": 0.86
+    },
+    "ket": {
+      "font": "BeVietnamPro-ExtraBold",
+      "size": 58,
+      "color": "#141414",
+      "box": {
+        "color": "#FFFFFFF0",
+        "radius": 22,
+        "pad": [
+          20,
+          32
+        ]
+      },
+      "y": 0.5,
+      "max_width": 0.84
+    }
+  }
+}

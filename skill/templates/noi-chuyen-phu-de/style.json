@@ -1,0 +1,96 @@
+{
+  "name": "noi-chuyen-phu-de",
+  "kind": "video",
+  "title": "Nói chuyện có phụ đề — Chữ vàng nổi",
+  "description": "Video dọc 9:16, 20–60 giây. Một người nói vào camera, phụ đề to bám lời, câu mở đầu trong hộp vàng ở 3 giây đầu. Cắt thẳng giữa các đoạn. Hợp review của creator, chủ shop tư vấn, môi giới nhà, affiliate.",
+  "size": [
+    1080,
+    1920
+  ],
+  "fps": 30,
+  "transition": {
+    "type": "cut"
+  },
+  "fade_out": 0.3,
+  "text_fade_in": 0,
+  "music_volume": 0.08,
+  "original_volume": 1,
+  "image_motion": "none",
+  "grade": "eq=saturation=1.06:contrast=1.04",
+  "shapes": [
+    {
+      "type": "gradient",
+      "box": [
+        0,
+        0.55,
+        1,
+        0.45
+      ],
+      "from": "#00000000",
+      "to": "#00000099"
+    }
+  ],
+  "presets": {
+    "hook": {
+      "font": "BeVietnamPro-Black",
+      "size": 76,
+      "color": "#141414",
+      "box": {
+        "color": "#FFE14D",
+        "radius": 18,
+        "pad": [
+          18,
+          30
+        ]
+      },
+      "y": 0.15,
+      "max_width": 0.86,
+      "line_spacing": 1.08
+    },
+    "phu-de": {
+      "font": "BeVietnamPro-ExtraBold",
+      "size": 64,
+      "color": "#FFFFFF",
+      "stroke": {
+        "width": 7,
+        "color": "#000000"
+      },
+      "y": 0.7,
+      "max_width": 0.84,
+      "line_spacing": 1.08
+    },
+    "ten": {
+      "font": "BeVietnamPro-SemiBold",
+      "size": 36,
+      "color": "#FFFFFF",
+      "box": {
+        "color": "#000000AA",
+        "radius": 12,
+        "pad": [
+          10,
+          22
+        ]
+      },
+      "x": 0.06,
+      "anchor_x": "left",
+      "align": "left",
+      "y": 0.06,
+      "anchor": "top"
+    },
+    "cta": {
+      "font": "BeVietnamPro-ExtraBold",
+      "size": 46,
+      "color": "#141414",
+      "box": {
+        "color": "#FFE14D",
+        "radius": 16,
+        "pad": [
+          18,
+          34
+        ]
+      },
+      "y": 0.86,
+      "max_width": 0.86
+    }
+  }
+}

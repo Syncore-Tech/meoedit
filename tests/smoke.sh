@@ -84,6 +84,25 @@ cat > zoom.plan.json <<'JSON'
             {"src": "anh.jpg", "duration": 2.0, "zoom": [1.2, 1]}]}
 JSON
 
+# Texts that appear later ("at") and a running clock ("countdown"), in the MP4 and in CapCut.
+cat > timed.plan.json <<'JSON'
+{"template": "gym-bai-tap", "output": "timed.mp4", "subtitles": {"file": "sub.srt", "preset": "meo", "y": 0.5},
+ "scenes": [{"src": "doc.mp4", "duration": 3, "texts": [
+   {"preset": "ten-bai", "text": "Squat"}, {"preset": "meo", "text": "Hiện sau 1 giây", "at": 1},
+   {"preset": "dong-ho", "countdown": 2, "at": 0.5}]}]}
+JSON
+python3 "$CLI" video timed.plan.json --preview
+python3 - "$CLI" <<'PY2'
+import json, subprocess, sys
+out = json.loads(subprocess.check_output([sys.executable, sys.argv[1], "capcut", "timed.plan.json", "--drafts", "drafts"]))
+d = json.load(open(out["folder"] + "/draft_info.json"))
+texts = {m["id"]: json.loads(m["content"])["text"] for m in d["materials"]["texts"]}
+segs = {texts[s["material_id"]]: s["target_timerange"] for t in d["tracks"] for s in t["segments"] if s["material_id"] in texts}
+assert segs["Hiện sau 1 giây"]["start"] == 1_000_000, segs["Hiện sau 1 giây"]
+assert [segs[c]["start"] for c in ("0:02", "0:01", "0:00")] == [500_000, 1_500_000, 2_500_000], segs
+print("ok at + countdown")
+PY2
+
 python3 "$CLI" video cafe.plan.json --preview
 python3 "$CLI" video vlog.plan.json --preview
 python3 "$CLI" video zoom.plan.json --preview
@@ -130,7 +149,7 @@ for t in json.loads(subprocess.check_output([sys.executable, cli, "templates"]))
     print("ok", t["name"])
 PY
 
-for f in zoom.preview.mp4 cafe.preview.mp4 cafe.preview.jpg vlog.preview.mp4 vlog.preview.jpg cafe.mp4 card.png thumbs.jpg; do
+for f in timed.preview.mp4 zoom.preview.mp4 cafe.preview.mp4 cafe.preview.jpg vlog.preview.mp4 vlog.preview.jpg cafe.mp4 card.png thumbs.jpg; do
   test -s "$f" || { echo "THIẾU $f"; exit 1; }
 done
 ffprobe -v error -show_entries stream=codec_type,width,height:format=duration -of compact cafe.mp4

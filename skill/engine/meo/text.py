@@ -193,24 +193,44 @@ def layout(presets, t, W, H):
     """Where one text lands, for writers that draw text themselves (CapCut export):
     the merged preset, the wrapped lines and the block centre in pixels."""
     preset = _preset(presets, t)
-    tile, margin, lines = _block(preset, t["text"], W)
+    body = clock(float(preset["countdown"])) if preset.get("countdown") else t["text"]
+    tile, margin, lines = _block(preset, body, W)
     x, y = _top_left(preset, tile, margin, W, H)
     return {"preset": preset, "lines": lines,
             "center": (x + tile.width / 2, y + tile.height / 2)}
 
 
+def clock(seconds):
+    """Countdown face: 75 -> "1:15"."""
+    s = max(int(-(-seconds // 1)), 0)  # round up, so 0:00 shows only at the very end
+    return f"{s // 60}:{s % 60:02d}"
+
+
+def is_timed(preset):
+    """Text that changes during the scene and needs a frame per step."""
+    return bool(preset.get("typewriter") or preset.get("at") or preset.get("countdown"))
+
+
 def render_layers(presets, texts, W, H, t_now=None):
     """texts: [{"preset": name, "text": "...", ...overrides}] -> RGBA canvas W x H.
-    t_now = seconds into the scene; texts with "typewriter": chars per second show only what is typed by then."""
+    t_now = seconds into the scene; texts with "typewriter": chars per second show only what is typed by then,
+    texts with "at": seconds stay hidden until then, "countdown": seconds replaces the text with a running clock."""
     canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     for t in texts:
-        if not t.get("text"):
+        if not t.get("text") and not t.get("countdown"):
             continue
         preset = _preset(presets, t)
+        at = float(preset.get("at", 0))
+        if t_now is not None and t_now < at:
+            continue
+        body = t.get("text", "")
+        if preset.get("countdown"):
+            left = float(preset["countdown"]) - (t_now - at if t_now is not None else 0)
+            body = clock(left)
         reveal = None
         if preset.get("typewriter") and t_now is not None:
-            reveal = max(t_now - float(preset.get("typewriter_delay", 0)), 0) * float(preset["typewriter"])
-        tile, margin, _ = _block(preset, t["text"], W, reveal)
+            reveal = max(t_now - at - float(preset.get("typewriter_delay", 0)), 0) * float(preset["typewriter"])
+        tile, margin, _ = _block(preset, body, W, reveal)
         x, y = _top_left(preset, tile, margin, W, H)
         canvas = place(canvas, tile, int(round(x)), int(round(y)))
     return canvas

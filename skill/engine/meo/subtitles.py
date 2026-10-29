@@ -32,8 +32,8 @@ def parse(path):
 
 
 def load(plan, base):
-    """Plan field "subtitles": {"file": "x.srt", "preset": "caption"} (or just the file name).
-    -> (cues, preset name) or ([], None)."""
+    """Plan field "subtitles": {"file": "x.srt", "preset": "caption", "y": 0.6} (or just the file name).
+    -> (cues, text style: {"preset": name, ...overrides}) or ([], None)."""
     sub = plan.get("subtitles")
     if not sub:
         return [], None
@@ -43,4 +43,6 @@ def load(plan, base):
     p = p if p.is_absolute() else base / p
     if not p.exists():
         raise FileNotFoundError(f"Không thấy file phụ đề: {p}")
-    return parse(p), sub.get("preset", "caption")
+    style = {k: v for k, v in sub.items() if k != "file"}
+    style.setdefault("preset", "caption")
+    return parse(p), style

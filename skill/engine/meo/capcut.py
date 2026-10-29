@@ -479,17 +479,29 @@ def export(plan_path, name=None, drafts_dir=None):
             if front:
                 d.image_layer(text.render_shapes(front, W, H), f"shapes{i:02d}.png", t, dur, layer=10)
             for tx in sc.get("texts", []):
-                if tx.get("text"):
-                    d.text(presets, tx, t, dur, fade_in)
+                p = {**presets.get(tx.get("preset"), {}), **tx}
+                at = min(float(p.get("at", 0)), dur - 0.1)
+                if p.get("countdown"):
+                    # CapCut has no running clock: one text per second, each showing that second's face.
+                    total_s, k = float(p["countdown"]), 0
+                    while k < total_s and at + k < dur:
+                        d.text(presets, {**tx, "countdown": 0, "at": 0, "text": text.clock(total_s - k)},
+                               t + at + k, min(1.0, dur - at - k))
+                        k += 1
+                    if at + k < dur:  # the MP4 holds 0:00 until the scene ends
+                        d.text(presets, {**tx, "countdown": 0, "at": 0, "text": text.clock(0)},
+                               t + at + k, dur - at - k)
+                elif tx.get("text"):
+                    d.text(presets, {**tx, "at": 0}, t + at, dur - at, fade_in)
         total = cuts[-1]
 
         for tx in plan.get("texts", []):
             if tx.get("text"):
                 d.text(presets, tx, 0, total)
-        cues, sub_preset = subtitles.load(plan, base)
+        cues, sub_style = subtitles.load(plan, base)
         for cue in cues:
             if cue["start"] < total:
-                d.text(presets, {"preset": sub_preset, "text": cue["text"]}, cue["start"],
+                d.text(presets, {**sub_style, "text": cue["text"]}, cue["start"],
                        min(cue["end"], total) - cue["start"])
         if plan.get("music"):
             d.audio(_resolve(base, plan["music"]), 0, total,
