@@ -150,7 +150,7 @@ python3 "$MEO/engine/cli.py" capcut plan.json --name ten-project
 
 Lệnh ghi project vào thư mục draft của CapCut (macOS, Windows; tự tìm, hoặc chỉ bằng `--drafts`) và chép media, font vào trong project. Không ghi đè project cũ: trùng tên thì thêm `-2`. Dặn người dùng thoát hẳn CapCut rồi mở lại, chọn project đó, xuất video trong CapCut.
 
-Sang được: clip và điểm cắt, ảnh, nền màu, khung chia đôi, chữ (đúng font, cỡ, màu, hộp nền, vị trí), chữ cấp plan, phụ đề SRT, nhạc, âm lượng, tốc độ, `zoom`, ảnh lia. Lớp `shapes` sang thành ảnh PNG trong suốt. Chuyển cảnh, hiệu ứng chữ (gõ từng ký tự, hiện dần) và góc bo của khung clip giờ cũng sang. Chưa sang: chỉnh màu `grade`. Nói rõ cho người dùng mục này để họ thêm trong CapCut.
+Sang được: clip và điểm cắt, ảnh, nền màu, khung chia đôi, chữ (đúng font, cỡ, màu, hộp nền, vị trí), chữ cấp plan, phụ đề SRT, nhạc, âm lượng, tốc độ, `zoom`, ảnh lia. Lớp `shapes` sang thành ảnh PNG trong suốt. Chuyển cảnh, hiệu ứng chữ (gõ từng ký tự, hiện dần) và góc bo của khung clip giờ cũng sang; kiểu chuyển cảnh CapCut không có thì thành `fade`. Chưa sang: chỉnh màu `grade`. Nói rõ cho người dùng mục này để họ thêm trong CapCut.
 
 ## Quy tắc viết chữ
 
