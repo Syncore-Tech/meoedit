@@ -2,7 +2,7 @@
 
 **Biến agent AI thành editor riêng của bạn: dựng video dọc và thiết kế ảnh từ template, miễn phí, mã nguồn mở, chạy hoàn toàn trên máy bạn.**
 
-Trang giới thiệu: https://meoedit.gaupoit.workers.dev/
+Trang giới thiệu: https://meoedit.com/
 
 Quay bằng điện thoại, đưa thư mục cho agent (Claude Code, Codex, Cursor, Gemini CLI...), chọn template. Agent xem clip, chọn cảnh đẹp, viết chữ, cho bạn xem bản nháp, chờ bạn duyệt rồi mới xuất video 1080x1920.
 

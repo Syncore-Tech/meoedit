@@ -6,7 +6,7 @@ Working on meoedit itself: the engine is `skill/engine/` (Python 3.9+, Pillow, f
 
 Claude Code plugin: `.claude-plugin/marketplace.json` (repo root) lists one plugin whose source is `./skill`; `skill/.claude-plugin/plugin.json` is its manifest. Bump `version` there and `__version__` in `skill/engine/meo/__init__.py` together on every release, or users stay on the old version. Check with `claude plugin validate ./skill && claude plugin validate .`.
 
-Landing page: `site/` (one HTML file; `site/docs` links to `docs/`). Deploy to Cloudflare (Workers static assets, https://meoedit.gaupoit.workers.dev):
+Landing page: `site/` (one HTML file; `site/docs` links to `docs/`). Deploy to Cloudflare (Workers static assets, https://meoedit.com):
 
 ```bash
 rsync -aL --delete --exclude .DS_Store site/ _site/ && npx wrangler deploy
