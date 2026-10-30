@@ -217,6 +217,12 @@
     .msg { max-width: 92%; }
     .tag { display: none; }
   }
+  .webpath { margin-top: 22px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; background: var(--paper); border: 3px solid var(--ink); border-radius: 22px; padding: 14px 16px; box-shadow: 5px 5px 0 var(--ink); max-width: 560px; }
+  .webpath p { margin: 0; flex: 1 1 220px; font-size: 1rem; line-height: 1.4; }
+  .webpath b { font-family: "Baloo 2", sans-serif; font-size: 1.25rem; display: block; line-height: 1.1; }
+  .btn-tomato { background: var(--tomato); color: #fff; border-color: var(--tomato); }
+  .tpl .try { display: block; width: max-content; margin-top: 10px; font-weight: 700; color: var(--tomato); text-decoration: none; }
+  .tpl .try:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
@@ -246,6 +252,10 @@
         </a>
         <a class="btn btn-line" href="#huong-dan">Xem video 69 giây</a>
         <a class="btn btn-line" href="#cai-dat">Cài trong 2 phút</a>
+      </div>
+      <div class="webpath">
+        <p><b>Không muốn cài gì?</b>Làm video ngay trên web: chọn mẫu, tải clip lên, 2 phút có video. 1 video miễn phí mỗi ngày, không cần đăng nhập.</p>
+        <a class="btn btn-tomato" href="/meomeo/video">Làm video trên web</a>
       </div>
     </div>
     <div class="phone-stage">
@@ -296,36 +306,42 @@
         <h3>Review quán cà phê</h3>
         <p>Tông nâu kem ấm, chữ mềm, chuyển cảnh mờ dần. Có nhãn giá và màn chấm điểm.</p>
         <span class="name">review-quan-cafe</span>
+        <a class="try" href="/meomeo/video?mau=review-quan-cafe">Dùng mẫu này trên web</a>
       </article>
       <article class="tpl">
         <figure class="frame v"><img src="docs/demo-review-pho-goc-pho.webp" alt="Demo template review quán ăn: phở, bún cá, nem rán" loading="lazy"></figure>
         <h3>Review quán ăn</h3>
         <p>Câu mở đầu in hoa trên hộp đỏ, tên món viết tay vàng, nhãn giá nghiêng, trượt ngang.</p>
         <span class="name">review-quan-an</span>
+        <a class="try" href="/meomeo/video?mau=review-quan-an">Dùng mẫu này trên web</a>
       </article>
       <article class="tpl">
         <figure class="frame v"><img src="docs/demo-vlog-mien-bac.webp" alt="Demo template vlog du lịch miền Bắc" loading="lazy"></figure>
         <h3>Vlog du lịch</h3>
         <p>Cắt nhanh theo nhịp nhạc, chữ in hoa vàng, phụ đề nền đen từng dòng.</p>
         <span class="name">vlog-du-lich</span>
+        <a class="try" href="/meomeo/video?mau=vlog-du-lich">Dùng mẫu này trên web</a>
       </article>
       <article class="tpl">
         <figure class="frame v"><img src="docs/demo-ootd-tuan-nay.webp" alt="Demo template outfit: 5 outfit đi làm" loading="lazy"></figure>
         <h3>Outfit</h3>
         <p>Tiêu đề nghiêng kiểu tạp chí, nhãn trắng cho từng món đồ kèm giá, màu hơi trầm.</p>
         <span class="name">outfit-ootd</span>
+        <a class="try" href="/meomeo/video?mau=outfit-ootd">Dùng mẫu này trên web</a>
       </article>
       <article class="tpl">
         <figure class="frame v"><img src="docs/demo-mo-hop-kem-duong.webp" alt="Demo template mở hộp kem dưỡng" loading="lazy"></figure>
         <h3>Mở hộp sản phẩm</h3>
         <p>Tông hồng mềm, nhãn điểm nổi bật, màn giá cuối với nút đặt hàng.</p>
         <span class="name">mo-hop-san-pham</span>
+        <a class="try" href="/meomeo/video?mau=mo-hop-san-pham">Dùng mẫu này trên web</a>
       </article>
       <article class="tpl">
         <figure class="frame v"><img src="docs/demo-mi-xao-15-phut.webp" alt="Demo template công thức mì xào 15 phút" loading="lazy"></figure>
         <h3>Công thức nấu ăn</h3>
         <p>Màn nguyên liệu nền xanh, nhãn Bước 1, 2, 3 vàng mù tạt, mô tả từng bước.</p>
         <span class="name">cong-thuc-nau-an</span>
+        <a class="try" href="/meomeo/video?mau=cong-thuc-nau-an">Dùng mẫu này trên web</a>
       </article>
     </div>
     <h3 class="group">Bất động sản, video 9:16</h3>
@@ -335,30 +351,35 @@
         <h3>Giới thiệu dự án</h3>
         <p>Tên dự án in hoa, nhãn vị trí, điểm nổi bật có dấu tick, màn giá "chỉ từ" chữ vàng, nút liên hệ cố định.</p>
         <span class="name">gioi-thieu-du-an</span>
+        <a class="try" href="/meomeo/video?mau=gioi-thieu-du-an">Dùng mẫu này trên web</a>
       </article>
       <article class="tpl">
         <figure class="frame v"><img src="docs/demo-truoc-sau-video.webp" alt="Demo trước và sau: clip gốc và video đã dựng chạy cạnh nhau trong hai khung" loading="lazy"></figure>
         <h3>Trước và sau video</h3>
         <p>Bản gốc và bản đã làm chạy cùng lúc trong hai khung, khung kết quả viền sáng, nền lưới tối.</p>
         <span class="name">truoc-sau-video</span>
+        <a class="try" href="/meomeo/video?mau=truoc-sau-video">Dùng mẫu này trên web</a>
       </article>
       <article class="tpl">
         <figure class="frame v"><img src="docs/demo-truoc-sau-neon.webp" alt="Demo trước và sau khung vàng neon: khung gốc nhỏ bên trái, khung kết quả lớn bên phải" loading="lazy"></figure>
         <h3>Trước và sau neon</h3>
         <p>Khung gốc nhỏ, khung kết quả lớn viền vàng neon, dải ưu đãi vàng chữ đen ở đáy.</p>
         <span class="name">truoc-sau-neon</span>
+        <a class="try" href="/meomeo/video?mau=truoc-sau-neon">Dùng mẫu này trên web</a>
       </article>
       <article class="tpl">
         <figure class="frame v"><img src="docs/demo-portfolio-may-studio.webp" alt="Demo portfolio studio quay phim: cắt nhanh, nhãn Flycam, Nhà mẫu, Người dẫn" loading="lazy"></figure>
         <h3>Portfolio dịch vụ</h3>
         <p>Mở bằng câu khách hỏi, cắt một giây mỗi cảnh, nhãn cam ghi loại việc, dải liên hệ ở đáy.</p>
         <span class="name">portfolio-dich-vu</span>
+        <a class="try" href="/meomeo/video?mau=portfolio-dich-vu">Dùng mẫu này trên web</a>
       </article>
       <article class="tpl">
         <figure class="frame v"><img src="docs/demo-hau-truong.webp" alt="Demo hậu trường một ngày đi làm của sale nhà phố, chữ gõ từng ký tự" loading="lazy"></figure>
         <h3>Hậu trường</h3>
         <p>Giờ trong ngày ở góc, tiêu đề và caption gõ từng chữ, câu kết viết tay.</p>
         <span class="name">hau-truong</span>
+        <a class="try" href="/meomeo/video?mau=hau-truong">Dùng mẫu này trên web</a>
       </article>
     </div>
     <h3 class="group">Video trend 9:16</h3>
@@ -368,42 +389,49 @@
         <h3>Nói chuyện có phụ đề</h3>
         <p>Một người nói vào camera, câu mở đầu trong hộp vàng, phụ đề to bám lời từ file SRT.</p>
         <span class="name">noi-chuyen-phu-de</span>
+        <a class="try" href="/meomeo/video?mau=noi-chuyen-phu-de">Dùng mẫu này trên web</a>
       </article>
       <article class="tpl">
         <figure class="frame v"><img src="docs/demo-xit-tay-dau-mo.webp" alt="Demo vấn đề và giải pháp: chảo dầu mỡ bám, rồi bình xịt tẩy, giá 89.000đ" loading="lazy"></figure>
         <h3>Vấn đề và giải pháp</h3>
         <p>Cái bực mình hằng ngày trong nhãn đỏ, sản phẩm xử lý trong nhãn xanh, giá và nút mua. Hợp TikTok Shop.</p>
         <span class="name">van-de-giai-phap</span>
+        <a class="try" href="/meomeo/video?mau=van-de-giai-phap">Dùng mẫu này trên web</a>
       </article>
       <article class="tpl">
         <figure class="frame v"><img src="docs/demo-so-sanh-gia-do-dien-thoai.webp" alt="Demo so sánh hai giá đỡ điện thoại trong hai khung cam và xanh, tiêu chí hiện lần lượt" loading="lazy"></figure>
         <h3>So sánh</h3>
         <p>Hai sản phẩm chạy song song trong hai khung cam và xanh, tiêu chí hiện lần lượt, nhãn chốt bên thắng.</p>
         <span class="name">so-sanh</span>
+        <a class="try" href="/meomeo/video?mau=so-sanh">Dùng mẫu này trên web</a>
       </article>
       <article class="tpl">
         <figure class="frame v"><img src="docs/demo-top-3-quan-an-q1.webp" alt="Demo top 3 quán trưa dưới 50k ở Quận 1, số thứ tự lớn ở góc" loading="lazy"></figure>
         <h3>Top danh sách</h3>
         <p>Tiêu đề Top mở đầu, mỗi mục một cảnh với số thứ tự cỡ lớn, tên và một dòng lý do.</p>
         <span class="name">top-danh-sach</span>
+        <a class="try" href="/meomeo/video?mau=top-danh-sach">Dùng mẫu này trên web</a>
       </article>
       <article class="tpl">
         <figure class="frame v"><img src="docs/demo-hoi-dap-can-ho.webp" alt="Demo hỏi đáp mua căn hộ: câu hỏi trong bong bóng tin nhắn, câu trả lời to bên dưới" loading="lazy"></figure>
         <h3>Hỏi đáp</h3>
         <p>Mỗi video một câu khách hay hỏi, gõ trong bong bóng tin nhắn, trả lời to, ý chính trong nhãn xanh.</p>
         <span class="name">hoi-dap</span>
+        <a class="try" href="/meomeo/video?mau=hoi-dap">Dùng mẫu này trên web</a>
       </article>
       <article class="tpl">
         <figure class="frame v"><img src="docs/demo-thuc-don-bep-nha-mo.webp" alt="Demo thực đơn quán Bếp Nhà Mơ: tên món, giá vàng, nhãn combo, địa chỉ cố định dưới cùng" loading="lazy"></figure>
         <h3>Thực đơn quán</h3>
         <p>Tên quán kiểu bảng hiệu, mỗi món một cảnh với giá vàng to, nhãn combo nghiêng, địa chỉ và giờ mở cửa cố định.</p>
         <span class="name">thuc-don-quan</span>
+        <a class="try" href="/meomeo/video?mau=thuc-don-quan">Dùng mẫu này trên web</a>
       </article>
       <article class="tpl">
         <figure class="frame v"><img src="docs/demo-gym-chan-mong-20-phut.webp" alt="Demo bài tập chân mông 20 phút: tên bài, số hiệp, đồng hồ đếm ngược ở góc" loading="lazy"></figure>
         <h3>Gym bài tập</h3>
         <p>Tên bài chữ đậm, nhãn số hiệp và số lần, đồng hồ đếm ngược ở góc, một mẹo tư thế.</p>
         <span class="name">gym-bai-tap</span>
+        <a class="try" href="/meomeo/video?mau=gym-bai-tap">Dùng mẫu này trên web</a>
       </article>
     </div>
     <h3 class="group">Hướng dẫn, video ngang 16:9</h3>
@@ -413,6 +441,7 @@
         <h3>Hướng dẫn quay màn hình</h3>
         <p>Màn hình quay trong khung bo góc trên nền vàng, nhãn Bước 1, 2, 3, đoạn chờ tua nhanh. Video hướng dẫn phía trên dựng bằng template này.</p>
         <span class="name">huong-dan</span>
+        <a class="try" href="/meomeo/video?mau=huong-dan">Dùng mẫu này trên web</a>
       </article>
     </div>
     <h3 class="group">Ảnh</h3>
