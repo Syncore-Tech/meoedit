@@ -1,6 +1,7 @@
 // Static assets answer a Range request with the whole file (200). Safari on iPhone
 // only plays <video> when it gets 206 Partial Content, so /docs/* goes through here.
 // /ping counts installs: the engine calls it once per version (skill/engine/meo/ping.py).
+// /meomeo/* is the Meomeo app (its own Worker, repo Syncore-Tech/meomeo), reached through a service binding.
 const OSES = ["mac", "windows", "linux", "other"];
 const CMDS = ["doctor", "templates", "probe", "thumbs", "video", "image", "capcut"];
 
@@ -27,7 +28,9 @@ async function ping(request, env) {
 
 export default {
   async fetch(request, env) {
-    if (new URL(request.url).pathname === "/ping") return ping(request, env);
+    const path = new URL(request.url).pathname;
+    if (path === "/ping") return ping(request, env);
+    if (path === "/meomeo" || path.startsWith("/meomeo/")) return env.MEOMEO.fetch(request);
     const res = await env.ASSETS.fetch(request);
     const range = request.headers.get("range");
     const headers = new Headers(res.headers);

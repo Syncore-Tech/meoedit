@@ -1,19 +1,21 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   // Landing page: static files built by copying site/ (symlinks resolved) into _site/.
-  // The Worker only runs for /docs/* (Range requests for the tutorial video) and /ping (install counts).
+  // The Worker only runs for /docs/* (Range requests for the tutorial video), /ping (install counts)
+  // and /meomeo/* (handed to the meomeo Worker through the MEOMEO service binding).
   "name": "meoedit",
   "main": "worker/index.js",
   "compatibility_date": "2026-10-28",
   "assets": {
     "directory": "./_site",
     "binding": "ASSETS",
-    "run_worker_first": ["/docs/*", "/ping"]
+    "run_worker_first": ["/docs/*", "/ping", "/meomeo", "/meomeo/*"]
   },
   "d1_databases": [
     // Anonymous install counts, schema in worker/schema.sql
     { "binding": "DB", "database_name": "meoedit-stats", "database_id": "ba9e55af-e61c-459e-b7b5-e30ad6d982a2" }
   ],
+  "services": [{ "binding": "MEOMEO", "service": "meomeo" }],
   "workers_dev": true,
   "routes": [
     { "pattern": "meoedit.com", "custom_domain": true },
